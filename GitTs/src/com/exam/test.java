@@ -7,6 +7,7 @@ public class test {
 		System.out.println("Git 테스트!");
 		System.out.println("두번째 커밋!");
 		System.out.println("세번째 커밋!");
+		System.out.println("정배의 커밋");
 	}
 
 }
