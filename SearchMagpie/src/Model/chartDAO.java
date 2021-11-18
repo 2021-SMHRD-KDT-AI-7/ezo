@@ -42,19 +42,21 @@ public class chartDAO {
 		}
 	}//dbClose
 //DB에 접근하여 제품 조회수컬럼을 1증가 시키는 함수
-	public void viewCountPlus() {
+	public int viewCountPlus() {
 		getConn();
 		try {
 			String sql = "INSERT INTO t_product(p_view_cnt) VALUES (+1)";
 			
 			ps = conn.prepareStatement(sql);
 			
-			ps.executeUpdate();
+			cnt = ps.executeUpdate();
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
 			dbClose();
 		}
+		return cnt;
 	}//viewCountPlus
 
 //DB에 접근하여 해당 제품의 조회수를 가지고 오는 함수
