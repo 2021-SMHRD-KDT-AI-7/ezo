@@ -76,6 +76,6 @@ public class chartDAO {
 			dbClose();
 		}
 		return cnt;
-	}//getViewCount
+	}//getViewCount#
 	
 }//class

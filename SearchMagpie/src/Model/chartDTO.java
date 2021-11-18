@@ -121,5 +121,5 @@ public class chartDTO {
 	public void setP_pic5(String p_pic5) {
 		this.p_pic5 = p_pic5;
 	}
-
+ 
 }
