@@ -40,10 +40,6 @@ public class productDTO {
 		this.p_pic5 = p_pic5;
 	}
 
-	public int getP_seq() {
-		return p_seq;
-	}
-
 	public void setP_seq(int p_seq) {
 		this.p_seq = p_seq;
 	}

@@ -13,18 +13,17 @@ import Model.productDAO;
 import Model.productDTO;
 
 import java.util.*;
-@WebServlet("/insertProductServiceCon")
-public class insertProductServiceCon extends HttpServlet {
+@WebServlet("/viewProductServiceCon")
+public class viewProductServiceCon extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
 		ArrayList<productDTO> temp = new ArrayList<>();
 		productDAO dao = new productDAO();
 		temp = dao.allViewProduct();
 		//DB에 있는 제품 자료를 서버로 보냄
-		request.setAttribute("products", temp);
+		request.setAttribute("products", temp); 
 		//사용자 페이지 이동
 		RequestDispatcher rd = request.getRequestDispatcher("test.jsp");
-		//넘기곘지.
 		rd.forward(request, response);
 
 		

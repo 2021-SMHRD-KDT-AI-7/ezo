@@ -41,7 +41,7 @@ public class productDAO {
 		}
 	}// dbClose
 
-	// productDTO 형태의 자료를 파라미터로 입력 받아 DB에 sql문을 통해 입력
+	// productDTO 형태의 자료를 파라미터로 입력 받아 sql문을 통해 DB에 입력하는 메소드
 	public int insertProduct(productDTO productDTO) {
 		getConn();
 		try {

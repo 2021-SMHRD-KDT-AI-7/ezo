@@ -39,6 +39,10 @@ public class chartDTO {
 		this.p_pic4 = p_pic4;
 		this.p_pic5 = p_pic5;
 	}
+	public chartDTO(int p_view_cnt, String p_name) {
+		this.p_view_cnt = p_view_cnt;
+		this.p_name = p_name;
+	}
 
 	@Override
 	public String toString() {
