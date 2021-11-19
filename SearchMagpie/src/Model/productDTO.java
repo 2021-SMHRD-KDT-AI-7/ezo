@@ -1,6 +1,6 @@
 package Model;
 
-public class chartDTO {
+public class productDTO {
 	private int p_seq;
 	private String p_name;
 	private int p_price;
@@ -18,7 +18,7 @@ public class chartDTO {
 	private String p_pic4;
 	private String p_pic5;
 
-	public chartDTO(int p_seq, String p_name, int p_price, int web_seq, String p_category, int p_view_cnt,
+	public productDTO(int p_seq, String p_name, int p_price, int web_seq, String p_category, int p_view_cnt,
 			String p_maker, int p_weight, String p_made_date, String reg_date, int m_seq, String p_pic1, String p_pic2,
 			String p_pic3, String p_pic4, String p_pic5) {
 		super();
@@ -38,23 +38,6 @@ public class chartDTO {
 		this.p_pic3 = p_pic3;
 		this.p_pic4 = p_pic4;
 		this.p_pic5 = p_pic5;
-	}
-	public chartDTO(int p_view_cnt, String p_name) {
-		this.p_view_cnt = p_view_cnt;
-		this.p_name = p_name;
-	}
-
-	@Override
-	public String toString() {
-		return "chartDTO [p_seq=" + p_seq + ", p_name=" + p_name + ", p_price=" + p_price + ", web_seq=" + web_seq
-				+ ", p_category=" + p_category + ", p_view_cnt=" + p_view_cnt + ", p_maker=" + p_maker + ", p_weight="
-				+ p_weight + ", p_made_date=" + p_made_date + ", reg_date=" + reg_date + ", m_seq=" + m_seq
-				+ ", p_pic1=" + p_pic1 + ", p_pic2=" + p_pic2 + ", p_pic3=" + p_pic3 + ", p_pic4=" + p_pic4
-				+ ", p_pic5=" + p_pic5 + "]";
-	}
-
-	public int getP_seq() {
-		return p_seq;
 	}
 
 	public void setP_seq(int p_seq) {
@@ -181,4 +164,12 @@ public class chartDTO {
 		this.p_pic5 = p_pic5;
 	}
 
-}
+	@Override
+	public String toString() {
+		return "chartDTO [p_seq=" + p_seq + ", p_name=" + p_name + ", p_price=" + p_price + ", web_seq=" + web_seq
+				+ ", p_category=" + p_category + ", p_view_cnt=" + p_view_cnt + ", p_maker=" + p_maker + ", p_weight="
+				+ p_weight + ", p_made_date=" + p_made_date + ", reg_date=" + reg_date + ", m_seq=" + m_seq
+				+ ", p_pic1=" + p_pic1 + ", p_pic2=" + p_pic2 + ", p_pic3=" + p_pic3 + ", p_pic4=" + p_pic4
+				+ ", p_pic5=" + p_pic5 + "]";
+	}
+}// class
