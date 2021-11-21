@@ -9,7 +9,7 @@ public class productDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB연결 메소드
+//DB연결 메소드.
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -102,10 +102,10 @@ public class productDAO {
 				String p_pic3 = rs.getString("p_pic3");
 				String p_pic4 = rs.getString("p_pic4");
 				String p_pic5 = rs.getString("p_pic5");
-				
-temp.add(new productDTO(p_seq,p_name,p_price,web_seq,p_category,p_view_cnt,p_maker,p_weight,p_name_date,reg_date,m_seq,p_pic1,p_pic2,p_pic3,p_pic4,p_pic5));
-			}//while
 
+				temp.add(new productDTO(p_seq, p_name, p_price, web_seq, p_category, p_view_cnt, p_maker, p_weight,
+						p_name_date, reg_date, m_seq, p_pic1, p_pic2, p_pic3, p_pic4, p_pic5));
+			} // while
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -113,6 +113,5 @@ temp.add(new productDTO(p_seq,p_name,p_price,web_seq,p_category,p_view_cnt,p_mak
 		}
 		return temp;
 	}// allViewProduct
-	
-	
+
 }// class

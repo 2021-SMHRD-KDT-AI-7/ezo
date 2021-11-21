@@ -1,418 +1,547 @@
---t_member Table Create SQL
-CREATE TABLE t_member
+-- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+
+-- t_web Table Create SQL
+CREATE TABLE t_web
 (
-    m_seq         NUMBER(12,0)    NOT NULL,
-    m_id          VARCHAR2(20)    NOT NULL,
-    m_pwd         VARCHAR2(20)    NOT NULL,
-    m_nickname    VARCHAR2(20)    NOT NULL,
-    m_email       VARCHAR2(50)    NOT NULL,
-    m_phone       VARCHAR2(20)    NOT NULL,
-    m_joindate    DATE            DEFAULT SYSDATE NOT NULL,
-    admin_yn      VARCHAR2(1)     NOT NULL,
-    m_status      VARCHAR2(1)     NOT NULL,
-     PRIMARY KEY (m_seq)
+    web_key     NUMBER          NOT NULL, 
+    web_name    VARCHAR2(20)    NOT NULL, 
+    web_url     VARCHAR2(50)    NOT NULL, 
+     PRIMARY KEY (web_key)
 )
 /
-CREATE SEQUENCE t_member_seq
+
+CREATE SEQUENCE t_web_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
---
-CREATE OR REPLACE TRIGGER t_member_seq_ai_trg
-BEFORE INSERT ON t_member
-FOR EACH ROW
+
+CREATE OR REPLACE TRIGGER t_web_AI_TRG
+BEFORE INSERT ON t_web 
+REFERENCING NEW AS NEW FOR EACH ROW 
 BEGIN 
-	IF INSERTING then 
-    SELECT t_member_seq.NEXTVAL
-    INTO :NEW.m_seq
+    SELECT t_web_SEQ.NEXTVAL
+    INTO :NEW.web_key
     FROM DUAL;
 END;
-
 /
 
-COMMENT ON TABLE t_member IS '회원 정보'
+--DROP TRIGGER t_web_AI_TRG;
 /
 
-COMMENT ON COLUMN t_member.m_seq IS '회원 고유 번호'
+--DROP SEQUENCE t_web_SEQ;
+/
+
+COMMENT ON TABLE t_web IS '웹 출처'
+/
+
+COMMENT ON COLUMN t_web.web_key IS '웹 키'
+/
+
+COMMENT ON COLUMN t_web.web_name IS '웹 이름'
+/
+
+COMMENT ON COLUMN t_web.web_url IS '웹 URL'
+/
+
+
+-- t_member Table Create SQL
+CREATE TABLE t_member
+(
+    m_key         NUMBER          NOT NULL, 
+    m_id          VARCHAR2(20)    NOT NULL, 
+    m_pw          VARCHAR2(20)    NOT NULL, 
+    m_email       VARCHAR2(50)    NULL, 
+    m_phone       VARCHAR2(20)    NULL, 
+    m_joindate    DATE            NOT NULL, 
+    m_status      VARCHAR2(1)     NOT NULL, 
+    admin_yn      VARCHAR2(1)     NOT NULL, 
+     PRIMARY KEY (m_key)
+)
+/
+
+CREATE SEQUENCE t_member_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_member_AI_TRG
+BEFORE INSERT ON t_member 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_member_SEQ.NEXTVAL
+    INTO :NEW.m_key
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_member_AI_TRG;
+/
+
+--DROP SEQUENCE t_member_SEQ;
+/
+
+COMMENT ON TABLE t_member IS '회원정보'
+/
+
+COMMENT ON COLUMN t_member.m_key IS '회원 키'
 /
 
 COMMENT ON COLUMN t_member.m_id IS '회원 아이디'
 /
 
-COMMENT ON COLUMN t_member.m_pwd IS '회원 비밀번호'
-/
-
-COMMENT ON COLUMN t_member.m_nickname IS '회원 닉네임'
+COMMENT ON COLUMN t_member.m_pw IS '회원 비빌번호'
 /
 
 COMMENT ON COLUMN t_member.m_email IS '회원 이메일'
 /
 
-COMMENT ON COLUMN t_member.m_phone IS '회원 연락처'
+COMMENT ON COLUMN t_member.m_phone IS '회원 전화번호'
 /
 
-COMMENT ON COLUMN t_member.m_joindate IS '회원 가입일'
+COMMENT ON COLUMN t_member.m_joindate IS '회원가입일'
+/
+
+COMMENT ON COLUMN t_member.m_status IS '회원상태'
 /
 
 COMMENT ON COLUMN t_member.admin_yn IS '관리자 여부'
 /
 
-COMMENT ON COLUMN t_member.m_status IS '회원 상태'
-/
 
-
-CREATE TABLE t_web_site(
-    web_seq    NUMBER (12, 0) NOT NULL,
-    web_name   VARCHAR2(50)   NOT NULL,
-    web_url    VARCHAR2(150)  NOT NULL,
-        PRIMARY KEY (web_seq)
+-- t_seller Table Create SQL
+CREATE TABLE t_seller
+(
+    seller_key     NUMBER          NOT NULL, 
+    seller_name    VARCHAR2(20)    NOT NULL, 
+    web_key        NUMBER          NOT NULL, 
+     PRIMARY KEY (seller_key)
 )
 /
 
-CREATE SEQUENCE t_web_site_seq
+CREATE SEQUENCE t_seller_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER t_web_site_seq_ai_trg
-BEFORE INSERT ON t_web_site
-REFERENCING NEW AS NEW
-FOR EACH ROW
-BEGIN
-    SELECT t_web_site_seq.NEXTVAL
-    INTO :NEW.web_seq
+CREATE OR REPLACE TRIGGER t_seller_AI_TRG
+BEFORE INSERT ON t_seller 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_seller_SEQ.NEXTVAL
+    INTO :NEW.seller_key
     FROM DUAL;
 END;
 /
 
-COMMENT ON TABLE t_web_site IS '웹 정보'
+--DROP TRIGGER t_seller_AI_TRG;
 /
 
-COMMENT ON COLUMN t_web_site.web_seq IS '웹 고유 번호'
+--DROP SEQUENCE t_seller_SEQ;
 /
 
-COMMENT ON COLUMN t_web_site.web_name IS '웹 이름'
+COMMENT ON TABLE t_seller IS '해외 직구 판매자'
 /
 
-COMMENT ON COLUMN t_web_site.web_url IS '웹 url'
+COMMENT ON COLUMN t_seller.seller_key IS '해외 직구 판매자'
 /
 
+COMMENT ON COLUMN t_seller.seller_name IS '판매자 이름'
+/
+
+COMMENT ON COLUMN t_seller.web_key IS '아이템 출처 키'
+/
+
+ALTER TABLE t_seller
+    ADD CONSTRAINT FK_t_seller_web_key_t_web_web_ FOREIGN KEY (web_key)
+        REFERENCES t_web (web_key)
+/
 
 
 -- t_product Table Create SQL
 CREATE TABLE t_product
 (
-    p_seq          NUMBER(12, 0)    NOT NULL,
-    p_name         VARCHAR2(150)    NOT NULL,
-    p_price        NUMBER(12, 0)    NOT NULL,
-    web_seq        NUMBER(12, 0)    NOT NULL,
-    p_category     VARCHAR2(50)     NOT NULL,
-    p_view_cnt          NUMBER(12, 0)    DEFAULT 0 NOT NULL,
-    p_maker        VARCHAR2(50)     NOT NULL,
-    p_weight       NUMBER(12, 1)    NOT NULL,
-    p_made_date    DATE             DEFAULT SYSDATE NOT NULL,
-    reg_date       DATE             DEFAULT SYSDATE NOT NULL,
-    m_seq          NUMBER(12, 0)    NOT NULL,
-    p_pic1         VARCHAR2(150)    NULL,
-    p_pic2         VARCHAR2(150)    NULL,
-    p_pic3         VARCHAR2(150)    NULL,
-    p_pic4         VARCHAR2(150)    NULL,
-    p_pic5         VARCHAR2(150)    NULL,
-     PRIMARY KEY (p_seq)
+    p_key         NUMBER           NOT NULL, 
+    p_name        VARCHAR2(20)     NOT NULL, 
+    p_price       NUMBER           NOT NULL, 
+    p_view_cnt    NUMBER           NOT NULL, 
+    web_key       NUMBER           NOT NULL, 
+    sold_yn       VARCHAR2(1)      NOT NULL, 
+    reg_date      DATE             NOT NULL, 
+    p_pic1        VARCHAR2(100)    NULL, 
+    p_pic2        VARCHAR2(100)    NULL, 
+    p_pic3        VARCHAR2(100)    NULL, 
+    p_pic4        VARCHAR2(100)    NULL, 
+     PRIMARY KEY (p_key)
 )
-
 /
-CREATE SEQUENCE t_product_seq
+
+CREATE SEQUENCE t_product_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER t_product_ai_trg
-BEFORE INSERT ON t_product
-REFERENCING NEW AS NEW FOR EACH ROW
-BEGIN
-    SELECT t_product_seq.NEXTVAL
-    INTO :NEW.p_seq
+CREATE OR REPLACE TRIGGER t_product_AI_TRG
+BEFORE INSERT ON t_product 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_product_SEQ.NEXTVAL
+    INTO :NEW.p_key
     FROM DUAL;
 END;
 /
 
-COMMENT ON TABLE t_product IS '상품 정보'
+--DROP TRIGGER t_product_AI_TRG;
 /
 
-COMMENT ON COLUMN t_product.p_seq IS '상품 고유 번호'
+--DROP SEQUENCE t_product_SEQ;
 /
 
-COMMENT ON COLUMN t_product.p_name IS '상품 명'
+COMMENT ON TABLE t_product IS '상품정보'
+/
+
+COMMENT ON COLUMN t_product.p_key IS '상품 키'
+/
+
+COMMENT ON COLUMN t_product.p_name IS '상품 이름'
 /
 
 COMMENT ON COLUMN t_product.p_price IS '상품 가격'
 /
 
-COMMENT ON COLUMN t_product.web_seq IS '상품 출처 웹 고유 번호'
-/
-
-COMMENT ON COLUMN t_product.p_category IS '상품 카테고리'
-/
-
 COMMENT ON COLUMN t_product.p_view_cnt IS '상품 조회수'
 /
 
-COMMENT ON COLUMN t_product.p_maker IS '상품 제조사'
+COMMENT ON COLUMN t_product.web_key IS '상품 출처 키'
 /
 
-COMMENT ON COLUMN t_product.p_weight IS '상품 무게'
+COMMENT ON COLUMN t_product.sold_yn IS '판매 여부'
 /
 
-COMMENT ON COLUMN t_product.p_made_date IS '상품 제조일자'
+COMMENT ON COLUMN t_product.reg_date IS '상품 등록일'
 /
 
-COMMENT ON COLUMN t_product.reg_date IS '등록 일자'
+COMMENT ON COLUMN t_product.p_pic1 IS '상품 그림1'
 /
 
-COMMENT ON COLUMN t_product.m_seq IS '등록자 고유 번호'
+COMMENT ON COLUMN t_product.p_pic2 IS '상품 그림2'
 /
 
-COMMENT ON COLUMN t_product.p_pic1 IS '상품 사진1'
+COMMENT ON COLUMN t_product.p_pic3 IS '상품 그림3'
 /
 
-COMMENT ON COLUMN t_product.p_pic2 IS '상품 사진2'
-/
-
-COMMENT ON COLUMN t_product.p_pic3 IS '상품 사진3'
-/
-
-COMMENT ON COLUMN t_product.p_pic4 IS '상품 사진4'
-/
-
-COMMENT ON COLUMN t_product.p_pic5 IS '상품 사진5'
+COMMENT ON COLUMN t_product.p_pic4 IS '상품 그림4'
 /
 
 ALTER TABLE t_product
-    ADD CONSTRAINT FK_t_product_m_key FOREIGN KEY (m_seq)
-        REFERENCES t_member (m_seq)
+    ADD CONSTRAINT FK_t_product_web_key_t_web_web FOREIGN KEY (web_key)
+        REFERENCES t_web (web_key)
 /
 
-ALTER TABLE t_product
-    ADD CONSTRAINT FK_t_product_web_seq FOREIGN KEY (web_seq)
-        REFERENCES t_web_site (web_seq)
-/
 
--- t_community Table Create SQL
-CREATE TABLE t_community
+-- t_item Table Create SQL
+CREATE TABLE t_item
 (
-    article_seq        NUMBER(12, 0)     NOT NULL,
-    article_subject    VARCHAR2(150)     NOT NULL,
-    article_content    VARCHAR2(4000)    NOT NULL,
-    reg_date           DATE              NOT NULL,
-    m_seq              NUMBER(12, 0)     NOT NULL,
-    article_cnt        NUMBER(12, 0)     DEFAULT 0 NOT NULL,
-    article_file1      VARCHAR2(150)     NULL,
-    article_file2      VARCHAR2(150)     NULL,
-     PRIMARY KEY (article_seq)
+    item_key        NUMBER            NOT NULL, 
+    seller_key      NUMBER            NOT NULL, 
+    web_key         NUMBER            NOT NULL, 
+    item_buyer      NUMBER            NOT NULL, 
+    item_title      VARCHAR2(20)      NOT NULL, 
+    item_content    VARCHAR2(4000)    NULL, 
+    item_price      NUMBER            NOT NULL, 
+    sold_yn         VARCHAR2(1)       NOT NULL, 
+    reg_date        DATE              NOT NULL, 
+     PRIMARY KEY (item_key)
 )
 /
 
-CREATE SEQUENCE t_community_seq
+CREATE SEQUENCE t_item_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER t_community_ai_trg
-BEFORE INSERT ON t_community
-REFERENCING NEW AS NEW FOR EACH ROW
-BEGIN
-    SELECT t_community_seq.NEXTVAL
-    INTO :NEW.article_seq
+CREATE OR REPLACE TRIGGER t_item_AI_TRG
+BEFORE INSERT ON t_item 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_item_SEQ.NEXTVAL
+    INTO :NEW.item_key
     FROM DUAL;
 END;
 /
 
---DROP TRIGGER t_community_AI_TRG;
+--DROP TRIGGER t_item_AI_TRG;
 /
 
---DROP SEQUENCE t_community_SEQ;
+--DROP SEQUENCE t_item_SEQ;
 /
 
-COMMENT ON TABLE t_community IS '소통 게시판'
+COMMENT ON TABLE t_item IS '해외 직구 상품'
 /
 
-COMMENT ON COLUMN t_community.article_seq IS '게시글 고유 번호'
+COMMENT ON COLUMN t_item.item_key IS '아이템 키'
 /
 
-COMMENT ON COLUMN t_community.article_subject IS '게시글 제목'
+COMMENT ON COLUMN t_item.seller_key IS '해외 직구 판매자'
 /
 
-COMMENT ON COLUMN t_community.article_content IS '게시글 내용'
+COMMENT ON COLUMN t_item.web_key IS '아이템 출처 키'
 /
 
-COMMENT ON COLUMN t_community.reg_date IS '등록 일자'
+COMMENT ON COLUMN t_item.item_buyer IS '아이템 구매자'
 /
 
-COMMENT ON COLUMN t_community.m_seq IS '작성자 고유 번호'
+COMMENT ON COLUMN t_item.item_title IS '아이템 제목'
 /
 
-COMMENT ON COLUMN t_community.article_cnt IS '조회 수'
+COMMENT ON COLUMN t_item.item_content IS '아이템 내용'
 /
 
-COMMENT ON COLUMN t_community.article_file1 IS '게시글 첨부파일1'
+COMMENT ON COLUMN t_item.item_price IS '아이템 가격'
 /
 
-COMMENT ON COLUMN t_community.article_file2 IS '게시글 첨부파일2'
+COMMENT ON COLUMN t_item.sold_yn IS '판매 여부'
 /
 
-ALTER TABLE t_community
-    ADD CONSTRAINT FK_t_community_m_seq FOREIGN KEY (m_seq)
-        REFERENCES t_member (m_seq)
+COMMENT ON COLUMN t_item.reg_date IS '아이템 등록일'
 /
 
---상품의 가격 변동 알고리즘 고민 1) DB내 함수로 계산, 2)Eclipse 계산
-CREATE TABLE t_changed_product_price
+ALTER TABLE t_item
+    ADD CONSTRAINT FK_t_item_web_key_t_web_web_ke FOREIGN KEY (web_key)
+        REFERENCES t_web (web_key)
+/
+
+ALTER TABLE t_item
+    ADD CONSTRAINT FK_t_item_item_buyer_t_member_ FOREIGN KEY (item_buyer)
+        REFERENCES t_member (m_key)
+/
+
+ALTER TABLE t_item
+    ADD CONSTRAINT FK_t_item_seller_key_t_seller_ FOREIGN KEY (seller_key)
+        REFERENCES t_seller (seller_key)
+/
+
+
+-- t_reserved Table Create SQL
+CREATE TABLE t_reserved
 (
-    cp_seq      NUMBER(12, 0)    NOT NULL,
-    p_seq       NUMBER(12, 0)    NOT NULL,
-    cp_price    NUMBER(12, 0)    NOT NULL,
-    reg_date    DATE             NOT NULL,
-    web_seq     NUMBER(12, 0)    NOT NULL,
-     PRIMARY KEY (cp_seq)
+    r_key       NUMBER    NOT NULL, 
+    m_key       NUMBER    NOT NULL, 
+    p_key       NUMBER    NULL, 
+    item_key    NUMBER    NULL, 
+    r_price     NUMBER    NOT NULL, 
+    reg_date    DATE      NOT NULL, 
+     PRIMARY KEY (r_key)
 )
 /
 
-CREATE SEQUENCE t_changed_product_price_seq
+CREATE SEQUENCE t_reserved_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER t_changed_product_price_ai_trg
-BEFORE INSERT ON t_changed_product_price
-REFERENCING NEW AS NEW FOR EACH ROW
-BEGI
-    SELECT t_changed_product_price_seq.NEXTVAL
-    INTO :NEW.cp_seq
+CREATE OR REPLACE TRIGGER t_reserved_AI_TRG
+BEFORE INSERT ON t_reserved 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_reserved_SEQ.NEXTVAL
+    INTO :NEW.r_key
     FROM DUAL;
 END;
 /
 
---DROP TRIGGER t_product_price_AI_TRG;
+--DROP TRIGGER t_reserved_AI_TRG;
 /
 
---DROP SEQUENCE t_product_price_SEQ;
+--DROP SEQUENCE t_reserved_SEQ;
 /
 
-COMMENT ON TABLE t_changed_product_price IS '상품 가격 변동'
+COMMENT ON TABLE t_reserved IS '예약'
 /
 
-COMMENT ON COLUMN t_changed_product_price.cp_seq IS '가격 변동 순번'
+COMMENT ON COLUMN t_reserved.r_key IS '예약 키'
 /
 
-COMMENT ON COLUMN t_changed_product_price.p_seq IS '상품 순번'
+COMMENT ON COLUMN t_reserved.m_key IS '예약자 키'
 /
 
-COMMENT ON COLUMN t_changed_product_price.cp_price IS '상품 현재 가격'
+COMMENT ON COLUMN t_reserved.p_key IS '예약 상품 키'
 /
 
-COMMENT ON COLUMN t_changed_product_price.reg_date IS '등록 일자'
+COMMENT ON COLUMN t_reserved.item_key IS '예약 아이템 키'
 /
 
-COMMENT ON COLUMN t_changed_product_price.web_seq IS '판매 사이트 고유 번호'
+COMMENT ON COLUMN t_reserved.r_price IS '예약 가격'
+/
+
+COMMENT ON COLUMN t_reserved.reg_date IS '예약 등록일'
+/
+
+ALTER TABLE t_reserved
+    ADD CONSTRAINT FK_t_reserved_m_key_t_member_m FOREIGN KEY (m_key)
+        REFERENCES t_member (m_key)
+/
+
+ALTER TABLE t_reserved
+    ADD CONSTRAINT FK_t_reserved_p_key_t_product_ FOREIGN KEY (p_key)
+        REFERENCES t_product (p_key)
+/
+
+ALTER TABLE t_reserved
+    ADD CONSTRAINT FK_t_reserved_item_key_t_item_ FOREIGN KEY (item_key)
+        REFERENCES t_item (item_key)
 /
 
 
-ALTER TABLE t_changed_product_price
-    ADD CONSTRAINT FK_t_changed_pro_p_seq FOREIGN KEY (p_seq)
-        REFERENCES t_product (p_seq)
-/
-
-ALTER TABLE t_changed_product_price
-    ADD CONSTRAINT FK_t_changed_pro_web_seq FOREIGN KEY (web_seq)
-        REFERENCES t_web_site (web_seq)
-/
-
-
--- t_producet_alarm Table Create SQL
-CREATE TABLE t_producet_alarm
+-- t_writerboard Table Create SQL
+CREATE TABLE t_writerboard
 (
-    alarm_seq        NUMBER(12, 0)     NOT NULL,
-    p_seq            NUMBER(12, 0)     NOT NULL,
-    reg_date         DATE              NOT NULL,
-    alarm_message    VARCHAR2(4000)    NOT NULL,
-    r_m_seq          NUMBER(12, 0)     NOT NULL,
-     PRIMARY KEY (alarm_seq)
+    w_key        NUMBER            NOT NULL, 
+    w_title      VARCHAR2(50)      NOT NULL, 
+    w_content    VARCHAR2(4000)    NULL, 
+    m_key        NUMBER            NULL, 
+    w_cnt        NUMBER            NULL, 
+    reg_date     DATE              NULL, 
+    w_file1      VARCHAR2(150)     NULL, 
+    w_file2      VARCHAR2(150)     NULL, 
+     PRIMARY KEY (w_key)
 )
 /
 
-CREATE SEQUENCE t_producet_alarm_seq
+CREATE SEQUENCE t_writerboard_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER t_producet_alarm_ai_trg
-BEFORE INSERT ON t_producet_alarm
-REFERENCING NEW AS NEW FOR EACH ROW
-BEGIN
-    SELECT t_producet_alarm_seq.NEXTVAL
-    INTO :NEW.alarm_seq
+CREATE OR REPLACE TRIGGER t_writerboard_AI_TRG
+BEFORE INSERT ON t_writerboard 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_writerboard_SEQ.NEXTVAL
+    INTO :NEW.w_key
     FROM DUAL;
 END;
 /
 
---DROP TRIGGER t_producet_alarm_AI_TRG;
+--DROP TRIGGER t_writerboard_AI_TRG;
 /
 
---DROP SEQUENCE t_producet_alarm_SEQ;
+--DROP SEQUENCE t_writerboard_SEQ;
 /
 
-COMMENT ON TABLE t_producet_alarm IS '희망 상품 알림'
+COMMENT ON TABLE t_writerboard IS '게시판'
 /
 
-COMMENT ON COLUMN t_producet_alarm.alarm_seq IS '알림 순번'
+COMMENT ON COLUMN t_writerboard.w_key IS '게시글 키'
 /
 
-COMMENT ON COLUMN t_producet_alarm.p_seq IS '상품 순번'
+COMMENT ON COLUMN t_writerboard.w_title IS '게시글 제목'
 /
 
-COMMENT ON COLUMN t_producet_alarm.reg_date IS '등록 일자'
+COMMENT ON COLUMN t_writerboard.w_content IS '게시글 내용'
 /
 
-COMMENT ON COLUMN t_producet_alarm.alarm_message IS '알림 메시지'
+COMMENT ON COLUMN t_writerboard.m_key IS '게시글 작성자'
 /
 
-COMMENT ON COLUMN t_producet_alarm.r_m_seq IS '수신자 고유 번호'
+COMMENT ON COLUMN t_writerboard.w_cnt IS '게시글 조회수'
 /
 
-ALTER TABLE t_producet_alarm
-    ADD CONSTRAINT FK_t_pro_alarm_p_seq FOREIGN KEY (p_seq)
-        REFERENCES t_product (p_seq)
+COMMENT ON COLUMN t_writerboard.reg_date IS '게시글 등록일'
 /
 
-ALTER TABLE t_producet_alarm
-    ADD CONSTRAINT FK_t_pro_alarm_r_m_seq FOREIGN KEY (r_m_seq)
-        REFERENCES t_member (m_seq)
+COMMENT ON COLUMN t_writerboard.w_file1 IS '첨부 파일1'
 /
+
+COMMENT ON COLUMN t_writerboard.w_file2 IS '첨부 파일2'
+/
+
+ALTER TABLE t_writerboard
+    ADD CONSTRAINT FK_t_writerboard_m_key_t_membe FOREIGN KEY (m_key)
+        REFERENCES t_member (m_key)
+/
+
+
+-- products Table Create SQL
+CREATE TABLE products
+(
+    p_key      NUMBER          NOT NULL, 
+    p_name     VARCHAR2(20)    NOT NULL, 
+    p_price    NUMBER          NOT NULL, 
+    web_key    NUMBER          NOT NULL, 
+     PRIMARY KEY (p_key)
+)
+/
+
+CREATE SEQUENCE products_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER products_AI_TRG
+BEFORE INSERT ON products 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT products_SEQ.NEXTVAL
+    INTO :NEW.p_key
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER products_AI_TRG;
+/
+
+--DROP SEQUENCE products_SEQ;
+/
+
+COMMENT ON TABLE products IS '간략한 상품 정보'
+/
+
+COMMENT ON COLUMN products.p_key IS '상품 키'
+/
+
+COMMENT ON COLUMN products.p_name IS '상품 이름'
+/
+
+COMMENT ON COLUMN products.p_price IS '상품 가격'
+/
+
+COMMENT ON COLUMN products.web_key IS '상품 출처 키'
+/
+
+ALTER TABLE products
+    ADD CONSTRAINT FK_products_p_key_t_product_p_ FOREIGN KEY (p_key)
+        REFERENCES t_product (p_key)
+/
+
+ALTER TABLE products
+    ADD CONSTRAINT FK_products_web_key_t_web_web_ FOREIGN KEY (web_key)
+        REFERENCES t_web (web_key)
+/
+
 
 -- t_comment Table Create SQL
 CREATE TABLE t_comment
 (
-    c_seq          NUMBER(12, 0)     NOT NULL,
-    article_seq    NUMBER(12, 0)     NOT NULL,
-    c_content      VARCHAR2(4000)    NOT NULL,
-    reg_date       DATE              NOT NULL,
-    m_seq          NUMBER(12, 0)      NOT NULL,
-     PRIMARY KEY (c_seq)
+    c_key        NUMBER           NOT NULL, 
+    w_key        NUMBER           NOT NULL, 
+    m_key        NUMBER           NOT NULL, 
+    c_content    VARCHAR2(300)    NOT NULL, 
+    reg_date     DATE             NOT NULL, 
+     PRIMARY KEY (c_key)
 )
 /
 
-CREATE SEQUENCE t_comment_seq
+CREATE SEQUENCE t_comment_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER t_comment_ai_trg
-BEFORE INSERT ON t_comment
-REFERENCING NEW AS NEW FOR EACH ROW
-BEGIN
-    SELECT t_comment_seq.NEXTVAL
-    INTO :NEW.c_seq
+CREATE OR REPLACE TRIGGER t_comment_AI_TRG
+BEFORE INSERT ON t_comment 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_comment_SEQ.NEXTVAL
+    INTO :NEW.c_key
     FROM DUAL;
 END;
 /
@@ -423,191 +552,151 @@ END;
 --DROP SEQUENCE t_comment_SEQ;
 /
 
-COMMENT ON TABLE t_comment IS '댓글 게시판'
+COMMENT ON TABLE t_comment IS '댓글'
 /
 
-COMMENT ON COLUMN t_comment.c_seq IS '댓글 고유 번호'
+COMMENT ON COLUMN t_comment.c_key IS '댓글 키'
 /
 
-COMMENT ON COLUMN t_comment.article_seq IS '원글 고유 번호'
+COMMENT ON COLUMN t_comment.w_key IS '원글 키'
+/
+
+COMMENT ON COLUMN t_comment.m_key IS '댓글 작성자'
 /
 
 COMMENT ON COLUMN t_comment.c_content IS '댓글 내용'
 /
 
-COMMENT ON COLUMN t_comment.reg_date IS '작성 일자'
-/
-
-COMMENT ON COLUMN t_comment.m_seq IS '작성자 고유 번호'
+COMMENT ON COLUMN t_comment.reg_date IS '댓글 작성일'
 /
 
 ALTER TABLE t_comment
-    ADD CONSTRAINT FK_t_comment_t_m_seq FOREIGN KEY (m_seq)
-        REFERENCES t_member (m_seq)
+    ADD CONSTRAINT FK_t_comment_w_key_t_writerboa FOREIGN KEY (w_key)
+        REFERENCES t_writerboard (w_key)
 /
 
 ALTER TABLE t_comment
-    ADD CONSTRAINT FK_t_comment_article_seq FOREIGN KEY (article_seq)
-        REFERENCES t_community (article_seq)
+    ADD CONSTRAINT FK_t_comment_m_key_t_member_m_ FOREIGN KEY (m_key)
+        REFERENCES t_member (m_key)
 /
 
 
--- t_recent_product Table Create SQL
-CREATE TABLE t_recent_product
+-- t_ch_price Table Create SQL
+CREATE TABLE t_ch_price
 (
-    recent_seq    NUMBER(12, 0)    NOT NULL,
-    p_seq         NUMBER(12, 0)    NOT NULL,
-    reg_date      DATE             NOT NULL,
-    m_seq         NUMBER(12, 0)    NOT NULL,
-     PRIMARY KEY (recent_seq)
+    cp_key           NUMBER    NOT NULL, 
+    p_key            NUMBER    NOT NULL, 
+    item_key         NUMBER    NOT NULL, 
+    p_price          NUMBER    NOT NULL, 
+    item_price       NUMBER    NOT NULL, 
+    ch_difference    NUMBER    NOT NULL, 
+    reg_date         DATE      NOT NULL, 
+     PRIMARY KEY (cp_key)
 )
 /
 
-CREATE SEQUENCE t_recent_product_seq
+CREATE SEQUENCE t_ch_price_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER t_recent_product_ai_trg
-BEFORE INSERT ON t_recent_product
-REFERENCING NEW AS NEW FOR EACH ROW
-BEGIN
-    SELECT t_recent_product_seq.NEXTVAL
-    INTO :NEW.recent_seq
+CREATE OR REPLACE TRIGGER t_ch_price_AI_TRG
+BEFORE INSERT ON t_ch_price 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_ch_price_SEQ.NEXTVAL
+    INTO :NEW.cp_key
     FROM DUAL;
 END;
 /
 
---DROP TRIGGER t_recent_product_AI_TRG;
+--DROP TRIGGER t_ch_price_AI_TRG;
 /
 
---DROP SEQUENCE t_recent_product_SEQ;
+--DROP SEQUENCE t_ch_price_SEQ;
 /
 
-COMMENT ON TABLE t_recent_product IS '최근에 본 상품'
+COMMENT ON TABLE t_ch_price IS '가격 변동'
 /
 
-COMMENT ON COLUMN t_recent_product.recent_seq IS '최근 본 횟수 고유 번호'
+COMMENT ON COLUMN t_ch_price.cp_key IS '가격 변동 키'
 /
 
-COMMENT ON COLUMN t_recent_product.p_seq IS '상품 순번'
+COMMENT ON COLUMN t_ch_price.p_key IS '상품 키'
 /
 
-COMMENT ON COLUMN t_recent_product.reg_date IS '최근에 본 일자'
+COMMENT ON COLUMN t_ch_price.item_key IS '아이템 키'
 /
 
-COMMENT ON COLUMN t_recent_product.m_seq IS '작성자 고유 번호'
+COMMENT ON COLUMN t_ch_price.p_price IS '상품 변동 후 가격'
 /
 
-ALTER TABLE t_recent_product
-    ADD CONSTRAINT FK_t_recent_p_seq FOREIGN KEY (p_seq)
-        REFERENCES t_product (p_seq)
+COMMENT ON COLUMN t_ch_price.item_price IS '아이템 변동 후 가격'
 /
 
-ALTER TABLE t_recent_product
-    ADD CONSTRAINT FK_t_recent_m_seq FOREIGN KEY (m_seq)
-        REFERENCES t_member (m_seq)
+COMMENT ON COLUMN t_ch_price.ch_difference IS '가격 변동량'
 /
 
---
-CREATE TABLE t_direct_purchase_seller(
-    seller_seq     NUMBER(12, 0) NOT NULL,
-    seller_name    VARCHAR2(20)  NOT NULL,
-    seller_web_seq NUMBER(12, 0) NOT NULL,
-    PRIMARY KEY (seller_seq)
+COMMENT ON COLUMN t_ch_price.reg_date IS '가격 변동일'
+/
+
+ALTER TABLE t_ch_price
+    ADD CONSTRAINT FK_t_ch_price_p_key_t_product_ FOREIGN KEY (p_key)
+        REFERENCES t_product (p_key)
+/
+
+ALTER TABLE t_ch_price
+    ADD CONSTRAINT FK_t_ch_price_item_key_t_item_ FOREIGN KEY (item_key)
+        REFERENCES t_item (item_key)
+/
+
+
+-- t_alarm Table Create SQL
+CREATE TABLE t_alarm
+(
+    a_key        NUMBER           NOT NULL, 
+    r_key        NUMBER           NOT NULL, 
+    a_content    VARCHAR2(300)    NOT NULL, 
+     PRIMARY KEY (a_key)
 )
 /
 
-CREATE SEQUENCE t_direct_purchase_seller_seq
+CREATE SEQUENCE t_alarm_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER t_direct_purchase_seller_ai_trg
-BEFORE INSERT ON t_direct_purchase_seller
-REFERENCING NEW AS NEW FOR EACH ROW
-BEGIN
-    SELECT t_direct_purchase_seller_seq.NEXTVAL
-    INTO :NEW.seller_seq
+CREATE OR REPLACE TRIGGER t_alarm_AI_TRG
+BEFORE INSERT ON t_alarm 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_alarm_SEQ.NEXTVAL
+    INTO :NEW.a_key
     FROM DUAL;
 END;
 /
 
-COMMENT ON TABLE t_direct_purchase_seller IS '직구 판매자'
+--DROP TRIGGER t_alarm_AI_TRG;
 /
 
-COMMENT ON COLUMN t_direct_purchase_seller.seller_seq IS '직구 판매자 고유 번호'
+--DROP SEQUENCE t_alarm_SEQ;
 /
 
-COMMENT ON COLUMN t_direct_purchase_seller.seller_name IS '직구 판매자 이름'
+COMMENT ON TABLE t_alarm IS '알람'
 /
 
-COMMENT ON COLUMN t_direct_purchase_seller.seller_web_seq IS '직구 판매자 사이트 고유 번호'
+COMMENT ON COLUMN t_alarm.a_key IS '알림 키'
 /
 
-CREATE TABLE t_direct_purchase_item(
-    seller_seq    NUMBER(12, 0)  NOT NULL,
-    item_seq      NUMBER(12, 0)  NOT NULL,
-    item_name     VARCHAR2(50)   NOT NULL,
-    item_content  VARCHAR2(4000) NOT NULL,
-    item_price    NUMBER(12, 0)  NOT NULL,
-    reg_date DATE           NOT NULL,
-    web_seq  NUMBER(12, 0)  NOT NULL,
-    sell_yn       VARCHAR2(1)    NOT NULL,
-          PRIMARY KEY (item_seq)
-)
+COMMENT ON COLUMN t_alarm.r_key IS '예약 키'
 /
 
-CREATE SEQUENCE t_direct_purchase_item_seq
-START WITH 1
-INCREMENT BY 1;
+COMMENT ON COLUMN t_alarm.a_content IS '알림 내용'
 /
 
-CREATE OR REPLACE TRIGGER t_direct_purchase_item_ai_trg
-BEFORE INSERT ON t_direct_purchase_item
-REFERENCING NEW AS NEW FOR EACH ROW
-BEGIN
-    SELECT t_direct_purchase_item_seq.NEXTVAL
-    INTO :NEW.item_seq
-    FROM DUAL;
-END;
+ALTER TABLE t_alarm
+    ADD CONSTRAINT FK_t_alarm_r_key_t_reserved_r_ FOREIGN KEY (r_key)
+        REFERENCES t_reserved (r_key)
 /
 
-COMMENT ON TABLE t_direct_purchase_item IS '직구 판매 아이템'
-/
-
-COMMENT ON COLUMN t_direct_purchase_item.seller_seq IS '직구 판매자 고유 번호'
-/
-
-COMMENT ON COLUMN t_direct_purchase_item.item_seq IS '직구 판매 아아템 고유 번호'
-/
-
-COMMENT ON COLUMN t_direct_purchase_item.item_name IS '직구 아이템 이름'
-/
-
-COMMENT ON COLUMN t_direct_purchase_item.item_content IS '직구 아이템 내용'
-/
-
-COMMENT ON COLUMN t_direct_purchase_item.item_price IS '직구 아이템 가격'
-/
-
-COMMENT ON COLUMN t_direct_purchase_item.reg_date IS '직구 아이템 등록일'
-/
-
-COMMENT ON COLUMN t_direct_purchase_item.web_seq IS '직구 웹 고유 번호'
-/
-
-COMMENT ON COLUMN t_direct_purchase_item.sell_yn IS '판매 여부'
-/
-
-ALTER TABLE t_direct_purchase_item
-    ADD CONSTRAINT FK_t_d_p_item_seller_seq FOREIGN KEY (seller_seq)
-        REFERENCES t_direct_purchase_seller (seller_seq)
-/
-
-ALTER TABLE t_direct_purchase_item
-    ADD CONSTRAINT FK_t_d_p_item_web_seq FOREIGN KEY (web_seq)
-        REFERENCES  t_web_site(web_seq)
-/
 commit
-
