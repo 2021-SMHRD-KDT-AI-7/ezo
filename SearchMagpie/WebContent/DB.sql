@@ -252,7 +252,7 @@ CREATE TABLE t_item
     reg_date        DATE              NOT NULL, 
      PRIMARY KEY (item_key)
 )
-/
+
 
 CREATE SEQUENCE t_item_SEQ
 START WITH 1

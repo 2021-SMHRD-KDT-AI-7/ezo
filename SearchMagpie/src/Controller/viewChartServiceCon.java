@@ -14,7 +14,7 @@ import Model.chartDAO;
 import Model.chartDTO;
 
 @WebServlet("/chartServiceCon")
-public class chartServiceCon extends HttpServlet {
+public class viewChartServiceCon extends HttpServlet {
 	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setCharacterEncoding("utf-8");
@@ -22,7 +22,7 @@ public class chartServiceCon extends HttpServlet {
 		ArrayList<chartDTO> temp = new ArrayList<chartDTO>();
 		chartDAO dao = new chartDAO();
 		//t_product 조회수 상위 10개 키, 이름, 조회수 리턴 메소드
-		temp = dao.getViewCountTopTen();
+		temp = dao.allViewCountTopTen();
 		
 		request.setAttribute("chartTopTen", temp); 
 		

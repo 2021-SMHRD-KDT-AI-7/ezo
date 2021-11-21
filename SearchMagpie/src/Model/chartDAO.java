@@ -42,25 +42,38 @@ public class chartDAO {
 	}// dbClose
 	
 //DB에 접근하여 제품 조회수컬럼을 1증가 시키는 함수
-	public int viewCountPlus() {
+	public int viewCountPlus(int p_key) {
+		int viewCnt = 0;
 		getConn();
 		try {
-			String sql = "INSERT INTO t_product(p_view_cnt) VALUES (+1)";
+			String sql = "UPDATE t_product SET p_view_cnt = p_view_cnt+1 WHERE p_key = ?";
 
 			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, 1);
 
 			cnt = ps.executeUpdate();
+			
+			String sql2 = "SELECT p_view_cnt FROM t_product WHERE p_key = ?";
+
+			ps = conn.prepareStatement(sql2);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				viewCnt = rs.getInt("w_cnt");
+			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
-		return cnt;
+		return viewCnt;
 	}// viewCountPlus
 
 	// DB t_product 에서 조회수가 가장 높은 10개의 제품 키와 이름을 가지고 오는 함수
-	public ArrayList<chartDTO> getViewCountTopTen() {
+	public ArrayList<chartDTO> allViewCountTopTen() {
 		ArrayList<chartDTO> temp = new ArrayList<>();
 		getConn();
 
