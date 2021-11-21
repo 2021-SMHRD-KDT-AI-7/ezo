@@ -21,7 +21,7 @@ public class chartServiceCon extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		ArrayList<chartDTO> temp = new ArrayList<chartDTO>();
 		chartDAO dao = new chartDAO();
-		
+		//t_product 조회수 상위 10개 키, 이름, 조회수 리턴 메소드
 		temp = dao.getViewCountTopTen();
 		
 		request.setAttribute("chartTopTen", temp); 

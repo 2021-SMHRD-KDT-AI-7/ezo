@@ -20,8 +20,9 @@ public class viewProductServiceCon extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		ArrayList<productDTO> temp = new ArrayList<>();
 		productDAO dao = new productDAO();
+		//t_product 테이블 전체 조회 메소드
 		temp = dao.allViewProduct();
-		//DB에 있는 제품 자료를 서버로 보냄
+		//"보낼 이름" , 보낼 데이터
 		request.setAttribute("products", temp); 
 		//사용자 페이지 이동
 		RequestDispatcher rd = request.getRequestDispatcher("#");
