@@ -152,16 +152,12 @@ public class memberDAO {
 			String sql = "SELECT m_id, m_pw FROM t_member WHERE m_id = ? AND m_pw = ?";
 
 			ps = conn.prepareStatement(sql);
-
 			ps.setString(1, memberDTO.getM_id());
 			ps.setString(2, memberDTO.getM_pw());
-
 			rs = ps.executeQuery();
-
 			if (rs.next()) {
 				yn = true;
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

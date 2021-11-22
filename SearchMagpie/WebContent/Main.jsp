@@ -69,7 +69,7 @@
 									<li><a href="login.html">최근 본 상품</a></li>
 									<li><a href="login.html">위시리스트</a></li>
 									<li><a href="login.html">가격 변동 알림</a></li>
-									<li><a href="loginServiceCon"> <i class="fa fa-user" aria-hidden="true"></i> 
+									<li><a href="login.html"> <i class="fa fa-user"></i> 
 								<span class="padding_10">로그인</span></a></li>
 								<%} %>
 								<!-- <li><a href="login.html"> <i class="fa fa-user" aria-hidden="true"></i> 
