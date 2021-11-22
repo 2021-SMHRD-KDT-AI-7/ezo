@@ -1,4 +1,3 @@
-<%@page import="java.util.ArrayList"%>
 <%@page import="Model.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
