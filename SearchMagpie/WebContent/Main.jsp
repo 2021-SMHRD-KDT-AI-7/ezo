@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="Model.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -44,7 +46,9 @@
 </style>
 </head>
 <body>
-
+	<%
+	memberDTO info = (memberDTO)session.getAttribute("info");
+	%>
 	<!-- banner bg main start -->
 	<div class="banner_bg_main">
 		<!-- header top section start -->
@@ -55,12 +59,21 @@
 						<div class="custom_menu">
 							<ul>
 								<li><a href="guide.html">직구 하나부터 열까지</a></li>
-								<li><a href="#">기능 11</a></li>
-								<li><a href="#">기능 22</a></li>
-								<li><a href="#"> <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-								<span class="padding_10">기능 33</span></a></li>
-								<li><a href="login.html"> <i class="fa fa-user" aria-hidden="true"></i> 
+								<% if(info != null){%>
+									<li><a href="#">최근 본 상품</a></li>
+									<li><a href="#">위시리스트</a></li>
+									<li><a href="#">가격 변동 알림</a></li>
+									<li><a href="#">회원정보수정</a></li>
+									<li><a href="#">로그아웃</a></li>
+									<%}else {%>
+									<li><a href="login.html">최근 본 상품</a></li>
+									<li><a href="login.html">위시리스트</a></li>
+									<li><a href="login.html">가격 변동 알림</a></li>
+									<li><a href="loginServiceCon"> <i class="fa fa-user" aria-hidden="true"></i> 
 								<span class="padding_10">로그인</span></a></li>
+								<%} %>
+								<!-- <li><a href="login.html"> <i class="fa fa-user" aria-hidden="true"></i> 
+								<span class="padding_10">로그인</span></a></li> -->
 							</ul>
 						</div>
 					</div>
@@ -167,7 +180,7 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<h1 class="banner_taital">
-										Get Start <br>Your favorit shoping
+										게시판으로!
 									</h1>
 									<div class="buynow_bt">
 										<a href="#">Buy Now</a>
@@ -179,7 +192,7 @@
 							<div class="row">
 								<div class="col-sm-12">
 									<h1 class="banner_taital">
-										Get Start <br>Your favriot shoping
+										Get Start <br>Your favorit shoping
 									</h1>
 									<div class="buynow_bt">
 										<a href="#">Buy Now</a>

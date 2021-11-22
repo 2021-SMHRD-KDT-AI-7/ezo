@@ -44,63 +44,64 @@ public class memberDAO {
 			e.printStackTrace();
 		}
 	}// dbClose
-	
-	//web 정보 입력 후 성공 시  cnt 반환
+
+	// web 정보 입력 후 성공 시 cnt 반환
 	public int insertWeb(String web_name, String web_url) {
 		getConn();
 		try {
 			String sql = "INSERT INTO t_web VALUES (t_web_SEQ.NEXTVAL,?,?)";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, web_name);
 			ps.setNString(2, web_url);
-			
+
 			int cnt = ps.executeUpdate();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return cnt;
-	}//insertWeb
-	//t_member 회원가입 시 입력 메소드
+	}// insertWeb
+		// t_member 회원가입 시 입력 메소드
+
 	public int joinMember(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql ="INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,SYSDATE,?,0)";
-			
+			String sql = "INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,SYSDATE,?,0)";
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, memberDTO.getM_id());
 			ps.setString(2, memberDTO.getM_pw());
 			ps.setString(3, memberDTO.getM_email());
 			ps.setString(4, memberDTO.getM_phone());
 			ps.setString(5, memberDTO.getM_status());
-			
+
 			cnt = ps.executeUpdate();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return cnt;
-	}//insertMember
-	
-	//t_member 모든 회원 전체조회 메소드
+	}// insertMember
+
+	// t_member 모든 회원 전체조회 메소드
 	public ArrayList<memberDTO> allViewMembers() {
 		ArrayList<memberDTO> temp = new ArrayList<>();
 		getConn();
 		try {
 			String sql = "SELECT * FROM t_member";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			rs = ps.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				int m_key = rs.getInt("m_key");
 				String m_id = rs.getString("m_id");
 				String m_pw = rs.getString("m_pw");
@@ -109,66 +110,64 @@ public class memberDAO {
 				String m_joindate = rs.getString("m_joindate");
 				String m_status = rs.getString("m_status");
 				String admin_yn = rs.getString("admin_yn");
-				
-				temp.add(new memberDTO(m_key,m_id,m_pw,m_email,m_phone,m_joindate,m_status,admin_yn));
+
+				temp.add(new memberDTO(m_key, m_id, m_pw, m_email, m_phone, m_joindate, m_status, admin_yn));
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return temp;
-	}//allViewMembers
-	
-	//관리자 전용 회원가입 메소드
+	}// allViewMembers
+
+	// 관리자 전용 회원가입 메소드
 	public int joinAdmin(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql ="INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,SYSDATE,?,1)";
-			
+			String sql = "INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,SYSDATE,?,1)";
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, memberDTO.getM_id());
 			ps.setString(2, memberDTO.getM_pw());
 			ps.setString(3, memberDTO.getM_email());
 			ps.setString(4, memberDTO.getM_phone());
 			ps.setString(5, memberDTO.getM_status());
-			
+
 			cnt = ps.executeUpdate();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return cnt;
-	}//insertMember
-	
-	//로그인 메소드
+	}// insertMember
+
+	// 로그인 메소드
 	public boolean login(memberDTO memberDTO) {
 		getConn();
 		try {
 			String sql = "SELECT m_id, m_pw FROM t_member WHERE m_id = ? AND m_pw = ?";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, memberDTO.getM_id());
 			ps.setString(2, memberDTO.getM_pw());
-			
+
 			rs = ps.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				yn = true;
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			dbClose();
 		}
 		return yn;
-	}//login
-	
-	
-	
-}//class
+	}// login
+
+}// class

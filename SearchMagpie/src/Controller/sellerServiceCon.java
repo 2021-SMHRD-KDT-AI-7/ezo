@@ -27,5 +27,4 @@ public class sellerServiceCon extends HttpServlet {
 		}
 		response.sendRedirect(path);
 	}
-
 }

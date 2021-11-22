@@ -18,6 +18,8 @@ import Model.productDTO;
 @WebServlet("/joinServiceCon")
 public class joinServiceCon extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("[회원가입]");
+		
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		memberDAO dao = new memberDAO();
@@ -38,9 +40,11 @@ public class joinServiceCon extends HttpServlet {
 		//memberDTO 회원가입전용 생성자 메소드 만들기 
 		//cnt = dao.joinMember(new memberDTO(id,pw,name,nickname,email,phone));
 		if(cnt == 1) {
-			path = "회원가입 성공 시 url";
+			System.out.println("성공");
+			path = "joinSuccess.html";
 		}else {
-			path = "회원가입 실패 시 url";
+			System.out.println("실패");
+			path = "join.html";
 		}
 		response.sendRedirect(path);
 	}

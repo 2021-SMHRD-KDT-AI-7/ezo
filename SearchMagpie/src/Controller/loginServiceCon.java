@@ -15,6 +15,7 @@ import Model.memberDTO;
 @WebServlet("/loginServiceCon")
 public class loginServiceCon extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("[로그인]");
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		memberDAO dao = new memberDAO();
@@ -25,9 +26,9 @@ public class loginServiceCon extends HttpServlet {
 		
 		//로그인 성공 시
 		if(dao.login(new memberDTO(id,pw))) {
-			path = "로그인 성공 시 url";
+			path = "Main.jsp";
 		}else {
-			path = "로그인 실패 시 url";
+			path = "login.html";
 		}
 		//결과 값은 경로를 보낸다.
 		request.setAttribute("path",path);
