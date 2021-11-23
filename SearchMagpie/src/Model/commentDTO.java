@@ -24,6 +24,9 @@ public class commentDTO {
 		this.c_key = c_key;
 		this.c_content = c_content;
 	}
+	public commentDTO(String c_content) {
+		this.c_content = c_content;
+	}
 	
 	public int getC_key() {
 		return c_key;

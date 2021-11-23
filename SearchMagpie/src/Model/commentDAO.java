@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class commentDAO {
 	Connection conn = null;
@@ -44,7 +45,8 @@ public class commentDAO {
 	}// dbClose
 
 	// 댓글 작성 메소드
-	public int comment(commentDTO DTO) {
+	public ArrayList<commentDTO> comment(commentDTO DTO) {
+		ArrayList<commentDTO> temp = new ArrayList<>();
 		getConn();
 		try {
 			String sql = "INSERT INTO t_comment VALUES(t_comment_SEQ.NEXTVAL,?,?,?,SYSDATE)";
@@ -56,64 +58,79 @@ public class commentDAO {
 			ps.setString(3, DTO.getC_content());
 
 			cnt = ps.executeUpdate();
+
+			String sql2 = "SELECT * FROM t_comment WHERE c_key = ?";
+
+			ps = conn.prepareStatement(sql2);
+
+			ps.setInt(1, DTO.getC_key());
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				String comment = rs.getString("c_content");
+				temp.add(new commentDTO(comment));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
-		return cnt;
+		return temp;
 	}// comment
+		// 댓글 수정 메소드
 
-	public String updateComment(commentDTO DTO) {
-		String comment = "";
+	public ArrayList<commentDTO> updateComment(commentDTO DTO) {
+		ArrayList<commentDTO> temp = new ArrayList<>();
 		getConn();
 		try {
 			String sql = "UPDATE t_comment set c_content = ?, reg_date = SYSDATE WHERE c_key = ?";
-			
+
 			ps = conn.prepareStatement(sql);
-			
-			ps.setString(1,DTO.getC_content());
-			ps.setInt(2,DTO.getC_key());
-			
+
+			ps.setString(1, DTO.getC_content());
+			ps.setInt(2, DTO.getC_key());
+
 			ps.executeUpdate();
-			
+
 			String sql2 = "SELECT * FROM t_comment WHERE c_key = ?";
-			
+
 			ps = conn.prepareStatement(sql2);
-			
+
 			ps.setInt(1, DTO.getC_key());
-			
+
 			rs = ps.executeQuery();
-			
-			if(rs.next()) {
-			comment = rs.getString("c_content");
+
+			if (rs.next()) {
+				String comment = rs.getString("c_content");
+				temp.add(new commentDTO(comment));
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
-		return comment;
+		return temp;
 	}// updateComment
-	//댓글 삭제 메소드
+		// 댓글 삭제 메소드
+
 	public int deleteComment(int c_key) {
 		getConn();
 		try {
 			String sql = "DELETE * FROM t_comment WHERE c_key = ?";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setInt(1, c_key);
-			
+
 			cnt = ps.executeUpdate();
-			
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return cnt;
-	}//deleteComment
+	}// deleteComment
 }// class

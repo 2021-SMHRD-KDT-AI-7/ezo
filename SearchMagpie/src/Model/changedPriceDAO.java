@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class changedPriceDAO {
 	Connection conn = null;
@@ -67,4 +68,36 @@ public class changedPriceDAO {
 		return cnt;
 	}//insertChangedPrice
 	
+	//가격변동 전체조회 메소드
+	public ArrayList<changedPriceDTO> allViewChangedPrice() {
+		ArrayList<changedPriceDTO> temp = new ArrayList<>();
+		getConn();
+		try {
+			String sql = "SELECT * FROM t_ch_price";
+			
+			ps = conn.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				int cp_key = rs.getInt("cp_key");
+				int p_key = rs.getInt("p_key");
+				int item_key = rs.getInt("item_key");
+				int p_price = rs.getInt("p_price");
+				int item_price = rs.getInt("item_key");
+				int ch_difference = rs.getInt("ch_difference");
+				String reg_date = rs.getString("reg_date");
+				
+				temp.add(new changedPriceDTO(cp_key,p_key,item_key,p_price,item_price,ch_difference,reg_date));
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return temp;
+	}//allViewChangedPrice
+
+
 }//class

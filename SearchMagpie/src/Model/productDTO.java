@@ -1,6 +1,7 @@
 package Model;
 
 public class productDTO {
+	
 	private int p_key;
 	private String p_name;
 	private int p_price;
@@ -12,6 +13,17 @@ public class productDTO {
 	private String p_pic2;
 	private String p_pic3;
 	private String p_pic4;
+	public productDTO(String p_name, int p_price, int web_key, String p_pic1, String p_pic2, String p_pic3,
+			String p_pic4) {
+		super();
+		this.p_name = p_name;
+		this.p_price = p_price;
+		this.web_key = web_key;
+		this.p_pic1 = p_pic1;
+		this.p_pic2 = p_pic2;
+		this.p_pic3 = p_pic3;
+		this.p_pic4 = p_pic4;
+	}
 
 	public productDTO(int p_key, String p_name, int p_price, int p_view_cnt, int web_key, String sold_yn,
 			String reg_date, String p_pic1, String p_pic2, String p_pic3, String p_pic4) {

@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class writerboardDAO {
+public class writeboardDAO {
 	Connection conn = null;
 	ResultSet rs = null;
 	PreparedStatement ps = null;
@@ -45,10 +45,10 @@ public class writerboardDAO {
 	}// dbClose
 		// 게시글 작성 메소드
 
-	public int write(writerboardDTO DTO) {
+	public int write(writeboardDTO DTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_writerboard VALUES(t_writerboard_SEQ.NEXTVAL,?,?,?,?,SYSDATE,?,?)";
+			String sql = "INSERT INTO t_writeboard VALUES(t_writeboard_SEQ.NEXTVAL,?,?,?,?,SYSDATE,?,?)";
 
 			ps = conn.prepareStatement(sql);
 
@@ -68,12 +68,12 @@ public class writerboardDAO {
 		}
 		return cnt;
 	}// write
-
-	public ArrayList<writerboardDTO> allViewWriterboard() {
-		ArrayList<writerboardDTO> temp = new ArrayList<>();
+	//게시판 전체조회
+	public ArrayList<writeboardDTO> allViewWriteboard() {
+		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();
 		try {
-			String sql = "SELECT * FROM t_writerboard";
+			String sql = "SELECT * FROM t_writeboard";
 
 			ps = conn.prepareStatement(sql);
 
@@ -89,7 +89,7 @@ public class writerboardDAO {
 				String w_file1 = rs.getString("w_file1");
 				String w_file2 = rs.getString("w_file2");
 
-				temp.add(new writerboardDTO(w_key, w_title, w_content, m_key, w_cnt, reg_date, w_file1, w_file2));
+				temp.add(new writeboardDTO(w_key, w_title, w_content, m_key, w_cnt, reg_date, w_file1, w_file2));
 			}
 
 		} catch (Exception e) {
@@ -98,13 +98,13 @@ public class writerboardDAO {
 			dbClose();
 		}
 		return temp;
-	}// allviewWriterboard
-
+	}// allviewWriteboard
+//게시판 조회수 1증가
 	public int viewCountUp(int p_key) {
 		getConn();
 		int viewCnt = 0;
 		try {
-			String sql = "UPDATE t_writerboard SET w_cnt = w_cnt+1 WHERE w_key = ?";
+			String sql = "UPDATE t_writeboard SET w_cnt = w_cnt+1 WHERE w_key = ?";
 
 			ps = conn.prepareStatement(sql);
 
@@ -112,7 +112,7 @@ public class writerboardDAO {
 
 			cnt = ps.executeUpdate();
 
-			String sql2 = "SELECT w_cnt FROM t_writerboard WHERE w_key = ?";
+			String sql2 = "SELECT w_cnt FROM t_writeboard WHERE w_key = ?";
 
 			ps = conn.prepareStatement(sql2);
 
@@ -130,12 +130,12 @@ public class writerboardDAO {
 		return viewCnt;
 	}// viewCountUp
 		// 게시글 수정 메소드
-
-	public ArrayList<writerboardDTO> updateWriterboard(writerboardDTO DTO) {
-		ArrayList<writerboardDTO> temp = new ArrayList<>();
+//게시판 수정
+	public ArrayList<writeboardDTO> updateWriteboard(writeboardDTO DTO) {
+		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();
 		try {
-			String sql = "UPDATE t_writerboard SET w_title=?,w_content=?,reg_date=SYSDATE,w_file1=?,w_file2=? WHERE w_key=?";
+			String sql = "UPDATE t_writeboard SET w_title=?,w_content=?,reg_date=SYSDATE,w_file1=?,w_file2=? WHERE w_key=?";
 			
 			ps = conn.prepareStatement(sql);
 			
@@ -147,7 +147,7 @@ public class writerboardDAO {
 			
 			cnt = ps.executeUpdate();
 			
-			String sql2 = "SELECT * FROM t_writerboard WHERE w_key = ?";
+			String sql2 = "SELECT * FROM t_writeboard WHERE w_key = ?";
 			
 			ps =  conn.prepareStatement(sql2);
 			
@@ -161,7 +161,7 @@ public class writerboardDAO {
 			String w_file1 = 	rs.getString("w_file1");
 			String w_file2 = 	rs.getString("w_file2");
 				
-			temp.add(new writerboardDTO(w_title,w_content,w_file1,w_file2));
+			temp.add(new writeboardDTO(w_title,w_content,w_file1,w_file2));
 			}
 			
 		}catch(Exception e) {
@@ -170,14 +170,14 @@ public class writerboardDAO {
 			dbClose();
 		}
 		return temp;
-	}// updateWriterboard
+	}// updateWriteboard
 	
 		// 게시글 삭제
 
-	public int deleteWriterboard(int w_key) {
+	public int deleteWriteboard(int w_key) {
 		getConn();
 		try {
-			String sql = "DELETE * FROM t_wrtierboard WHERE w_key = ?";
+			String sql = "DELETE * FROM t_writeboard WHERE w_key = ?";
 
 			ps = conn.prepareStatement(sql);
 
@@ -191,5 +191,5 @@ public class writerboardDAO {
 			dbClose();
 		}
 		return cnt;
-	}// deleteWriterboard
+	}// deleteWriteboard
 }// class
