@@ -1,35 +1,28 @@
-package Controller;
+package Command_Controller;
 
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Model.writerboardDAO;
-import Model.writerboardDTO;
+import Interface.Command;
+import Model.writeboardDAO;
 
-@WebServlet("/deleteWriterboard")
-public class deleteWriterboardServiceCon extends HttpServlet {
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("[게시판삭제]");
-		response.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		writerboardDAO dao = new writerboardDAO();
-		String path = "";
-		
-		int w_key = Integer.parseInt(request.getParameter(""));
-		
-		int cnt = dao.deleteWriterboard(w_key);
-		
-		if(cnt ==1) {
-			path = "";
-		}else {
-			path = "";
-		}
-		
-		response.sendRedirect(path);
-	}
+public class deleteWriteboardServiceCon implements Command {
+
+   @Override
+   public String execute(HttpServletRequest request, HttpServletResponse response) {
+      writeboardDAO dao = new writeboardDAO();
+      String path = "";
+
+      int w_key = Integer.parseInt(request.getParameter(""));
+
+      int cnt = dao.deleteWriteboard(w_key);
+
+      if (cnt == 1) {
+         path = "";
+      } else {
+         path = "";
+      }
+      return path;
+   }
 
 }
