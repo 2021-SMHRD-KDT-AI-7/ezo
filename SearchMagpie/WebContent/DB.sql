@@ -1,5 +1,3 @@
--- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
-
 -- t_web Table Create SQL
 CREATE TABLE t_web
 (
@@ -43,6 +41,54 @@ COMMENT ON COLUMN t_web.web_name IS '웹 이름'
 COMMENT ON COLUMN t_web.web_url IS '웹 URL'
 /
 
+
+-- t_seller Table Create SQL
+CREATE TABLE t_seller
+(
+    seller_key     NUMBER          NOT NULL, 
+    seller_name    VARCHAR2(20)    NOT NULL, 
+    web_key        NUMBER          NOT NULL, 
+     PRIMARY KEY (seller_key)
+)
+/
+
+CREATE SEQUENCE t_seller_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_seller_AI_TRG
+BEFORE INSERT ON t_seller 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_seller_SEQ.NEXTVAL
+    INTO :NEW.seller_key
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_seller_AI_TRG;
+/
+
+--DROP SEQUENCE t_seller_SEQ;
+/
+
+COMMENT ON TABLE t_seller IS '해외 직구 판매자'
+/
+
+COMMENT ON COLUMN t_seller.seller_key IS '해외직구 판매자 키'
+/
+
+COMMENT ON COLUMN t_seller.seller_name IS '판매자 이름'
+/
+
+COMMENT ON COLUMN t_seller.web_key IS '아이템 출처 키'
+/
+
+ALTER TABLE t_seller
+    ADD CONSTRAINT FK_t_seller_web_key_t_web_web_ FOREIGN KEY (web_key)
+        REFERENCES t_web (web_key)
+/
 
 -- t_member Table Create SQL
 CREATE TABLE t_member
@@ -112,60 +158,11 @@ COMMENT ON COLUMN t_member.admin_yn IS '관리자 여부'
 /
 
 
--- t_seller Table Create SQL
-CREATE TABLE t_seller
-(
-    seller_key     NUMBER          NOT NULL, 
-    seller_name    VARCHAR2(20)    NOT NULL, 
-    web_key        NUMBER          NOT NULL, 
-     PRIMARY KEY (seller_key)
-)
-/
-
-CREATE SEQUENCE t_seller_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER t_seller_AI_TRG
-BEFORE INSERT ON t_seller 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT t_seller_SEQ.NEXTVAL
-    INTO :NEW.seller_key
-    FROM DUAL;
-END;
-/
-
---DROP TRIGGER t_seller_AI_TRG;
-/
-
---DROP SEQUENCE t_seller_SEQ;
-/
-
-COMMENT ON TABLE t_seller IS '해외 직구 판매자'
-/
-
-COMMENT ON COLUMN t_seller.seller_key IS '해외직구 판매자 키'
-/
-
-COMMENT ON COLUMN t_seller.seller_name IS '판매자 이름'
-/
-
-COMMENT ON COLUMN t_seller.web_key IS '아이템 출처 키'
-/
-
-ALTER TABLE t_seller
-    ADD CONSTRAINT FK_t_seller_web_key_t_web_web_ FOREIGN KEY (web_key)
-        REFERENCES t_web (web_key)
-/
-
-
 -- t_product Table Create SQL
 CREATE TABLE t_product
 (
     p_key         NUMBER           NOT NULL, 
-    p_name        VARCHAR2(20)     NOT NULL, 
+    p_name        VARCHAR2         NOT NULL, 
     p_price       NUMBER           NOT NULL, 
     p_view_cnt    NUMBER           NOT NULL, 
     web_key       NUMBER           NOT NULL, 
@@ -249,7 +246,7 @@ CREATE TABLE t_item
     seller_key      NUMBER            NOT NULL, 
     web_key         NUMBER            NOT NULL, 
     m_key           NUMBER            NOT NULL, 
-    item_title      VARCHAR2(20)      NOT NULL, 
+    item_title      VARCHAR2          NOT NULL, 
     item_content    VARCHAR2(4000)    NULL, 
     item_price      NUMBER            NOT NULL, 
     sold_yn         VARCHAR2(1)       NOT NULL, 
@@ -283,7 +280,7 @@ END;
 --DROP SEQUENCE t_item_SEQ;
 /
 
-COMMENT ON TABLE t_item IS '해외 직구 상품'
+COMMENT ON TABLE t_item IS '해외 직구 아이템'
 /
 
 COMMENT ON COLUMN t_item.item_key IS '아이템 키'
@@ -347,9 +344,9 @@ CREATE TABLE t_writeboard
     w_key        NUMBER            NOT NULL, 
     w_title      VARCHAR2(50)      NOT NULL, 
     w_content    VARCHAR2(4000)    NULL, 
-    m_key        NUMBER            NULL, 
-    w_cnt        NUMBER            NULL, 
-    reg_date     DATE              NULL, 
+    m_key        NUMBER            NOT NULL, 
+    w_cnt        NUMBER            NOT NULL, 
+    reg_date     DATE              NOT NULL, 
     w_file1      VARCHAR2(4000)    NULL, 
     w_file2      VARCHAR2(4000)    NULL, 
      PRIMARY KEY (w_key)
@@ -666,8 +663,8 @@ ALTER TABLE t_alarm
 /
 
 
--- login_recoed Table Create SQL
-CREATE TABLE login_recoed
+-- login_record Table Create SQL
+CREATE TABLE login_record
 (
     login_key      NUMBER    NOT NULL, 
     m_key          NUMBER    NULL, 
@@ -677,45 +674,278 @@ CREATE TABLE login_recoed
 )
 /
 
-CREATE SEQUENCE login_recoed_SEQ
+CREATE SEQUENCE login_record_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
 
-CREATE OR REPLACE TRIGGER login_recoed_AI_TRG
-BEFORE INSERT ON login_recoed 
+CREATE OR REPLACE TRIGGER login_record_AI_TRG
+BEFORE INSERT ON login_record 
 REFERENCING NEW AS NEW FOR EACH ROW 
 BEGIN 
-    SELECT login_recoed_SEQ.NEXTVAL
+    SELECT login_record_SEQ.NEXTVAL
     INTO :NEW.login_key
     FROM DUAL;
 END;
 /
 
---DROP TRIGGER login_recoed_AI_TRG;
+--DROP TRIGGER login_record_AI_TRG;
 /
 
---DROP SEQUENCE login_recoed_SEQ;
+--DROP SEQUENCE login_record_SEQ;
 /
 
-COMMENT ON TABLE login_recoed IS '로그인 기록'
+COMMENT ON TABLE login_record IS '로그인 기록'
 /
 
-COMMENT ON COLUMN login_recoed.login_key IS '로그인 키'
+COMMENT ON COLUMN login_record.login_key IS '로그인 키'
 /
 
-COMMENT ON COLUMN login_recoed.m_key IS '회원 키'
+COMMENT ON COLUMN login_record.m_key IS '회원 키'
 /
 
-COMMENT ON COLUMN login_recoed.login_time IS '로그인 시각'
+COMMENT ON COLUMN login_record.login_time IS '로그인 시각'
 /
 
-COMMENT ON COLUMN login_recoed.logout_time IS '로그아웃 시각'
+COMMENT ON COLUMN login_record.logout_time IS '로그아웃 시각'
 /
 
-ALTER TABLE login_recoed
-    ADD CONSTRAINT FK_login_recoed_m_key_t_member FOREIGN KEY (m_key)
+ALTER TABLE login_record
+    ADD CONSTRAINT FK_login_record_m_key_t_member FOREIGN KEY (m_key)
         REFERENCES t_member (m_key)
 /
 
-commit
+
+-- t_basket Table Create SQL
+CREATE TABLE t_basket
+(
+    m_key       NUMBER    NOT NULL, 
+    p_key       NUMBER    NULL, 
+    item_key    NUMBER    NULL, 
+    reg_date    DATE      NOT NULL, 
+     PRIMARY KEY (m_key)
+)
+/
+
+CREATE SEQUENCE t_basket_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_basket_AI_TRG
+BEFORE INSERT ON t_basket 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_basket_SEQ.NEXTVAL
+    INTO :NEW.m_key
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_basket_AI_TRG;
+/
+
+--DROP SEQUENCE t_basket_SEQ;
+/
+
+COMMENT ON TABLE t_basket IS '장바구니'
+/
+
+COMMENT ON COLUMN t_basket.m_key IS '장바구니 키'
+/
+
+COMMENT ON COLUMN t_basket.p_key IS '상품 키'
+/
+
+COMMENT ON COLUMN t_basket.item_key IS '아이템 키'
+/
+
+COMMENT ON COLUMN t_basket.reg_date IS '담은 날짜'
+/
+
+ALTER TABLE t_basket
+    ADD CONSTRAINT FK_t_basket_m_key_t_member_m_k FOREIGN KEY (m_key)
+        REFERENCES t_member (m_key)
+/
+
+ALTER TABLE t_basket
+    ADD CONSTRAINT FK_t_basket_p_key_t_product_p_ FOREIGN KEY (p_key)
+        REFERENCES t_product (p_key)
+/
+
+ALTER TABLE t_basket
+    ADD CONSTRAINT FK_t_basket_item_key_t_item_it FOREIGN KEY (item_key)
+        REFERENCES t_item (item_key)
+/
+
+
+-- t_p_review Table Create SQL
+CREATE TABLE t_p_review
+(
+    p_v_key      NUMBER            NOT NULL, 
+    m_key        NUMBER            NOT NULL, 
+    p_key        NUMBER            NULL, 
+    p_name       VARCHAR2          NULL, 
+    v_content    VARCHAR2(1000)    NULL, 
+    v_score      NUMBER            NULL, 
+    reg_date     DATE              NOT NULL, 
+    v_file1      VARCHAR2(500)     NULL, 
+    v_file2      VARCHAR2(500)     NULL, 
+     PRIMARY KEY (p_v_key)
+)
+/
+
+CREATE SEQUENCE t_p_review_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_p_review_AI_TRG
+BEFORE INSERT ON t_p_review 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_p_review_SEQ.NEXTVAL
+    INTO :NEW.p_v_key
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_p_review_AI_TRG;
+/
+
+--DROP SEQUENCE t_p_review_SEQ;
+/
+
+COMMENT ON TABLE t_p_review IS '상품 리뷰 댓글'
+/
+
+COMMENT ON COLUMN t_p_review.p_v_key IS '리뷰 키'
+/
+
+COMMENT ON COLUMN t_p_review.m_key IS '리뷰 작성자'
+/
+
+COMMENT ON COLUMN t_p_review.p_key IS '리뷰 대상 키'
+/
+
+COMMENT ON COLUMN t_p_review.p_name IS '리뷰 대상 이름'
+/
+
+COMMENT ON COLUMN t_p_review.v_content IS '리뷰 내용'
+/
+
+COMMENT ON COLUMN t_p_review.v_score IS '점수'
+/
+
+COMMENT ON COLUMN t_p_review.reg_date IS '리뷰 날짜'
+/
+
+COMMENT ON COLUMN t_p_review.v_file1 IS '첨부 파일1'
+/
+
+COMMENT ON COLUMN t_p_review.v_file2 IS '첨부 파일2'
+/
+
+ALTER TABLE t_p_review
+    ADD CONSTRAINT FK_t_p_review_m_key_t_member_m FOREIGN KEY (m_key)
+        REFERENCES t_member (m_key)
+/
+
+ALTER TABLE t_p_review
+    ADD CONSTRAINT FK_t_p_review_p_key_t_product_ FOREIGN KEY (p_key, p_name)
+        REFERENCES t_product (p_key, p_name)
+/
+
+
+-- t_i_review Table Create SQL
+CREATE TABLE t_i_review
+(
+    i_v_key      NUMBER            NOT NULL, 
+    m_key        NUMBER            NOT NULL, 
+    item_key     NUMBER            NULL, 
+    item_name    VARCHAR2          NULL, 
+    v_content    VARCHAR2(1000)    NULL, 
+    v_score      NUMBER            NULL, 
+    reg_date     DATE              NOT NULL, 
+    v_file1      VARCHAR2(500)     NULL, 
+    v_file2      VARCHAR2(500)     NULL, 
+     PRIMARY KEY (i_v_key)
+)
+/
+
+CREATE SEQUENCE t_i_review_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER t_i_review_AI_TRG
+BEFORE INSERT ON t_i_review 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT t_i_review_SEQ.NEXTVAL
+    INTO :NEW.i_v_key
+    FROM DUAL;
+END;
+/
+
+--DROP TRIGGER t_i_review_AI_TRG;
+/
+
+--DROP SEQUENCE t_i_review_SEQ;
+/
+
+COMMENT ON TABLE t_i_review IS '해외 직구 아이템 리뷰'
+/
+
+COMMENT ON COLUMN t_i_review.i_v_key IS '리뷰 키'
+/
+
+COMMENT ON COLUMN t_i_review.m_key IS '리뷰 작성자'
+/
+
+COMMENT ON COLUMN t_i_review.item_key IS '리뷰 대상 키'
+/
+
+COMMENT ON COLUMN t_i_review.item_name IS '리뷰 대상 이름'
+/
+
+COMMENT ON COLUMN t_i_review.v_content IS '리뷰 내용'
+/
+
+COMMENT ON COLUMN t_i_review.v_score IS '점수'
+/
+
+COMMENT ON COLUMN t_i_review.reg_date IS '리뷰 날짜'
+/
+
+COMMENT ON COLUMN t_i_review.v_file1 IS '첨부 파일1'
+/
+
+COMMENT ON COLUMN t_i_review.v_file2 IS '첨부 파일2'
+/
+
+ALTER TABLE t_i_review
+    ADD CONSTRAINT FK_t_i_review_m_key_t_member_m FOREIGN KEY (m_key)
+        REFERENCES t_member (m_key)
+/
+
+ALTER TABLE t_i_review
+    ADD CONSTRAINT FK_t_i_review_item_key_t_item_ FOREIGN KEY (item_key, item_name)
+        REFERENCES t_item (item_key, item_title)
+/
+
+
+--(
+--    p_key         NUMBER           NOT NULL, 
+--    p_name        VARCHAR2         NOT NULL, 
+--    p_price       NUMBER           NOT NULL, 
+--    p_view_cnt    NUMBER           NOT NULL, 
+--    web_key       NUMBER           NOT NULL, 
+--    sold_yn       VARCHAR2(1)      NOT NULL, 
+--    reg_date      DATE             NOT NULL, 
+--    p_file1       VARCHAR2(500)    NULL, 
+--    p_file2       VARCHAR2(500)    NULL, 
+--    p_file3       VARCHAR2(500)    NULL, 
+--    p_file4       VARCHAR2(500)    NULL, 
+--     PRIMARY KEY (p_key)
+--)

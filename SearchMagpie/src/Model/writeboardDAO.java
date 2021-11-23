@@ -68,7 +68,7 @@ public class writeboardDAO {
 		}
 		return cnt;
 	}// write
-
+	//게시판 전체조회
 	public ArrayList<writeboardDTO> allViewWriteboard() {
 		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();
@@ -99,7 +99,7 @@ public class writeboardDAO {
 		}
 		return temp;
 	}// allviewWriteboard
-
+//게시판 조회수 1증가
 	public int viewCountUp(int p_key) {
 		getConn();
 		int viewCnt = 0;
@@ -130,7 +130,7 @@ public class writeboardDAO {
 		return viewCnt;
 	}// viewCountUp
 		// 게시글 수정 메소드
-
+//게시판 수정
 	public ArrayList<writeboardDTO> updateWriteboard(writeboardDTO DTO) {
 		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();

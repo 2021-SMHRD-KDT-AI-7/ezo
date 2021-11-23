@@ -10,6 +10,7 @@ public class memberDTO {
 	private String m_phone;
 	private String m_joindate;
 	private String admin_yn;
+	
 	public memberDTO(String m_id, String m_pw, String m_name, String m_nickname, String m_email, String m_phone) {
 		super();
 		this.m_id = m_id;

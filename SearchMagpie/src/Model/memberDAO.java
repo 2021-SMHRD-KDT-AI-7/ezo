@@ -44,16 +44,15 @@ public class memberDAO {
 			e.printStackTrace();
 		}
 	}// dbClose
-	
 
-	//t_member 회원가입 시 입력 메소드
-	public int joinMember(memberDTO memberDTO) {
+	// t_member 회원가입 시 입력 메소드
+	public int join(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql ="INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,?)";
-			
+			String sql = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,?)";
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, memberDTO.getM_id());
 			ps.setString(2, memberDTO.getM_pw());
 			ps.setString(3, memberDTO.getM_name());
@@ -63,27 +62,27 @@ public class memberDAO {
 			ps.setString(7, "0");
 			
 			cnt = ps.executeUpdate();
-			
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return cnt;
-	}//insertMember
-	
-	//t_member 모든 회원 전체조회 메소드
+	}
+	// t_member 회원가입 시 입력 메소드
+
+	// t_member 모든 회원 전체조회 메소드
 	public ArrayList<memberDTO> allViewMembers() {
 		ArrayList<memberDTO> temp = new ArrayList<>();
 		getConn();
 		try {
 			String sql = "SELECT * FROM t_member";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			rs = ps.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				int m_key = rs.getInt("m_key");
 				String m_id = rs.getString("m_id");
 				String m_pw = rs.getString("m_pw");
@@ -93,25 +92,26 @@ public class memberDAO {
 				String m_phone = rs.getString("m_phone");
 				String m_joindate = rs.getString("m_joindate");
 				String admin_yn = rs.getString("admin_yn");
-				
-				temp.add(new memberDTO(m_key,m_id,m_pw,m_name,m_nickname,m_email,m_phone,m_joindate,admin_yn));
+
+				temp.add(new memberDTO(m_key, m_id, m_pw, m_name, m_nickname, m_email, m_phone, m_joindate, admin_yn));
+
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return temp;
-	}//allViewMembers
-	
-	//관리자 전용 회원가입 메소드
+	}// allViewMembers
+
+	// 관리자 전용 회원가입 메소드
 	public int joinAdmin(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql ="INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,?)";
-			
+			String sql = "INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,?)";
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, memberDTO.getM_id());
 			ps.setString(2, memberDTO.getM_pw());
 			ps.setString(3, memberDTO.getM_name());
@@ -119,42 +119,40 @@ public class memberDAO {
 			ps.setString(5, memberDTO.getM_email());
 			ps.setString(6, memberDTO.getM_phone());
 			ps.setString(7, "1");
-			
+
 			cnt = ps.executeUpdate();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return cnt;
-	}//insertMember
-	
-	//로그인 메소드
-	public boolean login(memberDTO memberDTO) {
+	}// insertMember
+
+	// 로그인 메소드
+	public memberDTO login(memberDTO DTO) {
+		memberDTO dto = null;
 		getConn();
 		try {
 			String sql = "SELECT m_id, m_pw FROM t_member WHERE m_id = ? AND m_pw = ?";
-			
+
 			ps = conn.prepareStatement(sql);
-			
-			ps.setString(1, memberDTO.getM_id());
-			ps.setString(2, memberDTO.getM_pw());
-			
+			ps.setString(1, DTO.getM_id());
+			ps.setString(2, DTO.getM_pw());
 			rs = ps.executeQuery();
-			
-			if(rs.next()) {
-				yn = true;
+			if (rs.next()) {
+				String m_id = rs.getString("m_id");
+				String m_pw = rs.getString("m_pw");
+
+				dto = new memberDTO(m_id, m_pw);
 			}
-			
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			dbClose();
 		}
-		return yn;
-	}//login
-	
-	
-	
-}//class
+		return dto;
+	}// login
+
+}// class

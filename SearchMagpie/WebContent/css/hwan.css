@@ -4,9 +4,20 @@
     --accent-color: pink;
 }
 
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face{
+    font-family: abster;
+    src:url(font/abster-webfont.woff) format('woff');
+}
+
 body {
     margin: 0;
-    font-family: 'Nanum Pen Script';
+    /* font-family: 'Nanum Pen Script'; */
 }
 
 a {

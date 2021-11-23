@@ -1,38 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>로그인</title>
+<!-- basic -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- mobile metas -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+<!-- site metas -->
+<title>회원가입</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- bootstrap css -->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+<!-- style css -->
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<!-- Responsive-->
+<link rel="stylesheet" href="css/responsive.css">
+<!-- fevicon -->
+<link rel="icon" href="images/fevicon.png" type="image/gif" />
+<!-- Scrollbar Custom CSS -->
+<link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+<!-- Tweaks for older IEs-->
+<link rel="stylesheet" href="https://use.fontawesome.com/7f85a56ba4.css">
+<!-- fonts -->
+<link href="https://fonts.googleapis.com/css?family=Heebo:400,800&display=swap" rel="stylesheet">
+<!-- font awesome -->
+<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--  -->
+<!-- owl stylesheets -->
+<link href="https://fonts.googleapis.com/css?family=Heebo:400,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesoeet" href="css/owl.theme.default.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+<meta charset="EUC-KR">
+<title>로그인</title>
 </head>
 <body>
 
 	<center>
 
-	<hr width = 340 size=2 color="blue">
+		<hr width=340 size=2 color="blue">
 
-	<h2>로그인</h2>
+		<h2>로그인</h2>
 
-	<hr width = 340 size=2 color="blue">
+		<hr width=340 size=2 color="blue">
 
-	<form action="JoinOK" method="post" >
-        <table class="ex1">
-            <tr>
-                <td class="date1"><input type="text" name="id" placeholder="아이디"></td>
-            </tr>
-            <tr>
-                <td class="date1"><input type="text" name="pw" placeholder="비밀번호"></td>
-                <td class="date1"><input type="submit" name="JoinOK" value="로그인"></td><tr></tr>
-            </tr>
-            <tr>
-				<td class="date1"><input type="submit" name="back" value="아이디 찾기">
-				<input type="submit" name="back" value="비밀번호 찾기"></td>
-                <td class="date1"><input type="submit" name="back" value="회원가입"></td>
-			</tr>
-        </table>
+		<form action="JoinOK" method="post">
+			<table class="ex1">
+				<tr>
+					<td class="date1">
+					<input type="text" name="id" placeholder="아이디"></td>
+					<td class="date1">
+					<form action="loginServiceCon" method="post"> 
+					<span>로그인</span></form></td>
+				</tr>
+				<tr>
+					<td class="date1">
+					<input type="text" name="pw" placeholder="비밀번호"></td>
+				</tr>
+				<tr>
+					<td class="date1">
+					<li><a href="find_id"> <i aria-hidden="true"></i> 
+					<span> 아이디 찾기 </span></a>
+					
+					<a href="change_pw"> <i aria-hidden="true"></i> 
+					<span> 비밀번호 재설정 </span></a>
+					</li></td>
+					<td class="date1"><li><a href="join.html"> 
+					<i aria-hidden="true"></i> 
+					<span> 회원가입 </span></a></li></td>
+				</tr>
+			</table>
 
-	</form>
+		</form>
 
 	</center>
 

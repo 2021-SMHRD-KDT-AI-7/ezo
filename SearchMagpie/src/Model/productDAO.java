@@ -45,19 +45,17 @@ public class productDAO {
 	public int insertProduct(productDTO productDTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_product Values(t_product_SEQ.NEXTVAL,?,?,?,?,?,SYSDATE,?,?,?,?)";
+			String sql = "INSERT INTO t_product Values(t_product_SEQ.NEXTVAL,?,?,0,?,'N',SYSDATE,?,?,?,?)";
 
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, productDTO.getP_name());
 			ps.setInt(2, productDTO.getP_price());
-			ps.setInt(3, productDTO.getP_view_cnt());
-			ps.setInt(4, productDTO.getWeb_key());
-			ps.setString(5, productDTO.getSold_yn());
-			ps.setString(6, productDTO.getP_pic1());
-			ps.setString(7, productDTO.getP_pic2());
-			ps.setString(8, productDTO.getP_pic3());
-			ps.setString(9, productDTO.getP_pic4());
+			ps.setInt(3, productDTO.getWeb_key());
+			ps.setString(4, productDTO.getP_pic1());
+			ps.setString(5, productDTO.getP_pic2());
+			ps.setString(6, productDTO.getP_pic3());
+			ps.setString(7, productDTO.getP_pic4());
 
 			cnt = ps.executeUpdate();
 
