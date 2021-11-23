@@ -33,10 +33,9 @@ public class loginServiceCon extends HttpServlet {
 		}
 		// 결과 값은 경로를 보낸다.
 		request.setAttribute("path", path);
-   
-//		RequestDispatcher rd = request.getRequestDispatcher("Main.jsp");
-//		rd.forward(request, response);
+
+		RequestDispatcher rd = request.getRequestDispatcher("Main.jsp");
+		rd.forward(request, response);
 
 	}
-
 }
