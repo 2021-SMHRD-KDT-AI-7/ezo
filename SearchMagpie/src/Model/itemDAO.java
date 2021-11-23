@@ -49,17 +49,21 @@ public class itemDAO {
 	public int insertItem(itemDTO itemDTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_item VALUES(t_item_SEQ.NEXTVAL,?,?,?,?,?,?,?,SYSDATE)";
+			String sql = "INSERT INTO t_item VALUES(t_item_SEQ.NEXTVAL,?,?,?,?,?,?,?,SYSDATE,?,?,?,?)";
 
 			ps = conn.prepareStatement(sql);
 
 			ps.setInt(1, itemDTO.getSeller_key());
 			ps.setInt(2, itemDTO.getWeb_key());
-			ps.setInt(3, Integer.parseInt(itemDTO.getItem_buyer()));
+			ps.setInt(3, Integer.parseInt(itemDTO.getM_key()));
 			ps.setString(4, itemDTO.getItem_title());
 			ps.setString(5, itemDTO.getItem_content());
 			ps.setInt(6, itemDTO.getItem_price());
 			ps.setString(7, itemDTO.getSold_yn());
+			ps.setString(8, itemDTO.getItem_file1());
+			ps.setString(9, itemDTO.getItem_file2());
+			ps.setString(10, itemDTO.getItem_file3());
+			ps.setString(11, itemDTO.getItem_file4());
 
 			cnt = ps.executeUpdate();
 
@@ -93,9 +97,13 @@ public class itemDAO {
 				int item_price = rs.getInt("item_price");
 				String sold_yn = rs.getString("sold_yn");
 				String reg_date = rs.getString("reg_date");
+				String item_file1 = rs.getString("item_file1");
+				String item_file2 = rs.getString("item_file2");
+				String item_file3 = rs.getString("item_file3");
+				String item_file4 = rs.getString("item_file4");
 
 				temp.add(new itemDTO(item_key, seller_key, web_key, item_buyer, item_title, item_content, item_price,
-						sold_yn, reg_date));
+						sold_yn, reg_date, item_file1,item_file2,item_file3,item_file4));
 			}
 
 		} catch (Exception e) {

@@ -30,6 +30,7 @@ public class changedPriceDTO {
 		this.ch_difference = ch_difference;
 	}
 
+
 	public int getCp_key() {
 		return cp_key;
 	}

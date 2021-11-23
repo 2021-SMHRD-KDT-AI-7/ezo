@@ -1,6 +1,6 @@
 package Model;
 
-public class writerboardDTO {
+public class writeboardDTO {
 	private int w_key;
 	private String w_title;
 	private String w_content;
@@ -10,7 +10,7 @@ public class writerboardDTO {
 	private String w_file1;
 	private String w_file2;
 
-	public writerboardDTO(int w_key, String w_title, String w_content, int m_key, int w_cnt, String reg_date,
+	public writeboardDTO(int w_key, String w_title, String w_content, int m_key, int w_cnt, String reg_date,
 			String w_file1, String w_file2) {
 		super();
 		this.w_key = w_key;
@@ -23,7 +23,7 @@ public class writerboardDTO {
 		this.w_file2 = w_file2;
 	}
 
-	public writerboardDTO(String w_title, String w_content, int m_key, int w_cnt, String w_file1, String w_file2) {
+	public writeboardDTO(String w_title, String w_content, int m_key, int w_cnt, String w_file1, String w_file2) {
 		this.w_title = w_title;
 		this.w_content = w_content;
 		this.m_key = m_key;
@@ -32,14 +32,14 @@ public class writerboardDTO {
 		this.w_file2 = w_file2;
 	}
 
-	public writerboardDTO(int w_key,String w_title,String w_content,String w_file1,String w_file2) {
+	public writeboardDTO(int w_key,String w_title,String w_content,String w_file1,String w_file2) {
 		this.w_key = w_key;
 		this.w_title = w_title;
 		this.w_content = w_content;
 		this.w_file1 = w_file1;
 		this.w_file2 = w_file2;
 	}
-	public writerboardDTO(String w_title,String w_content,String w_file1,String w_file2) {
+	public writeboardDTO(String w_title,String w_content,String w_file1,String w_file2) {
 		this.w_title = w_title;
 		this.w_content = w_content;
 		this.w_file1 = w_file1;

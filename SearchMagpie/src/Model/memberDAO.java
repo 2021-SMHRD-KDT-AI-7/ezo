@@ -45,39 +45,22 @@ public class memberDAO {
 		}
 	}// dbClose
 	
-	//web 정보 입력 후 성공 시  cnt 반환
-	public int insertWeb(String web_name, String web_url) {
-		getConn();
-		try {
-			String sql = "INSERT INTO t_web VALUES (t_web_SEQ.NEXTVAL,?,?)";
-			
-			ps = conn.prepareStatement(sql);
-			
-			ps.setString(1, web_name);
-			ps.setNString(2, web_url);
-			
-			int cnt = ps.executeUpdate();
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			dbClose();
-		}
-		return cnt;
-	}//insertWeb
+
 	//t_member 회원가입 시 입력 메소드
 	public int joinMember(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql ="INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,SYSDATE,?,0)";
+			String sql ="INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,?)";
 			
 			ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, memberDTO.getM_id());
 			ps.setString(2, memberDTO.getM_pw());
-			ps.setString(3, memberDTO.getM_email());
-			ps.setString(4, memberDTO.getM_phone());
-			ps.setString(5, memberDTO.getM_status());
+			ps.setString(3, memberDTO.getM_name());
+			ps.setString(4, memberDTO.getM_nickname());
+			ps.setString(5, memberDTO.getM_email());
+			ps.setString(6, memberDTO.getM_phone());
+			ps.setString(7, "0");
 			
 			cnt = ps.executeUpdate();
 			
@@ -104,13 +87,14 @@ public class memberDAO {
 				int m_key = rs.getInt("m_key");
 				String m_id = rs.getString("m_id");
 				String m_pw = rs.getString("m_pw");
+				String m_name = rs.getString("m_name");
+				String m_nickname = rs.getString("m_nickname");
 				String m_email = rs.getString("m_email");
 				String m_phone = rs.getString("m_phone");
 				String m_joindate = rs.getString("m_joindate");
-				String m_status = rs.getString("m_status");
 				String admin_yn = rs.getString("admin_yn");
 				
-				temp.add(new memberDTO(m_key,m_id,m_pw,m_email,m_phone,m_joindate,m_status,admin_yn));
+				temp.add(new memberDTO(m_key,m_id,m_pw,m_name,m_nickname,m_email,m_phone,m_joindate,admin_yn));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -124,15 +108,17 @@ public class memberDAO {
 	public int joinAdmin(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql ="INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,SYSDATE,?,1)";
+			String sql ="INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,?)";
 			
 			ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, memberDTO.getM_id());
 			ps.setString(2, memberDTO.getM_pw());
-			ps.setString(3, memberDTO.getM_email());
-			ps.setString(4, memberDTO.getM_phone());
-			ps.setString(5, memberDTO.getM_status());
+			ps.setString(3, memberDTO.getM_name());
+			ps.setString(4, memberDTO.getM_nickname());
+			ps.setString(5, memberDTO.getM_email());
+			ps.setString(6, memberDTO.getM_phone());
+			ps.setString(7, "1");
 			
 			cnt = ps.executeUpdate();
 			
