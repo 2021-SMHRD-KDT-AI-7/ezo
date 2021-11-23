@@ -4,20 +4,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Interface.Command;
-import Model.commentDAO;
+import Model.basketDAO;
+import Model.basketDTO;
 
-public class deleteCommentServiceCon implements Command {
+public class deleteBasketServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		commentDAO dao = new commentDAO();
 		String path = "";
+		basketDAO dao = new basketDAO();
+
+		int m_key = Integer.parseInt(request.getParameter("m_key"));
 		
-		int c_key = Integer.parseInt(request.getParameter("c_key"));
-		
-		int cnt = dao.deleteComment(c_key);
-		
-		if(cnt ==1) {
+		int cnt = dao.insertBasket(new basketDTO(m_key));
+			
+		if(cnt == 1) {
 			path = "";
 		}else {
 			path = "";

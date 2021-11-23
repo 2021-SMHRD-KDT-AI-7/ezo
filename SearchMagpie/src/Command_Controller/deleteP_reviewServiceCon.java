@@ -4,20 +4,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Interface.Command;
-import Model.commentDAO;
+import Model.p_reviewDAO;
+import Model.p_reviewDTO;
 
-public class deleteCommentServiceCon implements Command {
+public class deleteP_reviewServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		commentDAO dao = new commentDAO();
 		String path = "";
+		p_reviewDAO dao = new p_reviewDAO();
+
+		int p_v_key = Integer.parseInt(request.getParameter("p_v_key"));
 		
-		int c_key = Integer.parseInt(request.getParameter("c_key"));
-		
-		int cnt = dao.deleteComment(c_key);
-		
-		if(cnt ==1) {
+		int cnt = dao.deleteP_review(new p_reviewDTO(p_v_key));
+
+		if(cnt == 1) {
 			path = "";
 		}else {
 			path = "";

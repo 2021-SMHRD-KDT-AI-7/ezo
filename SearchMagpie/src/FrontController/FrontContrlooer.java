@@ -239,7 +239,46 @@ public class FrontContrlooer extends HttpServlet {
 			// 알람 입력
 		} else if (result.equals("alarmServiceCon")) {
 			sc = new alarmServiceCon();
+		} else if (result.equals("basketServiceCon")) {
+			sc = new basketServiceCon();
+		} else if (result.equals("deleteBasketServiceCon")) {
+			sc = new deleteBasketServiceCon();
+		} else if (result.equals("p_reviewServiceCon")) {
+			sc = new p_reviewServiceCon();
+		} else if (result.equals("deleteP_reviewServiceCon")) {
+			sc = new deleteP_reviewServiceCon();
+		} else if (result.equals("updateP_reviewServiceCon")) {
+			sc = new updateP_reviewServiceCon();
+		} else if (result.equals("allViewP_reviewServiceCon")) {
+			ArrayList<p_reviewDTO> temp = new ArrayList<>();
+
+			p_reviewDAO dao = new p_reviewDAO();
+			// 가격변동 전체조회
+			temp = dao.allViewP_review();
+
+			request.setAttribute("allViewP_review", temp);
+
+			RequestDispatcher rd = request.getRequestDispatcher("#");
+			rd.forward(request, response);
+		}else if (result.equals("i_reviewServiceCon")) {
+			sc = new i_reviewServiceCon();
+		} else if (result.equals("deleteI_reviewServiceCon")) {
+			sc = new deleteI_reviewServiceCon();
+		} else if (result.equals("updateI_reviewServiceCon")) {
+			sc = new updateI_reviewServiceCon();
+		} else if (result.equals("allViewI_reviewServiceCon")) {
+			ArrayList<i_reviewDTO> temp = new ArrayList<>();
+
+			i_reviewDAO dao = new i_reviewDAO();
+			// 가격변동 전체조회
+			temp = dao.allViewI_review();
+
+			request.setAttribute("allViewI_review", temp);
+
+			RequestDispatcher rd = request.getRequestDispatcher("#");
+			rd.forward(request, response);
 		}
+		
 		path = sc.execute(request, response);
 		if (path != null) {
 			response.sendRedirect(path);
