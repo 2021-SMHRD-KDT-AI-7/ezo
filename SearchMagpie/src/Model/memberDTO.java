@@ -45,6 +45,15 @@ public class memberDTO {
 	public int getM_key() {
 		return m_key;
 	}
+	public memberDTO(String m_pw, String m_name, String m_nickname, String m_email, String m_phone) {
+		super();
+		this.m_pw = m_pw;
+		this.m_name = m_name;
+		this.m_nickname = m_nickname;
+		this.m_email = m_email;
+		this.m_phone = m_phone;
+	}
+
 	public void setM_key(int m_key) {
 		this.m_key = m_key;
 	}

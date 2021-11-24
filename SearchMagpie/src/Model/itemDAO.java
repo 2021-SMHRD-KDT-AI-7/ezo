@@ -1,10 +1,7 @@
 package Model;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.ArrayList;
+import java.sql.*;
+import java.util.*;
 
 public class itemDAO {
 	Connection conn = null;
@@ -12,7 +9,7 @@ public class itemDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½.
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -44,24 +41,23 @@ public class itemDAO {
 		}
 	}// dbClose
 
-	// Å×ÀÌºí ¼öÁ¤ÇÏ±â ±¸¸ÅÀÚ m_key
-	// ÇØ¿ÜÁ÷±¸ ¾ÆÀÌÅÛ µî·ÏÇÏ´Â ¸Þ¼Òµå
-	public int insertItem(itemDTO itemDTO) {
+	// t_product ï¿½ï¿½Ç° ï¿½Ô·ï¿½ ï¿½Þ¼Òµï¿½
+	public int insertItem(itemDTO DTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_item VALUES(t_item_SEQ.NEXTVAL,?,?,,?,?,?,'N',SYSDATE,?,?,?,?)";
+			String sql = "INSERT INTO t_item Values(t_item_SEQ.NEXTVAL,?,?,1,?,?,SYSDATE,?,?,?,?,?)";
 
 			ps = conn.prepareStatement(sql);
 
-			ps.setInt(1, itemDTO.getSeller_key());
-			ps.setInt(2, itemDTO.getWeb_key());
-			ps.setString(3, itemDTO.getItem_title());
-			ps.setString(4, itemDTO.getItem_content());
-			ps.setInt(5, itemDTO.getItem_price());
-			ps.setString(6, itemDTO.getItem_file1());
-			ps.setString(7, itemDTO.getItem_file2());
-			ps.setString(8, itemDTO.getItem_file3());
-			ps.setString(9, itemDTO.getItem_file4());
+			ps.setString(1, DTO.getItem_title());
+			ps.setInt(2, DTO.getItem_price());
+			ps.setString(3, DTO.getItem_url());
+			ps.setString(4, DTO.getItem_category());
+			ps.setString(5, DTO.getItem_source());
+			ps.setString(6, DTO.getItem_file1());
+			ps.setString(6, DTO.getItem_file2());
+			ps.setString(6, DTO.getItem_file3());
+			ps.setString(6, DTO.getItem_file4());
 
 			cnt = ps.executeUpdate();
 
@@ -71,15 +67,14 @@ public class itemDAO {
 			dbClose();
 		}
 		return cnt;
-	}// insertItem
-	
-	
-	//t_item ÇØ¿ÜÁ÷±¸ ¸ðµç ¾ÆÀÌÅÛ ÀüÃ¼Á¶È¸ ¸Þ¼Òµå
-	public ArrayList<itemDTO> allViewItems() {
+	}// insertProduct
+
+	// t_product ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
+	public ArrayList<itemDTO> allViewItem() {
 		ArrayList<itemDTO> temp = new ArrayList<>();
 		getConn();
 		try {
-			String sql = "SELECT * FROM t_item";
+			String sql = "select * from t_item";
 
 			ps = conn.prepareStatement(sql);
 
@@ -87,27 +82,26 @@ public class itemDAO {
 
 			while (rs.next()) {
 				int item_key = rs.getInt("item_key");
-				int seller_key = rs.getInt("seller_key");
-				int web_key = rs.getInt("web_key");
-				int m_key = rs.getInt("m_key");
 				String item_title = rs.getString("item_title");
-				String item_content = rs.getString("item_content");
 				int item_price = rs.getInt("item_price");
-				String sold_yn = rs.getString("sold_yn");
+				int item_cnt = rs.getInt("item_cnt");
+				String item_url = rs.getString("item_url");
+				String item_category = rs.getString("item_url");
 				String reg_date = rs.getString("reg_date");
+				String item_source = rs.getString("item_source");
 				String item_file1 = rs.getString("item_file1");
 				String item_file2 = rs.getString("item_file2");
 				String item_file3 = rs.getString("item_file3");
-				String item_file4 = rs.getString("item_file4");
+				String item_file4 = rs.getString("pitem_file4");
 
-				temp.add(new itemDTO(item_key, seller_key, web_key, m_key, item_title, item_content, item_price, sold_yn, reg_date, item_file1, item_file2, item_file3, item_file4));
-			}
-
+				temp.add(new itemDTO(item_key,item_title,item_price,item_cnt,item_url,item_category,reg_date,item_source,item_file1,item_file2,item_file3,item_file4));
+			} // while
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
 		return temp;
-	}// allViewItems;
+	}// allViewProduct
+
 }// class

@@ -12,7 +12,7 @@ public class writeboardDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -43,7 +43,7 @@ public class writeboardDAO {
 			e.printStackTrace();
 		}
 	}// dbClose
-		// °Ô½Ã±Û ÀÛ¼º ¸Þ¼Òµå
+		// ï¿½Ô½Ã±ï¿½ ï¿½Û¼ï¿½ ï¿½Þ¼Òµï¿½
 
 	public int write(writeboardDTO DTO) {
 		getConn();
@@ -68,7 +68,7 @@ public class writeboardDAO {
 		}
 		return cnt;
 	}// write
-	//°Ô½ÃÆÇ ÀüÃ¼Á¶È¸
+	//ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½È¸
 	public ArrayList<writeboardDTO> allViewWriteboard() {
 		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();
@@ -99,7 +99,7 @@ public class writeboardDAO {
 		}
 		return temp;
 	}// allviewWriteboard
-//°Ô½ÃÆÇ Á¶È¸¼ö 1Áõ°¡
+//ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½
 	public int viewCountUp(int p_key) {
 		getConn();
 		int viewCnt = 0;
@@ -129,8 +129,8 @@ public class writeboardDAO {
 		}
 		return viewCnt;
 	}// viewCountUp
-		// °Ô½Ã±Û ¼öÁ¤ ¸Þ¼Òµå
-//°Ô½ÃÆÇ ¼öÁ¤
+		// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
+//ï¿½Ô½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public ArrayList<writeboardDTO> updateWriteboard(writeboardDTO DTO) {
 		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();
@@ -172,7 +172,7 @@ public class writeboardDAO {
 		return temp;
 	}// updateWriteboard
 	
-		// °Ô½Ã±Û »èÁ¦
+		// ï¿½Ô½Ã±ï¿½ ï¿½ï¿½ï¿½ï¿½
 
 	public int deleteWriteboard(int w_key) {
 		getConn();

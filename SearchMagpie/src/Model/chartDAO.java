@@ -9,7 +9,7 @@ public class chartDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -41,7 +41,7 @@ public class chartDAO {
 		}
 	}// dbClose
 	
-//DB¿¡ Á¢±ÙÇÏ¿© Á¦Ç° Á¶È¸¼öÄÃ·³À» 1Áõ°¡ ½ÃÅ°´Â ÇÔ¼ö
+//DBï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½È¸ï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ô¼ï¿½
 	public int viewCountPlus(int p_key) {
 		int viewCnt = 0;
 		getConn();
@@ -72,13 +72,13 @@ public class chartDAO {
 		return viewCnt;
 	}// viewCountPlus
 
-	// DB t_product ¿¡¼­ Á¶È¸¼ö°¡ °¡Àå ³ôÀº 10°³ÀÇ Á¦Ç° Å°¿Í ÀÌ¸§À» °¡Áö°í ¿À´Â ÇÔ¼ö
+	// DB t_product ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 10ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ç° Å°ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
 	public ArrayList<chartDTO> allViewCountTopTen() {
 		ArrayList<chartDTO> temp = new ArrayList<>();
 		getConn();
 
 		try {
-			String sql = "SELECT p_key,p_name,p_view_count  FROM (SELECT p_key,p_name, p_view_cnt FROM t_product ORDER BY p_view_cnt DESC) WHERE ROWNUM < 11";
+			String sql = "SELECT p_key,p_title,p_cnt  FROM (SELECT p_key,p_title, p_cnt FROM t_product ORDER BY p_cnt DESC) WHERE ROWNUM < 11";
 
 			ps = conn.prepareStatement(sql);
 
@@ -86,9 +86,9 @@ public class chartDAO {
 
 			while (rs.next()) {
 				int p_key = rs.getInt("p_key");
-				String p_name = rs.getString("p_name");
-				int p_view_cnt = rs.getInt("p_view_cnt");
-				temp.add(new chartDTO(p_key, p_name, p_view_cnt));
+				String p_title = rs.getString("p_title");
+				int p_cnt = rs.getInt("p_cnt");
+				temp.add(new chartDTO(p_key, p_title, p_cnt));
 			}
 
 		} catch (Exception e) {

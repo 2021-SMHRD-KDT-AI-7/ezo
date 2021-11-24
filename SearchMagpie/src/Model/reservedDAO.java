@@ -12,7 +12,7 @@ public class reservedDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -44,7 +44,7 @@ public class reservedDAO {
 		}
 	}// dbClose
 	
-	//¿¹¾àÇÏ±â (ÀÔ·Â) ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ (ï¿½Ô·ï¿½) ï¿½Þ¼Òµï¿½
 	public int reserve(reservedDTO reservedDTO) {
 		getConn();
 		try {
@@ -67,7 +67,7 @@ public class reservedDAO {
 		return cnt;
 	}//reserve
 	
-	//¿¹¾à ÀüÃ¼Á¶È¸ ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public ArrayList<reservedDTO> allViewReservations(){
 		ArrayList<reservedDTO> temp = new ArrayList<>();
 		getConn();
@@ -98,5 +98,15 @@ public class reservedDAO {
 		return temp;
 	}//allViewReservations
 	
+	public void findMember() {
+		getConn();
+		try {
+			String sql = "SELECT ";
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+	}//findMember
 	
 }//class

@@ -12,7 +12,7 @@ public class alarmDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");

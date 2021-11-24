@@ -9,7 +9,7 @@ public class productDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå.
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½.
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -41,21 +41,23 @@ public class productDAO {
 		}
 	}// dbClose
 
-	// t_product »óÇ° ÀÔ·Â ¸Þ¼Òµå
-	public int insertProduct(productDTO productDTO) {
+	// t_product ï¿½ï¿½Ç° ï¿½Ô·ï¿½ ï¿½Þ¼Òµï¿½
+	public int insertProduct(productDTO DTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_product Values(t_product_SEQ.NEXTVAL,?,?,0,?,'N',SYSDATE,?,?,?,?)";
+			String sql = "INSERT INTO t_product Values(t_product_SEQ.NEXTVAL,?,?,1,?,?,SYSDATE,?,?,?,?,?)";
 
 			ps = conn.prepareStatement(sql);
 
-			ps.setString(1, productDTO.getP_name());
-			ps.setInt(2, productDTO.getP_price());
-			ps.setInt(3, productDTO.getWeb_key());
-			ps.setString(4, productDTO.getP_pic1());
-			ps.setString(5, productDTO.getP_pic2());
-			ps.setString(6, productDTO.getP_pic3());
-			ps.setString(7, productDTO.getP_pic4());
+			ps.setString(1, DTO.getP_title());
+			ps.setInt(2, DTO.getP_price());
+			ps.setString(3, DTO.getP_url());
+			ps.setString(4, DTO.getP_category());
+			ps.setString(5, DTO.getP_source());
+			ps.setString(6, DTO.getP_file1());
+			ps.setString(6, DTO.getP_file2());
+			ps.setString(6, DTO.getP_file3());
+			ps.setString(6, DTO.getP_file4());
 
 			cnt = ps.executeUpdate();
 
@@ -67,7 +69,7 @@ public class productDAO {
 		return cnt;
 	}// insertProduct
 
-	//t_product Å×ÀÌºí ÀüÃ¼ Á¶È¸ ¸Þ¼Òµå
+	// t_product ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public ArrayList<productDTO> allViewProduct() {
 		ArrayList<productDTO> temp = new ArrayList<>();
 		getConn();
@@ -80,19 +82,20 @@ public class productDAO {
 
 			while (rs.next()) {
 				int p_key = rs.getInt("p_key");
-				String p_name = rs.getString("p_name");
+				String p_title = rs.getString("p_title");
 				int p_price = rs.getInt("p_price");
-				int p_view_cnt = rs.getInt("p_view_cnt");
-				int web_key = rs.getInt("web_key");
-				String sold_yn = rs.getString("sold_yn");
+				int p_cnt = rs.getInt("p_cnt");
+				String p_url = rs.getString("p_url");
+				String p_category = rs.getString("p_url");
 				String reg_date = rs.getString("reg_date");
-				String p_pic1 = rs.getString("p_pic1");
-				String p_pic2 = rs.getString("p_pic2");
-				String p_pic3 = rs.getString("p_pic3");
-				String p_pic4 = rs.getString("p_pic4");
+				String p_source = rs.getString("p_source");
+				String p_file1 = rs.getString("p_file1");
+				String p_file2 = rs.getString("p_file2");
+				String p_file3 = rs.getString("p_file3");
+				String p_file4 = rs.getString("p_file4");
 
-				temp.add(new productDTO(p_key, p_name, p_price, p_view_cnt, web_key, sold_yn, reg_date, p_pic1, p_pic2,
-						p_pic3, p_pic4));
+				temp.add(new productDTO(p_key, p_title, p_price, p_cnt, p_url, p_category, reg_date, p_source, p_file1,
+						p_file2, p_file3, p_file4));
 			} // while
 		} catch (Exception e) {
 			e.printStackTrace();

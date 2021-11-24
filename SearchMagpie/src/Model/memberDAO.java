@@ -13,7 +13,7 @@ public class memberDAO {
 	int cnt = 0;
 	boolean yn = false;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -45,7 +45,7 @@ public class memberDAO {
 		}
 	}// dbClose
 
-	// t_member È¸¿ø°¡ÀÔ ½Ã ÀÔ·Â ¸Þ¼Òµå
+	// t_member È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Þ¼Òµï¿½
 	public int join(memberDTO memberDTO) {
 		getConn();
 		try {
@@ -60,7 +60,7 @@ public class memberDAO {
 			ps.setString(5, memberDTO.getM_email());
 			ps.setString(6, memberDTO.getM_phone());
 			ps.setString(7, "0");
-			
+
 			cnt = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,9 +69,9 @@ public class memberDAO {
 		}
 		return cnt;
 	}
-	// t_member È¸¿ø°¡ÀÔ ½Ã ÀÔ·Â ¸Þ¼Òµå
+	// t_member È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Þ¼Òµï¿½
 
-	// t_member ¸ðµç È¸¿ø ÀüÃ¼Á¶È¸ ¸Þ¼Òµå
+	// t_member ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public ArrayList<memberDTO> allViewMembers() {
 		ArrayList<memberDTO> temp = new ArrayList<>();
 		getConn();
@@ -104,7 +104,7 @@ public class memberDAO {
 		return temp;
 	}// allViewMembers
 
-	// °ü¸®ÀÚ Àü¿ë È¸¿ø°¡ÀÔ ¸Þ¼Òµå
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public int joinAdmin(memberDTO memberDTO) {
 		getConn();
 		try {
@@ -130,7 +130,7 @@ public class memberDAO {
 		return cnt;
 	}// insertMember
 
-	// ·Î±×ÀÎ ¸Þ¼Òµå
+	// ï¿½Î±ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public memberDTO login(memberDTO DTO) {
 		memberDTO dto = null;
 		getConn();
@@ -155,4 +155,27 @@ public class memberDAO {
 		return dto;
 	}// login
 
+	public int updateMember(memberDTO DTO) {
+		getConn();
+		try {
+			String sql = "UPDATE t_member SET m_pw = ?,m_name = ?, m_nickname = ?,m_email=?,m_phone=?";
+			
+			ps=conn.prepareStatement(sql);
+			
+			ps.setString(1, DTO.getM_pw());
+			ps.setString(2, DTO.getM_name());
+			ps.setString(3, DTO.getM_nickname());
+			ps.setString(4, DTO.getM_email());
+			ps.setString(5, DTO.getM_phone());
+			
+			cnt = ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return cnt;
+	}// updatemember
+	
 }// class

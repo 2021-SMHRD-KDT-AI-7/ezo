@@ -19,7 +19,7 @@ public class updateI_reviewServiceCon implements Command {
 		int i_v_key = Integer.parseInt(request.getParameter("i_v_key"));
 		
 		int cnt = dao.updateI_review(new i_reviewDTO(item_title,v_content,i_v_key));
-
+		
 		if(cnt == 1) {
 			path = "";
 		}else {

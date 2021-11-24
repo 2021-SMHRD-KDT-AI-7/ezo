@@ -13,7 +13,7 @@ public class sellerDAO {
 	int cnt = 0;
 	boolean yn = false;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -45,12 +45,12 @@ public class sellerDAO {
 		}
 	}// dbClose
 	
-	//ÇØ¿ÜÁ÷±¸ ÆÇ¸ÅÀÚ µî·Ï ¸Þ¼Òµå
+	//ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public int insertSeller(sellerDTO sellerDTO) {
 		getConn();
 		try {
-			//¼­ºêÄõ¸® ÀÛ¼ºÇÏ±â
-			String sql = "INSERT INTO t_seller VALUES(t_seller_SEQ.NEXTVAL,?,*¼­ºêÄõ¸®*)";
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ï±ï¿½
+			String sql = "INSERT INTO t_seller VALUES(t_seller_SEQ.NEXTVAL,?,*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*)";
 			
 			ps = conn.prepareStatement(sql);
 			
@@ -66,7 +66,7 @@ public class sellerDAO {
 		return cnt;
 	}//insertSeller
 	
-	//ÇØ¿ÜÁ÷±¸ ÆÇ¸ÅÀÚ ÀüÃ¼Á¶È¸ ¸Þ¼Òµå
+	//ï¿½Ø¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public ArrayList<sellerDTO> allViewSellers() {
 		ArrayList<sellerDTO> temp = new ArrayList<>();
 		getConn();

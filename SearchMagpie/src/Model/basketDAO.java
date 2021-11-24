@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class basketDAO {
 	Connection conn = null;
@@ -11,7 +12,7 @@ public class basketDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -49,7 +50,7 @@ public class basketDAO {
 			String sql = "INSERT INTO t_basket VALUES(?,?,?,SYSDATE)";
 
 			ps = conn.prepareStatement(sql);
-			//m_key ¸â¹ö¸¦ ºÒ·¯¿À´Â ÇÔ¼ö ¸¸µé¾î¼­ ³Ö±â
+			//m_key ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½Ö±ï¿½
 			ps.setInt(1, basketDTO.getM_key());
 			ps.setInt(2, basketDTO.getP_key());
 			ps.setInt(3, basketDTO.getItem_key());
@@ -82,5 +83,34 @@ public class basketDAO {
 		}
 		return cnt;
 	}//allDeleteBasket
+	public ArrayList<basketDTO> allViewBasket(basketDTO DTO){
+		ArrayList<basketDTO> temp = new ArrayList<>();
+		getConn();
+		try {
+			String sql = "SELECT * FROM t_basket WHERE m_key = ?";
+			
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, DTO.getM_key());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				int p_key = rs.getInt("p_key");
+				int item_key = rs.getInt("item_key");
+				String reg_date = rs.getString("reg_date");
+				
+				temp.add(new basketDTO(p_key,item_key,reg_date));
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		
+		
+		return temp;
+	}//allViewBasket
 	
 }// class

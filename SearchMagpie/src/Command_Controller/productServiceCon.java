@@ -13,21 +13,23 @@ public class productServiceCon implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		productDAO dao = new productDAO();
 		String path = "";
-		String p_name = request.getParameter("p_name");
+		String p_title = request.getParameter("p_title");
 		int p_price = Integer.parseInt(request.getParameter("p_price"));
-		int web_key = Integer.parseInt(request.getParameter("web_key"));
-		String p_pic1 = request.getParameter("p_pic1");
-		String p_pic2 = request.getParameter("p_pic2");
-		String p_pic3 = request.getParameter("p_pic3");
-		String p_pic4 = request.getParameter("p_pic4");
+		String p_url = request.getParameter("p_url");
+		String p_category = request.getParameter("p_category");
+		String p_source = request.getParameter("p_source");
+		String p_file1 = request.getParameter("p_file1");
+		String p_file2 = request.getParameter("p_file2");
+		String p_file3 = request.getParameter("p_file3");
+		String p_file4 = request.getParameter("p_file4");
 		
 		
-		int cnt = dao.insertProduct(new productDTO(p_name, p_price, web_key,p_pic1,p_pic2,p_pic3,p_pic4));
+		int cnt = dao.insertProduct(new productDTO(p_title,p_price,p_url,p_category,p_source,p_file1,p_file2,p_file3,p_file4));
 		
 		if(cnt == 1) {
-			path = "¼º°ø url";
+			path = "ï¿½ï¿½ï¿½ï¿½ url";
 		}else {
-			path = "½ÇÆÐ url";
+			path = "ï¿½ï¿½ï¿½ï¿½ url";
 		}
 		return path;
 		

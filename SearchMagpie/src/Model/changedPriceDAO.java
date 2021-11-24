@@ -12,7 +12,7 @@ public class changedPriceDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -44,19 +44,17 @@ public class changedPriceDAO {
 		}
 	}// dbClose
 	
-	//°¡°Ýº¯µ¿ ÀÔ·Â ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Þ¼Òµï¿½
 	public int insertChangedPrice(changedPriceDTO DTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_ch_price VALUES(t_ch_price_SEQ.NEXTVAL,?,?,?,?,?,SYSDATE)";
+			String sql = "INSERT INTO t_ch_price VALUES(t_product_price_SEQ.NEXTVAL,?,?,SYSDATE)";
 			
 			ps = conn.prepareStatement(sql);
 			
 			ps.setInt(1, DTO.getP_key());
-			ps.setInt(2, DTO.getItem_key());
 			ps.setInt(3, DTO.getP_price());
-			ps.setInt(4, DTO.getItem_price());
-			ps.setInt(5, DTO.getCh_difference());
+			
 			
 			cnt = ps.executeUpdate();
 			
@@ -68,7 +66,7 @@ public class changedPriceDAO {
 		return cnt;
 	}//insertChangedPrice
 	
-	//°¡°Ýº¯µ¿ ÀüÃ¼Á¶È¸ ¸Þ¼Òµå
+	//ï¿½ï¿½ï¿½Ýºï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public ArrayList<changedPriceDTO> allViewChangedPrice() {
 		ArrayList<changedPriceDTO> temp = new ArrayList<>();
 		getConn();

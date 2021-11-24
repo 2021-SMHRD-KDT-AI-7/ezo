@@ -12,7 +12,7 @@ public class commentDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -44,7 +44,7 @@ public class commentDAO {
 		}
 	}// dbClose
 
-	// ´ñ±Û ÀÛ¼º ¸Þ¼Òµå
+	// ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ ï¿½Þ¼Òµï¿½
 	public ArrayList<commentDTO> comment(commentDTO DTO) {
 		ArrayList<commentDTO> temp = new ArrayList<>();
 		getConn();
@@ -78,13 +78,13 @@ public class commentDAO {
 		}
 		return temp;
 	}// comment
-		// ´ñ±Û ¼öÁ¤ ¸Þ¼Òµå
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 
 	public ArrayList<commentDTO> updateComment(commentDTO DTO) {
 		ArrayList<commentDTO> temp = new ArrayList<>();
 		getConn();
 		try {
-			String sql = "UPDATE t_comment set c_content = ?, reg_date = SYSDATE WHERE c_key = ?";
+			String sql = "UPDATE t_comment set c_content = ?, reg_date = TO_CHAR(TRUNC(SYSDATE),'YYYY-MM-DD') WHERE c_key = ?";
 
 			ps = conn.prepareStatement(sql);
 
@@ -113,7 +113,7 @@ public class commentDAO {
 		}
 		return temp;
 	}// updateComment
-		// ´ñ±Û »èÁ¦ ¸Þ¼Òµå
+		// ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 
 	public int deleteComment(int c_key) {
 		getConn();

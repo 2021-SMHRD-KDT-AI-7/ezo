@@ -1,134 +1,133 @@
 package Model;
 
 public class chartDTO {
-	
 	private int p_key;
-	private String p_name;
+	private String p_title;
 	private int p_price;
-	private int p_view_cnt;
-	private int web_key;
-	private String sold_yn;
+	private int p_cnt;
+	private String p_url;
+	private String p_category;
 	private String reg_date;
-	private String p_pic1;
-	private String p_pic2;
-	private String p_pic3;
-	private String p_pic4;
-
-	public chartDTO(int p_key, String p_name, int p_price, int p_view_cnt, int web_key, String sold_yn, String reg_date,
-			String p_pic1, String p_pic2, String p_pic3, String p_pic4) {
+	private String p_source;
+	private String p_file1;
+	private String p_file2;
+	private String p_file3;
+	private String p_file4;
+	public chartDTO(String p_title, int p_price, String p_url, String p_category, String p_source, String p_file1,
+			String p_file2, String p_file3, String p_file4) {
+		super();
+		this.p_title = p_title;
+		this.p_price = p_price;
+		this.p_url = p_url;
+		this.p_category = p_category;
+		this.p_source = p_source;
+		this.p_file1 = p_file1;
+		this.p_file2 = p_file2;
+		this.p_file3 = p_file3;
+		this.p_file4 = p_file4;
+	}
+	public chartDTO(int p_key, String p_title, int p_cnt) {
 		super();
 		this.p_key = p_key;
-		this.p_name = p_name;
-		this.p_price = p_price;
-		this.p_view_cnt = p_view_cnt;
-		this.web_key = web_key;
-		this.sold_yn = sold_yn;
-		this.reg_date = reg_date;
-		this.p_pic1 = p_pic1;
-		this.p_pic2 = p_pic2;
-		this.p_pic3 = p_pic3;
-		this.p_pic4 = p_pic4;
+		this.p_title = p_title;
+		this.p_cnt = p_cnt;
 	}
-	
-	public chartDTO(int p_key, String p_name, int p_view_cnt) {
+	public chartDTO(int p_key, String p_title, int p_price, int p_cnt, String p_url, String p_category,
+			String reg_date, String p_source, String p_file1, String p_file2, String p_file3, String p_file4) {
+		super();
 		this.p_key = p_key;
-		this.p_name = p_name;
-		this.p_view_cnt = p_view_cnt;
+		this.p_title = p_title;
+		this.p_price = p_price;
+		this.p_cnt = p_cnt;
+		this.p_url = p_url;
+		this.p_category = p_category;
+		this.reg_date = reg_date;
+		this.p_source = p_source;
+		this.p_file1 = p_file1;
+		this.p_file2 = p_file2;
+		this.p_file3 = p_file3;
+		this.p_file4 = p_file4;
 	}
-
 	public int getP_key() {
 		return p_key;
 	}
-
 	public void setP_key(int p_key) {
 		this.p_key = p_key;
 	}
-
-	public String getP_name() {
-		return p_name;
+	public String getP_title() {
+		return p_title;
 	}
-
-	public void setP_name(String p_name) {
-		this.p_name = p_name;
+	public void setP_title(String p_title) {
+		this.p_title = p_title;
 	}
-
 	public int getP_price() {
 		return p_price;
 	}
-
 	public void setP_price(int p_price) {
 		this.p_price = p_price;
 	}
-
-	public int getP_view_cnt() {
-		return p_view_cnt;
+	public int getP_cnt() {
+		return p_cnt;
 	}
-
-	public void setP_view_cnt(int p_view_cnt) {
-		this.p_view_cnt = p_view_cnt;
+	public void setP_cnt(int p_cnt) {
+		this.p_cnt = p_cnt;
 	}
-
-	public int getWeb_key() {
-		return web_key;
+	public String getP_url() {
+		return p_url;
 	}
-
-	public void setWeb_key(int web_key) {
-		this.web_key = web_key;
+	public void setP_url(String p_url) {
+		this.p_url = p_url;
 	}
-
-	public String getSold_yn() {
-		return sold_yn;
+	public String getP_category() {
+		return p_category;
 	}
-
-	public void setSold_yn(String sold_yn) {
-		this.sold_yn = sold_yn;
+	public void setP_category(String p_category) {
+		this.p_category = p_category;
 	}
-
 	public String getReg_date() {
 		return reg_date;
 	}
-
 	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
-
-	public String getP_pic1() {
-		return p_pic1;
+	public String getP_source() {
+		return p_source;
 	}
-
-	public void setP_pic1(String p_pic1) {
-		this.p_pic1 = p_pic1;
+	public void setP_source(String p_source) {
+		this.p_source = p_source;
 	}
-
-	public String getP_pic2() {
-		return p_pic2;
+	public String getP_file1() {
+		return p_file1;
 	}
-
-	public void setP_pic2(String p_pic2) {
-		this.p_pic2 = p_pic2;
+	public void setP_file1(String p_file1) {
+		this.p_file1 = p_file1;
 	}
-
-	public String getP_pic3() {
-		return p_pic3;
+	public String getP_file2() {
+		return p_file2;
 	}
-
-	public void setP_pic3(String p_pic3) {
-		this.p_pic3 = p_pic3;
+	public void setP_file2(String p_file2) {
+		this.p_file2 = p_file2;
 	}
-
-	public String getP_pic4() {
-		return p_pic4;
+	public String getP_file3() {
+		return p_file3;
 	}
-
-	public void setP_pic4(String p_pic4) {
-		this.p_pic4 = p_pic4;
+	public void setP_file3(String p_file3) {
+		this.p_file3 = p_file3;
 	}
-
+	public String getP_file4() {
+		return p_file4;
+	}
+	public void setP_file4(String p_file4) {
+		this.p_file4 = p_file4;
+	}
 	@Override
 	public String toString() {
-		return "chartDTO [p_key=" + p_key + ", p_name=" + p_name + ", p_price=" + p_price + ", p_view_cnt=" + p_view_cnt
-				+ ", web_key=" + web_key + ", sold_yn=" + sold_yn + ", reg_date=" + reg_date + ", p_pic1=" + p_pic1
-				+ ", p_pic2=" + p_pic2 + ", p_pic3=" + p_pic3 + ", p_pic4=" + p_pic4 + "]";
+		return "productDTO [p_key=" + p_key + ", p_title=" + p_title + ", p_price=" + p_price + ", p_cnt=" + p_cnt
+				+ ", p_url=" + p_url + ", p_category=" + p_category + ", reg_date=" + reg_date + ", p_source="
+				+ p_source + ", p_file1=" + p_file1 + ", p_file2=" + p_file2 + ", p_file3=" + p_file3 + ", p_file4="
+				+ p_file4 + "]";
 	}
-
+	
+	
+	
 }
