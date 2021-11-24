@@ -1,0 +1,41 @@
+<DOCTYPE HTML5>
+    <html>
+      <head>
+        <title>써치까치 비밀번호 찾기</title>
+        <link rel="stylesheet" type="text/css" href="./css/find_pw.css">
+      <!-- fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+      <!-- font awesome -->
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+    
+      <body width="100%" height="100%">
+        <form action="main.html" method="post" class="find_idForm">
+          <h2>비밀번호 찾기</h2>
+          <h5>가입 시 입력했던 아이디와 이메일정보가 일치하면<br>비밀번호 변경 페이지로 이동합니다.</h5>
+          <div class="idForm">
+            <input type="text" class="id" placeholder="아이디">
+          </div>
+          <div class="emailForm">
+            <input type="text" class="email" placeholder="이메일">
+          </div>
+          <div class="forgot">
+            <a href="find_id.html" class="find_id"><i aria-hidden="true"></i>아이디 찾기</a><span class="bar"></span>
+        </div>
+
+          <button type="button" class="btn_next" onclick="button()">
+            다음
+          <button type="button" class="btn_back" onclick="button()" style="color: #D3D3D3;">
+            뒤로
+          </button>
+          <script>
+              let button = () => {
+                alert('')
+            }
+          </script>
+
+        </form>
+      </body>
+    </html>

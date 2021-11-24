@@ -43,9 +43,9 @@ mm.addEventListener("focusout", isBirthCompleted);
 dd.addEventListener("focusout", isBirthCompleted);
 gender.addEventListener("focusout", function() {
     if(gender.value === "성별") {
-        error[5].style.display = "block";
+        error[6].style.display = "block";
     } else {
-        error[5].style.display = "none";
+        error[6].style.display = "none";
     }
 })
 email.addEventListener("focusout", isEmailCorrect);
