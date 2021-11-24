@@ -1750,6 +1750,7 @@ table.ex1 {width: 520px; margin:0 auto; text-align:right; border-collapse:collap
     margin-bottom: 50px;
 }
 
+<<<<<<< HEAD
 .frame_edit_info{
     width: 100%;
     height: 1200px;
@@ -1760,6 +1761,8 @@ table.ex1 {width: 520px; margin:0 auto; text-align:right; border-collapse:collap
     margin-top: 250px;
 }
 
+=======
+>>>>>>> branch 'master' of https://github.com/2021-SMHRD-KDT-AI-7/ezo.git
 body.join {
     margin: 0;
     height: 100%;
@@ -1774,30 +1777,6 @@ body.join {
 }
 
 /* i프레임 끝 */
-
-/* 장바구니 시작 */
-
-i.fa.fa-shopping-cart{
-    position: relative;
-}
-.fa.fa-shopping-cart::after{
-    content: attr(data-cart);
-    background: #34404b;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    bottom: calc(10% + 16px);
-    font-size: 10px;
-    color: #fff;
-    text-indent: 0;
-    text-align: center;
-    line-height: 18px;
-}
-
-/* 장바구니 끝 */
 
 .toggle_icon {
     cursor: pointer;

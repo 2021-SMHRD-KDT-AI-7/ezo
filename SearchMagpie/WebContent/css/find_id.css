@@ -132,11 +132,7 @@
     float: left;
   }
   
-  .btn_back:hover {
-    background-position: left;
-  }
-
-  .btn_next:hover {
+  .btn:hover {
     background-position: right;
   }
   
@@ -145,25 +141,25 @@
   }
 
   .forgot{
-    text-align: right;
+    text-align: center;
     font-size: 11pt;
-    margin: 13px 31px;
+    margin: 10px 0px;
 }
 
 .forgot a.find_id{
-    color: #00008B;
+    color: 2F4F4F;
     font-weight: bold;
 }
 .forgot a.find_id:hover{
-    color:#7B68EE;
+    color:#6c5ce7;
 }
 
 .forgot a.find_pw{
-    color: #00008B;
+    color: 2F4F4F;
     font-weight: bold;
 }
 .forgot a.find_pw:hover{
-    color:#7B68EE;
+    color:#6c5ce7;
 }
 
 .forgot a.join{
@@ -172,8 +168,4 @@
 }
 .forgot a.join:hover{
     color: #6c5ce7;
-}
-
-h5 {
-  color: #2F4F4F;
 }
