@@ -1,10 +1,7 @@
-<%@page import="Model.memberDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html>
-<head>
-<!-- <meta charset="EUC-KR"> --><!-- basic -->
+<html lang="en">
+   <head>
+      <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>��ġ��ġ</title>
+      <title>ì¨ì¹ê¹ì¹</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -40,35 +37,22 @@
       <link rel="stylesheet" href="css/owl.carousel.min.css">
       <link rel="stylesoeet" href="css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-</head>
-<body>
-<% 
-	memberDTO info = (memberDTO)session.getAttribute("info");
-%>
-<!-- banner bg main start -->
+   </head>
+   <body>
+      <!-- banner bg main start -->
       <div class="banner_bg_main">
          <!-- header top section start -->
-         <h1 class="title_logo"><a href="Main.jsp">��ġ��ġ</a></h1>
+         <h1 class="title_logo"><a href="#">ì¨ì¹ê¹ì¹</a></h1>
          <div class="login_menu">
             <ul class="navbar_icons">
-            <% if (info != null){ %>
-               <li><a href="wishlist.html">
-                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                  <span class="padding_10">���ø���Ʈ</span></a>
+               <li><a href="#">
+                  <i class="fa fa-shopping-cart" aria-hidden="true" data-cart="5"></i>
+                  <span class="padding_10">ì¥ë°êµ¬ë</span></a>
                </li>
-               <%} else {%>
-               <%} %>
-               <% if (info != null){ %>
-               <li><a href="logoutServiceCon.do">
+               <li><a href="#">
                   <i class="fa fa-user" aria-hidden="true"></i>
-                  <span class="padding_10">�α׾ƿ�</span></a>
+                  <span class="padding_10">ë¡ê·¸ì¸</span></a>
                </li>
-               <%} else { %>
-               <li><a href="login.jsp">
-                  <i class="fa fa-user" aria-hidden="true"></i>
-                  <span class="padding_10">�α���</span></a>
-               </li>
-               <%} %>
            </ul>
          </div>
          <div class="container">
@@ -77,10 +61,10 @@
                   <div class="col-sm-12">
                      <div class="custom_menu">
                         <ul>
-                           <li><a href="#">����������</a></li>
-                           <li><a href="#">���̵�</a></li>
-                           <li><a href="#">�Խ���</a></li>
-                           <li><a href="#">��������</a></li>
+                           <li><a href="#">ë©ì¸íì´ì§</a></li>
+                           <li><a href="#">ê°ì´ë</a></li>
+                           <li><a href="#">ê²ìí</a></li>
+                           <li><a href="#">ê³ ê°ì¼í°</a></li>
                         </ul>
 
                      </div>
@@ -94,7 +78,8 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
+                  <h3 class="title_logo2"><a href="#">Search</a></h1>
+                     <!-- <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>  -->
                   </div>
                </div>
             </div>
@@ -106,25 +91,25 @@
                <div class="containt_main">
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">����������</a>
-                     <a href="fashion.html">���̵�</a>
-                     <a href="electronic.html">�Խ���</a>
-                     <a href="jewellery.html">��������</a>
+                     <a href="index.html">ë©ì¸íì´ì§</a>
+                     <a href="fashion.html">ê°ì´ë</a>
+                     <a href="electronic.html">ê²ìí</a>
+                     <a href="jewellery.html">ê³ ê°ì¼í°</a>
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
                   <div class="dropdown">
-                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">��ǰ ī�װ��� 
+                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ìí ì¹´íê³ ë¦¬ 
                      </button>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">TV</a>
                         <a class="dropdown-item" href="#">Xbox</a>
-                        <a class="dropdown-item" href="#">�º���</a>
+                        <a class="dropdown-item" href="#">íë¸ë¦¿</a>
                      </div>
                   </div>
                   <div class="main">
                      <!-- Another variation with a button -->
                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="��ǰ �˻� (��Ȯ�� ��ǰ���� �Է����ֽø� ��Ȯ���� ���˴ϴ�!)">
+                        <input type="text" class="form-control" placeholder="ìí ê²ì (ì íí ìíëªì ìë ¥í ìë¡ ê²ì ì íëê° í¥ìë©ëë¤!)">
                         <div class="input-group-append">
                            <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
                            <i class="fa fa-search"></i>
@@ -151,77 +136,13 @@
                      <div class="carousel-item active">
                         <div class="row">
                            <div class="col-sm-12">
-                              <!-- <h1 class="banner_taital"></h1> -->
-                              <!-- <div class="buynow_bt"><a href="#">Buy Now</a></div> -->
                            </div>
                         </div>
                      </div>
                      <div>
-                        <iframe class="frame" src="search.jsp" frameborder="0"></iframe>
-                        <!-- <center>
-
-                           <hr width = 340 size=2 color="blue">
-                           <h2>ȸ�� ����</h2>
-                           <hr width = 340 size=2 color="blue">
-                           <form action="JoinOK" method="post" >
-                                <table class="ex1">
-                                    <tr>
-                                        <td class="date1"><input type="text" name="id" placeholder="���̵�"></td>
-                                        <td class="date1"><input type="submit" name="id_check" value="�ߺ� Ȯ��"></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="date1"><input type="text" name="pw" placeholder="��й�ȣ"></td>
-                                    </tr>
-                                 <tr>
-                                    <td class="date1"><input type="text" name="pw_check" placeholder="��й�ȣ Ȯ��"></td>
-                                 </tr>
-                                 <tr>
-                                    <td class="date1"><input type="text" name="name" placeholder="�̸�"></td>
-                                 </tr>
-                                 <tr>
-                                    <td class="date1"><input type="text" name="nickname" placeholder="�г���"></td>
-                                    <td class="date1"><input type="submit" name="nickname_check" value="�ߺ� Ȯ��"></td>
-                                 </tr>
-                                 <tr>
-                                    <td class="date1"><input type="text" name="email" placeholder="�̸���"></td>
-                                    <td class="date1"><input type="submit" name="email_check" value="���� ����"></td>
-                                 </tr>
-                                 <tr>
-                                    <td class="date1"><input type="text" name="phone" placeholder="����ó"></td>
-                                 </tr>
-                                 <tr>
-                                    <td class="date1"><input type="submit" name="back" value="�ڷ�"></td>
-                                    <td class="date1"><input type="submit" name="JoinOK" value="����"></td>
-                                 </tr>
-                                </table>
-                           </form>
-                           
-                           </center> -->
+                        <!-- iframe ë¤ì´ì¤ë ìë¦¬ -->
                      </div>
-                     <!-- <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                           </div>
-                        </div>
-                     </div> -->
-                     <!-- <div class="carousel-item">
-                        <div class="row">
-                           <div class="col-sm-12">
-                              <h1 class="banner_taital">Get Start <br>Your favriot shoping</h1>
-                              <div class="buynow_bt"><a href="#">Buy Now</a></div>
-                           </div>
-                        </div>
-                     </div> 
-                  </div> -->
-
-                  <!-- <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-                  <i class="fa fa-angle-left"></i>
-                  </a>
-                  <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-                  <i class="fa fa-angle-right"></i>
-                  </a> -->
+                  </div>
                </div>
             </div>
          </div>
@@ -230,14 +151,14 @@
 
       <div class="footer_section layout_padding1">
          <div class="container">
-            <div class="footer_logo"><a href="Main.jsp"><img src="images/KakaoTalk_20211115_142051842.png"></a></div>
+            <div class="footer_logo"><a href="index.html"><img src="images/KakaoTalk_20211115_142051842.png"></a></div>
             <div class="input_bt">
                <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
                <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
             </div>
             <div class="footer_menu">
                <ul>
-                  <li><a href="#">�̸����� �����ϰ� Ǫ���˸��� �پ��� ������ ��������!</a></li>
+                  <li><a href="#">ì´ë©ì¼ì ì¸ì¦íê³  í¸ì¬ìë¦¼ê³¼ ë¤ìí ííì ë°ì¼ì¸ì!</a></li>
                </ul>
             </div>
          </div>
@@ -256,6 +177,8 @@
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
       <script>
+         document.querySelector("iframe").className = "frame_join"
+         document.querySelector("iframe").src = "http://localhost:8081/SearchMagpie/joinFrame.html"
          function openNav() {
            document.getElementById("mySidenav").style.width = "250px";
          }
@@ -264,6 +187,6 @@
            document.getElementById("mySidenav").style.width = "0";
          }
       </script>
-
-</body>
+ 
+   </body>
 </html>
