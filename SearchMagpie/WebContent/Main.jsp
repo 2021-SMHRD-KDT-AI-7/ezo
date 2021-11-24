@@ -114,7 +114,6 @@
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
                   <div class="dropdown">
-                     </button>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">TV</a>
                         <a class="dropdown-item" href="#">태블릿</a>
@@ -145,14 +144,10 @@
          <!-- banner section start -->
 
                      <div>
-                        <iframe class="frame" src="loginFrame.html" frameborder="no" allowtransparency="false" scrolling="no" ></iframe>
+                        <iframe class="frame_join" src="joinFrame.jsp" frameborder="no" allowtransparency="false" scrolling="no" ></iframe>
                      </div>
                   </div>
-               </div>
-            </div>
-         </div>
          <!-- banner section end -->
-      </div>
 
       <div class="footer_section layout_padding1">
          <div class="container">
