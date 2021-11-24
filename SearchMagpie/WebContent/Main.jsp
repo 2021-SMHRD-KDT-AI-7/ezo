@@ -61,13 +61,13 @@
                <%} else {%>
                <%} %>
                <% if (info != null){ %>
-               <li><span>안녕하세요. <%-- <%=info.getNickname() %> --%>님</span>
+               <li><span>안녕하세요. <%=info.getM_id()%>님</span>
                <a href="logoutServiceCon.do">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span class="padding_10">로그아웃</span></a>
                </li>
                <%} else { %>
-               <li><a href="loginFrame.html">
+               <li><a href="login.jsp">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span class="padding_10">로그인</span></a>
                </li>
@@ -144,7 +144,7 @@
          <!-- banner section start -->
 
                      <div>
-                        <iframe class="frame_join" src="joinFrame.jsp" frameborder="no" allowtransparency="false" scrolling="no" ></iframe>
+                        <iframe class="frame_join" src="" frameborder="no" allowtransparency="false" scrolling="no" ></iframe>
                      </div>
                   </div>
          <!-- banner section end -->

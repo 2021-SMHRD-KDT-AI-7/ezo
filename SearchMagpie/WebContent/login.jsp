@@ -144,7 +144,7 @@
                      </div>
                      <div>
                         <!-- iframe 들어오는 자리 -->
-						<iframe class="frame_login" src="loginFrame.html" frameborder="no" allowtransparency="false" scrolling="no"></iframe>
+						<iframe class="frame_login" src="loginFrame.jsp" frameborder="no" allowtransparency="false" scrolling="no"></iframe>
                      </div>
                   </div>
                </div>

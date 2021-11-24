@@ -13,28 +13,22 @@
       </head>
     
       <body width="100%" height="100%">
-        <form action="login" method="post" class="loginForm">
+        <form action="loginServiceCon.do" method="post" class="loginForm">
           <h2>써치까치 로그인</h2>
           <div class="idForm">
-            <input type="text" class="id" placeholder="ID">
+            <input type="text" class="id" placeholder="ID" name="m_id">
           </div>
           <div class="passForm">
-            <input type="password" class="pw" placeholder="PW">
+            <input type="password" class="pw" placeholder="PW" name="m_pw">
           </div>
           <div class="forgot">
             <a href="find_idFrame.html" class="find_id"><i aria-hidden="true"></i>아이디 찾기</a><span class="bar"> / </span>
             <a href="find_pw.html" class="find_pw"><i aria-hidden="true"></i>비밀번호 찾기</a><span class="bar"> / </span>
             <a href="join.html" class="join"><i aria-hidden="true"></i>회원가입</a>
         </div>
-          <button type="button" class="btn" onclick="button()">
+          <button type="submit" class="btn" onclick="button()">
             로그인
           </button>
-          <script>
-              let button = () => {
-                alert('login Button !')
-            }
-          </script>
-
         </form>
       </body>
     </html>

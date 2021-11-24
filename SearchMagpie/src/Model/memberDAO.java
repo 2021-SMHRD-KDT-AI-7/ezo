@@ -18,7 +18,7 @@ public class memberDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String db_url = "http://project-db-stu.ddns.net";
+			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
 			String db_id = "campus_c_e_1111";
 			String db_pw = "smhrd5";
 
@@ -49,7 +49,7 @@ public class memberDAO {
 	public int join(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,?)";
+			String sql = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'0')";
 
 			ps = conn.prepareStatement(sql);
 
@@ -59,7 +59,7 @@ public class memberDAO {
 			ps.setString(4, memberDTO.getM_nickname());
 			ps.setString(5, memberDTO.getM_email());
 			ps.setString(6, memberDTO.getM_phone());
-			ps.setString(7, "0");
+
 
 			cnt = ps.executeUpdate();
 		} catch (Exception e) {

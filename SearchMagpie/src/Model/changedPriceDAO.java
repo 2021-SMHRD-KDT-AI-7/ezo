@@ -17,7 +17,7 @@ public class changedPriceDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String db_url = "http://project-db-stu.ddns.net";
+			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
 			String db_id = "campus_c_e_1111";
 			String db_pw = "smhrd5";
 
@@ -54,7 +54,6 @@ public class changedPriceDAO {
 			
 			ps.setInt(1, DTO.getP_key());
 			ps.setInt(3, DTO.getP_price());
-			
 			
 			cnt = ps.executeUpdate();
 			

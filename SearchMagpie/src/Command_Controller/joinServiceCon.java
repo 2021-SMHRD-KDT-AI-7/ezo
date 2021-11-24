@@ -17,23 +17,23 @@ public class joinServiceCon implements Command {
 		int cnt = 0;
 		String path = "";
 		
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		String name = request.getParameter("name");
-		String nickname = request.getParameter("nickname");
-		String email = request.getParameter("email");
-		String phone = request.getParameter("phone");
+		String id = request.getParameter("m_id");
+		String pw = request.getParameter("m_pw");
+		String name = request.getParameter("m_name");
+		String nickname = request.getParameter("m_nickname");
+		String email = request.getParameter("m_email");
+		String phone = request.getParameter("m_phone");
 		
-		
+		System.out.println("ì…ë ¥ëœ ê°’ : " + id + pw + name + nickname + email + phone);
 		
 		cnt = dao.join(new memberDTO(id,pw,name,nickname,email,phone));
 		
 		if(cnt == 1) {
-			path = "È¸¿ø°¡ÀÔ ¼º°ø ½Ã url";
+			path = "Main.jsp";
 		}else {
-			path = "È¸¿ø°¡ÀÔ ½ÇÆĞ ½Ã url";
+			path = "joinframe.jsp";
 		}
-
+		System.out.println("ì´ë™" + path);
 		return path;
 	}
 

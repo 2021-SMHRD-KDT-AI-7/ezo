@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
    <head>
       <!-- basic -->
       <meta charset="utf-8">
@@ -41,6 +41,7 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
    </head>
    <body>
+   <% %>
       <!-- banner bg main start -->
       <div class="banner_bg_main">
          <!-- header top section start -->
@@ -80,7 +81,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                  <h3 class="title_logo2"><a href="#">Search</a></h3>
+                  <h3 class="title_logo2"><a href="#">Search</a></h1>
                      <!-- <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>  -->
                   </div>
                </div>
@@ -124,31 +125,23 @@
                         <div class="dropdown-menu ">
                         </div>
                      </div>
-
                   </div>
                </div>
             </div>
          </div>
          <!-- header section end -->
          <!-- banner section start -->
-         <div class="banner_section layout_padding">
             <div class="container">
                <div id="my_slider" class="carousel slide" data-ride="carousel">
                   <div class="carousel-inner">
-                     <div class="carousel-item active">
-                        <div class="row">
-                           <div class="col-sm-12">
-                           </div>
-                        </div>
-                     </div>
                      <div id="header">
                         <!-- iframe 들어오는 자리 -->
-						<iframe class="frame_join" src="joinFrame.jsp" frameborder="no" allowtransparency="false" scrolling="no"></iframe>
+                        <iframe class="frame_join" src="joinFrame.jsp" frameborder="no" allowtransparency="false" scrolling="no"></iframe>
+                        <!-- iframe 들어오는 자리 -->
                      </div>
                   </div>
                </div>
             </div>
-         </div>
          <!-- banner section end -->
       </div>
 
@@ -168,6 +161,7 @@
       </div>
       <!-- footer section end -->
       <!-- copyright section start -->
+      </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>

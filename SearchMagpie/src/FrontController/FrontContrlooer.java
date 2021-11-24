@@ -23,22 +23,24 @@ public class FrontContrlooer extends HttpServlet {
 		String reqURI = request.getRequestURI();
 		String project = request.getContextPath();
 		String result = reqURI.substring(project.length() + 1);
+		System.out.println(result);
+		
 		String path = null;
 		Command sc = null;
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		if (result.equals("writeboardServiceCon")) {
+		if (result.equals("writeboardServiceCon.do")) {
 			sc = new writeboardServiceCon();
-		} else if (result.equals("viewWriteboardServiceCon")) {
+		} else if (result.equals("viewWriteboardServiceCon.do")) {
 			ArrayList<writeboardDTO> temp = new ArrayList<>();
 			writeboardDAO dao = new writeboardDAO();
 			temp = dao.allViewWriteboard();
-			request.setAttribute("allViewWriteboards", temp);
+			request.setAttribute("allViewWriteboards.do", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("deleteWriteboardServiceCon")) {
+		} else if (result.equals("deleteWriteboardServiceCon.do")) {
 			sc = new deleteWriteboardServiceCon();
-		} else if (result.equals("updateWriteboardServiceCon")) {
+		} else if (result.equals("updateWriteboardServiceCon.do")) {
 			writeboardDAO dao = new writeboardDAO();
 			ArrayList<writeboardDTO> temp = new ArrayList<>();
 			int w_key = Integer.parseInt(request.getParameter(""));
@@ -50,7 +52,7 @@ public class FrontContrlooer extends HttpServlet {
 			request.setAttribute("updateWriteboard", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("commentServiceCon")) {
+		} else if (result.equals("commentServiceCon.do")) {
 			ArrayList<commentDTO> temp = new ArrayList<>();
 			commentDAO dao = new commentDAO();
 			int w_key = Integer.parseInt(request.getParameter(""));
@@ -60,9 +62,9 @@ public class FrontContrlooer extends HttpServlet {
 			request.setAttribute("comment", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("deleteCommentServiceCon")) {
+		} else if (result.equals("deleteCommentServiceCon.do")) {
 			sc = new deleteCommentServiceCon();
-		} else if (result.equals("updateCommentServiceCon")) {
+		} else if (result.equals("updateCommentServiceCon.do")) {
 			ArrayList<commentDTO> temp = new ArrayList<>();
 			commentDAO dao = new commentDAO();
 			int c_key = Integer.parseInt(request.getParameter(""));
@@ -71,59 +73,60 @@ public class FrontContrlooer extends HttpServlet {
 			request.setAttribute("content", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("joinServiceCon")) {
+		} else if (result.equals("joinServiceCon.do")) {
 			sc = new joinServiceCon();
-		} else if (result.equals("loginServiceCon")) {
+		} else if (result.equals("loginServiceCon.do")) {
 			memberDAO dao = new memberDAO();
-			String id = request.getParameter("id");
-			String pw = request.getParameter("pw");
-			memberDTO loginInfo = dao.login(new memberDTO(id, pw));
-			request.setAttribute("loginInfo", loginInfo);
-			RequestDispatcher rd = request.getRequestDispatcher("#");
+			String id = request.getParameter("m_id");
+			String pw = request.getParameter("m_pw");
+			System.out.println("입력 : " + id + pw);
+			memberDTO info = dao.login(new memberDTO(id, pw));
+			request.setAttribute("info", info);
+			RequestDispatcher rd = request.getRequestDispatcher("Main.jsp");
 			rd.forward(request, response);
-		} else if (result.equals("logoutServiceCon")) {
+		} else if (result.equals("logoutServiceCon.do")) {
 			HttpSession session = request.getSession();
-			session.removeAttribute("loginInfo");
-			path = "main.jsp";
-		} else if (result.equals("updateMemberServiceCon")) {
+			session.removeAttribute("info");
+			path = "Main.jsp";
+		} else if (result.equals("updateMemberServiceCon.do")) {
 			sc = new updateMemberServiceCon();
-		} else if (result.equals("webServiceCon")) {
+		} else if (result.equals("webServiceCon.do")) {
 			sc = new webServiceCon();
-		} else if (result.equals("viewWebServiceCon")) {
+		} else if (result.equals("viewWebServiceCon.do")) {
 			ArrayList<webDTO> temp = new ArrayList<webDTO>();
 			webDAO dao = new webDAO();
 			temp = dao.allViewWebs();
 			request.setAttribute("allViewWebs", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("sellerServiceCon")) {
+		} else if (result.equals("sellerServiceCon.do")) {
 			sc = new sellerServiceCon();
-		} else if (result.equals("viewSellerServiceCon")) {
+		} else if (result.equals("viewSellerServiceCon.do")) {
 			ArrayList<sellerDTO> temp = new ArrayList<>();
 			sellerDAO dao = new sellerDAO();
 			temp = dao.allViewSellers();
 			request.setAttribute("sellers", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("reserveServiceCon")) {
+		} else if (result.equals("reserveServiceCon.do")) {
 			sc = new reserveServiceCon();
-		} else if (result.equals("viewReservesServiceCon")) {
+		} else if (result.equals("viewReservesServiceCon.do")) {
 			ArrayList<reservedDTO> temp = new ArrayList<>();
 			reservedDAO dao = new reservedDAO();
 			temp = dao.allViewReservations();
 			request.setAttribute("reservations", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("productServiceCon")) {
+		} else if (result.equals("productServiceCon.do")) {
 			sc = new productServiceCon();
-		} else if (result.equals("allViewProductServiceCon")) {
+		} else if (result.equals("allViewProductServiceCon.do")) {
 			ArrayList<productDTO> temp = new ArrayList<>();
 			productDAO dao = new productDAO();
 			temp = dao.allViewProduct();
 			request.setAttribute("products", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("viewItemServiceCon")) {
+		} else if (result.equals("viewItemServiceCon.do")) {
 			ArrayList<itemDTO> temp = new ArrayList<itemDTO>();
 			itemDAO dao = new itemDAO();
 			temp = dao.allViewItem();
@@ -131,39 +134,39 @@ public class FrontContrlooer extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
 		}
-		else if (result.equals("itemServiceCon")) {
+		else if (result.equals("itemServiceCon.do")) {
 			sc = new itemServiceCon();
 		}
-		else if (result.equals("viewChartServiceCon")) {
+		else if (result.equals("viewChartServiceCon.do")) {
 			ArrayList<chartDTO> temp = new ArrayList<chartDTO>();
 			chartDAO dao = new chartDAO();
 			temp = dao.allViewCountTopTen();
 			request.setAttribute("chartTopTen", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("changedPriceServiceCon")) {
+		} else if (result.equals("changedPriceServiceCon.do")) {
 			sc = new changedPriceServiceCon();
-		} else if (result.equals("ViewChangedPriceServiceCon")) {
+		} else if (result.equals("ViewChangedPriceServiceCon.do")) {
 			ArrayList<changedPriceDTO> temp = new ArrayList<>();
 			changedPriceDAO dao = new changedPriceDAO();
 			temp = dao.allViewChangedPrice();
 			request.setAttribute("allViewChangedPrice", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("viewAlarmServiceCon")) {
+		} else if (result.equals("viewAlarmServiceCon.do")) {
 			ArrayList<alarmDTO> temp = new ArrayList<>();
 			alarmDAO dao = new alarmDAO();
 			temp = dao.allViewAlarm();
 			request.setAttribute("allViewAlarm", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("alarmServiceCon")) {
+		} else if (result.equals("alarmServiceCon.do")) {
 			sc = new alarmServiceCon();
-		} else if (result.equals("basketServiceCon")) {
+		} else if (result.equals("basketServiceCon.do")) {
 			sc = new basketServiceCon();
-		} else if (result.equals("deleteBasketServiceCon")) {
+		} else if (result.equals("deleteBasketServiceCon.do")) {
 			sc = new deleteBasketServiceCon();
-		} else if (result.equals("allViewBasketServiceCon")) {
+		} else if (result.equals("allViewBasketServiceCon.do")) {
 			ArrayList<basketDTO> temp = new ArrayList<>();
 			basketDAO dao = new basketDAO();
 			int m_key = Integer.parseInt(request.getParameter("m_key"));
@@ -171,26 +174,26 @@ public class FrontContrlooer extends HttpServlet {
 			request.setAttribute("comment", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("p_reviewServiceCon")) {
+		} else if (result.equals("p_reviewServiceCon.do")) {
 			sc = new p_reviewServiceCon();
-		} else if (result.equals("deleteP_reviewServiceCon")) {
+		} else if (result.equals("deleteP_reviewServiceCon.do")) {
 			sc = new deleteP_reviewServiceCon();
-		} else if (result.equals("updateP_reviewServiceCon")) {
+		} else if (result.equals("updateP_reviewServiceCon.do")) {
 			sc = new updateP_reviewServiceCon();
-		} else if (result.equals("allViewP_reviewServiceCon")) {
+		} else if (result.equals("allViewP_reviewServiceCon.do")) {
 			ArrayList<p_reviewDTO> temp = new ArrayList<>();
 			p_reviewDAO dao = new p_reviewDAO();
 			temp = dao.allViewP_review();
 			request.setAttribute("allViewP_review", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		} else if (result.equals("i_reviewServiceCon")) {
+		} else if (result.equals("i_reviewServiceCon.do")) {
 			sc = new i_reviewServiceCon();
-		} else if (result.equals("deleteI_reviewServiceCon")) {
+		} else if (result.equals("deleteI_reviewServiceCon.do")) {
 			sc = new deleteI_reviewServiceCon();
-		} else if (result.equals("updateI_reviewServiceCon")) {
+		} else if (result.equals("updateI_reviewServiceCon.do")) {
 			sc = new updateI_reviewServiceCon();
-		} else if (result.equals("allViewI_reviewServiceCon")) {
+		} else if (result.equals("allViewI_reviewServiceCon.do")) {
 			ArrayList<i_reviewDTO> temp = new ArrayList<>();
 			i_reviewDAO dao = new i_reviewDAO();
 			temp = dao.allViewI_review();

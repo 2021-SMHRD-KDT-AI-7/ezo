@@ -14,12 +14,13 @@ public class webDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DB¿¬°á ¸Þ¼Òµå
+//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-			String db_url = "http://project-db-stu.ddns.net";
+
+			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
 			String db_id = "campus_c_e_1111";
 			String db_pw = "smhrd5";
 
@@ -46,7 +47,7 @@ public class webDAO {
 		}
 	}// dbClose
 	
-	//web Á¤º¸ ÀÔ·Â ÈÄ ¼º°ø ½Ã  cnt ¹ÝÈ¯
+	//web ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½  cnt ï¿½ï¿½È¯
 	public int insertWeb(String web_name, String web_url) {
 		getConn();
 		try {
@@ -68,7 +69,7 @@ public class webDAO {
 	}//insertWeb
 	
 	
-	//t_web Å×ÀÌºí ÀüÃ¼ Á¶È¸ ¸Þ¼Òµå
+	//t_web ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
 	public ArrayList<webDTO> allViewWebs(){
 		ArrayList<webDTO> temp = new ArrayList<>();
 		getConn();
