@@ -1,6 +1,6 @@
 <%@page import="Model.memberDTO"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +12,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>��ġ��ġ</title>
+      <title>써치까치</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -44,29 +44,31 @@
 <body>
 <% 
 	memberDTO info = (memberDTO)session.getAttribute("info");
+	
 %>
 <!-- banner bg main start -->
       <div class="banner_bg_main">
          <!-- header top section start -->
-         <h1 class="title_logo"><a href="Main.jsp">��ġ��ġ</a></h1>
+         <h1 class="title_logo"><a href="Main.jsp">써치까치</a></h1>
          <div class="login_menu">
             <ul class="navbar_icons">
             <% if (info != null){ %>
                <li><a href="wishlist.html">
                   <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                  <span class="padding_10">���ø���Ʈ</span></a>
+                  <span class="padding_10">위시리스트</span></a>
                </li>
                <%} else {%>
                <%} %>
                <% if (info != null){ %>
-               <li><a href="logoutServiceCon.do">
+               <li><span>안녕하세요. <%-- <%=info.getNickname() %> --%>님</span>
+               <a href="logoutServiceCon.do">
                   <i class="fa fa-user" aria-hidden="true"></i>
-                  <span class="padding_10">�α׾ƿ�</span></a>
+                  <span class="padding_10">로그아웃</span></a>
                </li>
                <%} else { %>
                <li><a href="login.jsp">
                   <i class="fa fa-user" aria-hidden="true"></i>
-                  <span class="padding_10">�α���</span></a>
+                  <span class="padding_10">로그인</span></a>
                </li>
                <%} %>
            </ul>
@@ -77,10 +79,10 @@
                   <div class="col-sm-12">
                      <div class="custom_menu">
                         <ul>
-                           <li><a href="#">����������</a></li>
-                           <li><a href="#">���̵�</a></li>
-                           <li><a href="#">�Խ���</a></li>
-                           <li><a href="#">��������</a></li>
+                           <li><a href="#">메인페이지</a></li>
+                           <li><a href="#">가이드</a></li>
+                           <li><a href="#">게시판</a></li>
+                           <li><a href="#">고객센터</a></li>
                         </ul>
 
                      </div>
@@ -106,25 +108,25 @@
                <div class="containt_main">
                   <div id="mySidenav" class="sidenav">
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                     <a href="index.html">����������</a>
-                     <a href="fashion.html">���̵�</a>
-                     <a href="electronic.html">�Խ���</a>
-                     <a href="jewellery.html">��������</a>
+                     <a href="index.html">메인페이지</a>
+                     <a href="fashion.html">가이드</a>
+                     <a href="electronic.html">게시판</a>
+                     <a href="jewellery.html">고객센터</a>
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
                   <div class="dropdown">
-                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">��ǰ ī�װ��� 
+                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">상품 카테고리 
                      </button>
                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">TV</a>
                         <a class="dropdown-item" href="#">Xbox</a>
-                        <a class="dropdown-item" href="#">�º���</a>
+                        <a class="dropdown-item" href="#">태블릿</a>
                      </div>
                   </div>
                   <div class="main">
                      <!-- Another variation with a button -->
                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="��ǰ �˻� (��Ȯ�� ��ǰ���� �Է����ֽø� ��Ȯ���� ���˴ϴ�!)">
+                        <input type="text" class="form-control" placeholder="상품 검색 (정확한 상품명을 입력해주시면 정확도가 향상됩니다!)">
                         <div class="input-group-append">
                            <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
                            <i class="fa fa-search"></i>
@@ -161,37 +163,37 @@
                         <!-- <center>
 
                            <hr width = 340 size=2 color="blue">
-                           <h2>ȸ�� ����</h2>
+                           <h2>회원 가입</h2>
                            <hr width = 340 size=2 color="blue">
                            <form action="JoinOK" method="post" >
                                 <table class="ex1">
                                     <tr>
-                                        <td class="date1"><input type="text" name="id" placeholder="���̵�"></td>
-                                        <td class="date1"><input type="submit" name="id_check" value="�ߺ� Ȯ��"></td>
+                                        <td class="date1"><input type="text" name="id" placeholder="아이디"></td>
+                                        <td class="date1"><input type="submit" name="id_check" value="중복 확인"></td>
                                     </tr>
                                     <tr>
-                                        <td class="date1"><input type="text" name="pw" placeholder="��й�ȣ"></td>
+                                        <td class="date1"><input type="text" name="pw" placeholder="비밀번호"></td>
                                     </tr>
                                  <tr>
-                                    <td class="date1"><input type="text" name="pw_check" placeholder="��й�ȣ Ȯ��"></td>
+                                    <td class="date1"><input type="text" name="pw_check" placeholder="비밀번호 확인"></td>
                                  </tr>
                                  <tr>
-                                    <td class="date1"><input type="text" name="name" placeholder="�̸�"></td>
+                                    <td class="date1"><input type="text" name="name" placeholder="이름"></td>
                                  </tr>
                                  <tr>
-                                    <td class="date1"><input type="text" name="nickname" placeholder="�г���"></td>
-                                    <td class="date1"><input type="submit" name="nickname_check" value="�ߺ� Ȯ��"></td>
+                                    <td class="date1"><input type="text" name="nickname" placeholder="닉네임"></td>
+                                    <td class="date1"><input type="submit" name="nickname_check" value="중복 확인"></td>
                                  </tr>
                                  <tr>
-                                    <td class="date1"><input type="text" name="email" placeholder="�̸���"></td>
-                                    <td class="date1"><input type="submit" name="email_check" value="���� ����"></td>
+                                    <td class="date1"><input type="text" name="email" placeholder="이메일"></td>
+                                    <td class="date1"><input type="submit" name="email_check" value="인증 메일"></td>
                                  </tr>
                                  <tr>
-                                    <td class="date1"><input type="text" name="phone" placeholder="����ó"></td>
+                                    <td class="date1"><input type="text" name="phone" placeholder="연락처"></td>
                                  </tr>
                                  <tr>
-                                    <td class="date1"><input type="submit" name="back" value="�ڷ�"></td>
-                                    <td class="date1"><input type="submit" name="JoinOK" value="����"></td>
+                                    <td class="date1"><input type="submit" name="back" value="뒤로"></td>
+                                    <td class="date1"><input type="submit" name="JoinOK" value="가입"></td>
                                  </tr>
                                 </table>
                            </form>
@@ -237,7 +239,7 @@
             </div>
             <div class="footer_menu">
                <ul>
-                  <li><a href="#">�̸����� �����ϰ� Ǫ���˸��� �پ��� ������ ��������!</a></li>
+                  <li><a href="#">이메일을 인증하고 푸쉬알림과 다양한 혜택을 받으세요!</a></li>
                </ul>
             </div>
          </div>
