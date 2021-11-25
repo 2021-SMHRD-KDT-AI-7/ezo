@@ -1,7 +1,5 @@
 package Command_Controller;
 
-import java.io.IOException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -24,7 +22,13 @@ public class joinServiceCon implements Command {
 		String email = request.getParameter("m_email");
 		String phone = request.getParameter("m_phone");
 		
-		System.out.println("ì…ë ¥ëœ ê°’ : " + id + pw + name + nickname + email + phone);
+		System.out.println(
+				"¾ÆÀÌµğ : " + id + 
+				"ºñ¹ø : " + pw + 
+				"ÀÌ¸§ : " + name + 
+				"´Ğ³×ÀÓ : " + nickname + 
+				"¾ÆÀÌµğ : " + email + 
+				"¾ÆÀÌµğ : " + phone);
 		
 		cnt = dao.join(new memberDTO(id,pw,name,nickname,email,phone));
 		
@@ -33,7 +37,7 @@ public class joinServiceCon implements Command {
 		}else {
 			path = "joinframe.jsp";
 		}
-		System.out.println("ì´ë™" + path);
+		System.out.println("°æ·Î" + path);
 		return path;
 	}
 
