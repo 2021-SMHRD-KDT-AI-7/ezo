@@ -35,7 +35,7 @@ public class joinServiceCon implements Command {
 		if(cnt == 1) {
 			path = "Main.jsp";
 		}else {
-			path = "joinframe.jsp";
+			path = "joinFrame.jsp";
 		}
 		System.out.println("°æ·Î" + path);
 		return path;

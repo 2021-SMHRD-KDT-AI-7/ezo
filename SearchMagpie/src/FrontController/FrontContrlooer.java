@@ -19,7 +19,8 @@ import Model.*;
 public class FrontContrlooer extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.print("FrontController");
+		System.out.println("FrontController");
+		HttpSession session = request.getSession();
 		String reqURI = request.getRequestURI();
 		String project = request.getContextPath();
 		String result = reqURI.substring(project.length() + 1);
@@ -79,20 +80,27 @@ public class FrontContrlooer extends HttpServlet {
 			memberDAO dao = new memberDAO();
 			String id = request.getParameter("m_id");
 			String pw = request.getParameter("m_pw");
-			System.out.println("ìž…ë ¥ : " + id + pw);
+			System.out.println("id : " + id + "pw : " + pw);
 			memberDTO info = dao.login(new memberDTO(id, pw));
-			request.setAttribute("info", info);
+			if (info != null) {
+				System.out.println("·Î±×ÀÎ ¼º°ø");
+				session.setAttribute("info", info);
+			} else {
+				System.out.println("·Î±×ÀÎ ½ÇÆÐ");
+			}
 			RequestDispatcher rd = request.getRequestDispatcher("Main.jsp");
 			rd.forward(request, response);
 		} else if (result.equals("logoutServiceCon.do")) {
-			HttpSession session = request.getSession();
-			session.removeAttribute("info");
-			path = "Main.jsp";
+			if (session.getAttribute("info") != null) {
+				session.removeAttribute("info");
+			}
+			System.out.println("·Î±×¾Æ¿ô ¼º°ø");
+			RequestDispatcher rd = request.getRequestDispatcher("Main.jsp");
+			rd.forward(request, response);
 		} else if (result.equals("updateMemberServiceCon.do")) {
 			sc = new updateMemberServiceCon();
 		} else if (result.equals("findIdServiceCon.do")) {
 			sc = new findIdServiceCon();
-			response.sendRedirect("#");
 		} else if (result.equals("webServiceCon.do")) {
 			sc = new webServiceCon();
 		} else if (result.equals("viewWebServiceCon.do")) {
@@ -202,10 +210,11 @@ public class FrontContrlooer extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
 		}
-		path = sc.execute(request, response);
+		if (sc != null) {
+			path = sc.execute(request, response);
+		}
 		if (path != null) {
 			response.sendRedirect(path);
 		}
 	}
-
 }

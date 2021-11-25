@@ -54,20 +54,19 @@
                   <i class="fa fa-shopping-cart" aria-hidden="true" data-cart="5"></i>
             <% if (info != null){ %>
                <li><a href="wishlist.html">
-                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                   <span class="padding_10">위시리스트</span></a>
                </li>
                <li><a href="#">
                <%} else {%>
                <%} %>
                <% if (info != null){ %>
-               <li><span>안녕하세요. <%=info.getM_id()%>님</span>
+               <li><span><!-- 안녕하세요. <%=info.getM_id()%>님 --></span>
                <a href="logoutServiceCon.do">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span class="padding_10">로그아웃</span></a>
                </li>
                <%} else { %>
-               <li><a href="login.jsp">
+               <li><a href="loginFrame.jsp">
                   <i class="fa fa-user" aria-hidden="true"></i>
                   <span class="padding_10">로그인</span></a>
                </li>
@@ -142,9 +141,8 @@
          </div>
          <!-- header section end -->
          <!-- banner section start -->
-
                      <div>
-                        <iframe class="frame_join" src="" frameborder="no" allowtransparency="false" scrolling="no" ></iframe>
+                        <iframe class="frame_login" src="" frameborder="no" allowtransparency="false" scrolling="no" ></iframe>
                      </div>
                   </div>
          <!-- banner section end -->
@@ -165,7 +163,6 @@
       </div>
       <!-- footer section end -->
       <!-- copyright section start -->
-      </div>
       <!-- copyright section end -->
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
@@ -176,10 +173,6 @@
       <script src="js/custom.js"></script>
       <script src="js/join.js"></script>
       <script>
-      
-
-     
-         
          function openNav() {
            document.getElementById("mySidenav").style.width = "250px";
          }
