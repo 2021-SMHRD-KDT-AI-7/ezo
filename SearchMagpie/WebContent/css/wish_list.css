@@ -1,0 +1,184 @@
+/* 레이아웃 틀 시작 */
+
+html {
+    height: 100%;
+}
+
+#logo {
+    width: 240px;
+    height: 44px;
+    cursor: pointer;
+}
+
+#header {
+    padding-top: 62px;
+    padding-bottom: 20px;
+    text-align: center;
+    font-family: 'Jua';
+}
+#wrapper {
+    position: relative;
+    height: 100%;
+}
+
+#content {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 460px;
+}
+
+/* 레이아웃 틀 끝 */
+
+.cart-page{
+    margin: 80px auto;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cart-info{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+th{
+    text-align: left;
+    padding: 5px;
+    color: #fff;
+    background-color: #8A2BE2;
+    font-weight: normal;
+}
+
+td{
+    padding: 10px 5px;
+}
+td input{
+    width: 50px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 1px;
+    box-shadow: gray;
+    align-content: center;
+    text-align: center;
+    position: relative;
+    top: 25px;
+    left: 8px;
+    cursor: pointer;
+}
+td a{
+    color: #8E37D7;
+    font-size: 12px;
+}
+td img{
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+}
+
+.total-price{
+    font-weight: bolder;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.total-price table{
+    border-top: 3px solid #8E37D7;
+    width: 100%;
+    max-width: 350px;
+}
+td:last-child{
+    text-align: right;
+    
+}
+th:last-child{
+    text-align: right;
+}
+
+/* 페이지네이션 시작 */
+
+#pagination a{
+    display: inline-block;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+/* 페이지네이션 끝 */
+
+/* 푸쉬알림 시작 */
+
+#sale {
+    width: 80px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 1px;
+    box-shadow: gray;
+    align-content: center;
+    text-align: center;
+    position: relative;
+    top: 25px;
+    left: 40px;
+    cursor: pointer;
+}
+.table td:last-child{
+    text-align: right;
+    justify-items: center;
+}
+    
+
+/* 푸쉬알림 끝 */
+
+/* 버튼태그 시작 */
+
+.btn_next {
+    position:relative;
+    /* transform: translateX(-50%); */
+    margin-bottom: 40px;
+    width:15%;
+    height:40px;
+    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+    background-position: left;
+    background-size: 200%;
+    color: #FFF8DC;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+    font-size: 22px;
+    float: right;
+  }
+
+  .btn_back{
+    position:relative;
+    /* transform: translateX(-50%); */
+    margin-bottom: 40px;
+    width:15%;
+    height:40px;
+    background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+    background-position: right;
+    background-size: 200%;
+    color: gray;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+    font-size: 22px;
+    float: left;
+  }
+  
+  .btn_back:hover {
+    background-position: left;
+  }
+
+  .btn_next:hover {
+    background-position: right;
+  }
+  
+  .bottomText {
+    text-align: center;
+  }
+
+/* 버튼태그 끝 */

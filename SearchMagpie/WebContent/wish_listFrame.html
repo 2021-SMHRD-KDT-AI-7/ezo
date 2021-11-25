@@ -1,0 +1,154 @@
+<DOCTYPE HTML5>
+    <html>
+      <head>
+        <title>써치까치 찜 목록</title>
+        <link rel="stylesheet" type="text/css" href="./css/wish_list.css">
+      <!-- fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+      <!-- font awesome -->
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- jQuery -->
+      <script src="./js/jquery-3.6.0.min.js"></script>
+      <script src="./js/wish_list.js"></script>
+      <!-- Bootstrap -->
+      <script src="./js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+      </head>
+    
+      <body>
+          <div class="small-container cart-page table-responsive">
+
+            <div id="header"><h2>찜 목록</h2></div>
+
+            <table class="table table-bordered table-hover">
+                <!-- 테이블 머릿말 -->
+                <thead>
+                    <tr>
+                        <th>상품정보</th>
+                        <th style="text-align: center;">수량</th>
+                        <th style="text-align: center;">할인정보 푸쉬알림</th>
+                        <th>가격</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- 1번 상품 -->
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="./images/wish1.jpg">
+                            <div>
+                                <p>삼성전자 214cm Neo QLED 8K KQ85QNA900FXKR [벽걸이형]</p>
+                                <small>Price: 20,455,000￦</small>
+                                <br>
+                                <a href="">삭제</a>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td><input type="number" value="1"></td>
+
+                    <div class="push_alram">
+                    <td><select id="sale">
+                        <option value="5%">5%</option>
+                        <option value="10%">10%</option>
+                        <option value="15%">15%</option>
+                        <option value="20%">20%</option>
+                        <option value="25%">25%</option>
+                        <option value="30%">30%</option>
+                    </select></td>
+                    <td>20,455,000￦</td>
+                </div>
+                </tr>
+                <!-- 2번 상품 -->
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="./images/wish2.jpg">
+                            <div>
+                                <p>XBOX One X 블랙 한국정발 밀봉 새제품</p>
+                                <small>Price: 645,000￦</small>
+                                <br>
+                                <a href="">삭제</a>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td><input type="number" value="1"></td>
+                    <div class="push_alram">
+                        <td><select id="sale">
+                            <option value="5%">5%</option>
+                            <option value="10%">10%</option>
+                            <option value="15%">15%</option>
+                            <option value="20%">20%</option>
+                            <option value="25%">25%</option>
+                            <option value="30%">30%</option>
+                        </select></td>
+                        <td>645,000￦</td>
+                    </div>
+                    </tr>
+                <!-- 3번 상품 -->
+                <tr>
+                    <td>
+                        <div class="cart-info">
+                            <img src="./images/wish3.png">
+                            <div>
+                                <p>iPad Air</p>
+                                <small>Price: 779,000￦</small>
+                                <br>
+                                <a href="">삭제</a>
+                            </div>
+                        </div>
+
+                    </td>
+                    <td><input type="number" value="1"></td>
+                    <div class="push_alram">
+                        <td><select id="sale">
+                            <option value="5%">5%</option>
+                            <option value="10%">10%</option>
+                            <option value="15%">15%</option>
+                            <option value="20%">20%</option>
+                            <option value="25%">25%</option>
+                            <option value="30%">30%</option>
+                        </select></td>
+                        <td>779,000￦</td>
+                    </div>
+                    </tr>
+            </table>
+
+            <div class="total-price">
+
+                <table>
+                    <tr>
+                        <td>소계</td>
+                        <td>21,879,000￦</td>
+                    </tr>
+                    <tr>
+                        <td>세금 및 배송비</td>
+                        <td>395,000￦</td>
+                    </tr>
+                    <tr>
+                        <td>합계</td>
+                        <td>22,274,000￦</td>
+                    </tr>
+
+                </tbody>
+                </table>
+
+                
+                <ul class="pagination"></ul>
+
+            </div>
+            <button type="button" class="btn_next" onclick="button()">
+                변경
+            <button type="button" class="btn_next" onclick="button()">
+                할인 푸쉬 알림
+            <button type="button" class="btn_back" onclick="button()" style="color: #D3D3D3;">
+                뒤로
+              </button>
+
+          </div>
+      </body>
+    </html>
