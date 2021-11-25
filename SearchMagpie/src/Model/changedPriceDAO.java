@@ -48,12 +48,12 @@ public class changedPriceDAO {
 	public int insertChangedPrice(changedPriceDTO DTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_ch_price VALUES(t_product_price_SEQ.NEXTVAL,?,?,SYSDATE)";
+			String sql = "INSERT INTO t_porduct_price VALUES(t_product_price_SEQ.NEXTVAL,?,?,SYSDATE)";
 			
 			ps = conn.prepareStatement(sql);
 			
 			ps.setInt(1, DTO.getP_key());
-			ps.setInt(3, DTO.getP_price());
+			ps.setInt(2, DTO.getP_price());
 			
 			cnt = ps.executeUpdate();
 			
@@ -70,7 +70,7 @@ public class changedPriceDAO {
 		ArrayList<changedPriceDTO> temp = new ArrayList<>();
 		getConn();
 		try {
-			String sql = "SELECT * FROM t_ch_price";
+			String sql = "SELECT * FROM t_product_price";
 			
 			ps = conn.prepareStatement(sql);
 			
@@ -79,13 +79,10 @@ public class changedPriceDAO {
 			while(rs.next()) {
 				int cp_key = rs.getInt("cp_key");
 				int p_key = rs.getInt("p_key");
-				int item_key = rs.getInt("item_key");
 				int p_price = rs.getInt("p_price");
-				int item_price = rs.getInt("item_key");
-				int ch_difference = rs.getInt("ch_difference");
 				String reg_date = rs.getString("reg_date");
 				
-				temp.add(new changedPriceDTO(cp_key,p_key,item_key,p_price,item_price,ch_difference,reg_date));
+				temp.add(new changedPriceDTO(cp_key,p_key,p_price,reg_date));
 			}
 			
 		}catch(Exception e) {

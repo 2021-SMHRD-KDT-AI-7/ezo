@@ -13,20 +13,19 @@ public class changedPriceServiceCon implements Command {
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		changedPriceDAO dao = new changedPriceDAO();
 		String path = "";
+		int cp_key = Integer.parseInt(request.getParameter("cp_key"));
 		int p_key = Integer.parseInt(request.getParameter("p_key"));
-		int item_key = Integer.parseInt(request.getParameter("item_key"));
 		int p_price = Integer.parseInt(request.getParameter("p_peice"));
-		int item_price = Integer.parseInt(request.getParameter("item_price"));
-		int ch_difference = Integer.parseInt(request.getParameter("ch_difference"));		
+		String reg_date = request.getParameter("reg_date");
+			
 		
 		
-		//°¡°Ýº¯µ¿ ÀÔ·Â ¸Þ¼Òµå
-		int cnt = dao.insertChangedPrice(new changedPriceDTO(p_key,item_key,p_price,item_price,ch_difference));
+		int cnt = dao.insertChangedPrice(new changedPriceDTO(cp_key,p_key,p_price,reg_date));
 		
 		if(cnt==1) {
-			path = "ÀÔ·Â ¼º°ø url";
+			path = "ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ url";
 		}else {
-			path = "ÀÔ·Â ½ÇÆÐ rul";
+			path = "ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ rul";
 		}
 		return path;
 	}

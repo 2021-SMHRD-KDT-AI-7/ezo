@@ -24,7 +24,7 @@ public class FrontContrlooer extends HttpServlet {
 		String project = request.getContextPath();
 		String result = reqURI.substring(project.length() + 1);
 		System.out.println(result);
-		
+
 		String path = null;
 		Command sc = null;
 		response.setCharacterEncoding("utf-8");
@@ -90,6 +90,9 @@ public class FrontContrlooer extends HttpServlet {
 			path = "Main.jsp";
 		} else if (result.equals("updateMemberServiceCon.do")) {
 			sc = new updateMemberServiceCon();
+		} else if (result.equals("findIdServiceCon.do")) {
+			sc = new findIdServiceCon();
+			response.sendRedirect("#");
 		} else if (result.equals("webServiceCon.do")) {
 			sc = new webServiceCon();
 		} else if (result.equals("viewWebServiceCon.do")) {
@@ -133,11 +136,9 @@ public class FrontContrlooer extends HttpServlet {
 			request.setAttribute("allViewItems", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
-		}
-		else if (result.equals("itemServiceCon.do")) {
+		} else if (result.equals("itemServiceCon.do")) {
 			sc = new itemServiceCon();
-		}
-		else if (result.equals("viewChartServiceCon.do")) {
+		} else if (result.equals("viewChartServiceCon.do")) {
 			ArrayList<chartDTO> temp = new ArrayList<chartDTO>();
 			chartDAO dao = new chartDAO();
 			temp = dao.allViewCountTopTen();

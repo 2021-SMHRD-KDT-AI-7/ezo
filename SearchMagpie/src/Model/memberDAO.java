@@ -49,7 +49,7 @@ public class memberDAO {
 	public int join(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'0')";
+			String sql = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'n')";
 
 			ps = conn.prepareStatement(sql);
 
@@ -108,7 +108,7 @@ public class memberDAO {
 	public int joinAdmin(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,?)";
+			String sql = "INSERT INTO t_member VALUES(t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'y')";
 
 			ps = conn.prepareStatement(sql);
 
@@ -118,7 +118,6 @@ public class memberDAO {
 			ps.setString(4, memberDTO.getM_nickname());
 			ps.setString(5, memberDTO.getM_email());
 			ps.setString(6, memberDTO.getM_phone());
-			ps.setString(7, "1");
 
 			cnt = ps.executeUpdate();
 
@@ -177,5 +176,54 @@ public class memberDAO {
 		}
 		return cnt;
 	}// updatemember
+	
+	public String findId(memberDTO DTO) {
+		String m_id = "";
+		getConn();
+		try {
+			String sql = "SELECT m_id FROM t_member WHERE m_name = ? AND m_email = ?";
+			
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, DTO.getM_name());
+			ps.setString(2, DTO.getM_email());
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+			m_id = rs.getString("m_id");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return m_id;
+	}
+	
+	
+	public String findPw(memberDTO DTO) {
+		String m_pw = "";
+		getConn();
+		try {
+			String sql = "SELECT m_pw FROM t_member WHERE m_id = ? AND m_email = ?";
+			
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, DTO.getM_id());
+			ps.setString(2, DTO.getM_email());
+			
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				m_pw = rs.getString("m_pw");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbClose();
+		}
+		return m_pw;
+	}
 	
 }// class
