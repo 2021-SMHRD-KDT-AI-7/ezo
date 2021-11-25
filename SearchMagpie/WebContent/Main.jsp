@@ -78,7 +78,7 @@
 						<div class="custom_menu">
 							<ul>
 		                        <li><a href="#">가이드</a></li>
-		                        <li><a href="#">게시판</a></li>
+		                        <li><a href="board_MainFrame.jsp">게시판</a></li>
 		                        <li><a href="#">고객센터</a></li>
 							</ul>
 						</div>

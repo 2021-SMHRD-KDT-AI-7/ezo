@@ -39,6 +39,15 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  font-family: 'Jua';
+}
+
+*{
+  font-weight: bold;
+}
+
+.thead{
+  border-top: 5px solid rgba(61, 16, 160, 0.45);
 }
 
 html {
@@ -67,6 +76,47 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+}
+
+
+.head-title{
+  width: 100px;
+  text-align: center;
+}
+
+.title{
+  width: 450px;
+  text-align: center;
+}
+
+.writer{
+  width: 60px;
+}
+
+.views{
+  width: 60px;
+  text-align: center;
+}
+
+.write-date{
+  width: 90px;
+  text-align: center;
+}
+
+td:first-child, th:first-child{
+  text-align: center;
+}
+
+td:nth-last-child(2), th:nth-last-child(2){
+  text-align: center;
+}
+
+td:last-child, th:last-child{
+  text-align: center;
+}
+
+td > a{
+  color: black;
 }
 
 [tabindex="-1"]:focus {
@@ -161,19 +211,19 @@ sup {
 }
 
 a {
-  color: #007bff;
+  color: rgba(21, 0, 255, 0.58);
   text-decoration: none;
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
 }
 
 a:hover {
-  color: #0056b3;
+  color: #007bff;
   text-decoration: underline;
 }
 
 a:not([href]):not([tabindex]) {
-  color: inherit;
+  color: rgba(21, 0, 255, 0.58);
   text-decoration: none;
 }
 
@@ -1531,7 +1581,7 @@ pre code {
 .table td {
   padding: 0.75rem;
   vertical-align: top;
-  border-top: 1px solid #dee2e6;
+  /* border-top: 1px solid #dee2e6; */
 }
 
 .table thead th {
@@ -1570,7 +1620,7 @@ pre code {
 .table-borderless td,
 .table-borderless thead th,
 .table-borderless tbody + tbody {
-  border: 0;
+  border: 1px solid #dee2e6;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -2731,19 +2781,48 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-info {
-  color: #17a2b8;
+  width: 100px;
+  height: 35px;
+  /* color: #fff; */
+  /* color: #17a2b8; */
+  border-color: rgba(61, 16, 160, 0.45);
   background-color: transparent;
   background-image: none;
-  border-color: #17a2b8;
+  background-size: 300% 100%;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: 600;
+  text-align:center;
+  border: none;
+  border-radius: 50px;
+  -moz-box-sizing: border-box;
+  -o-transition: all .4s ease-in-out;
+  -webkit-box-sizing: border-box;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+  cursor: pointer;
+}
+
+.btn-outline-info.color{
+  background-image: linear-gradient(#A3A1FF);
+  box-shadow: 2px 2px 2px 0 rgba(126, 52, 161, 0.75);
 }
 
 .btn-outline-info:hover {
   color: #fff;
   background-color: #17a2b8;
   border-color: #17a2b8;
+  /* 추가 */
+  background-position: 100% 0;
+  -moz-transition: all .4s ease-in-out;
+  -o-transition: all .4s ease-in-out;
+  -webkit-transition: all .4 ease-in-out;
+  transition: all .4s ease-in-out;
 }
 
 .btn-outline-info:focus, .btn-outline-info.focus {
+  outline: none;
   box-shadow: 0 0 0 0.2rem rgba(23, 162, 184, 0.5);
 }
 

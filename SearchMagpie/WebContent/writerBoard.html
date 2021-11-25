@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- css -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <!-- font awesome -->
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <form action="#" method="post" enctype="multipart/form-data">
+        <table class="table" style="border:0 solid;">
+            <tr>
+                <td>제목</td>
+                <td><input type="text" name="title" > </td>
+            </tr>
+            <tr>
+                <td>작성자</td>
+                <td><input  type="text" name="writer" > </td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td><textarea name="content" rows="10" style="resize: none;"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input name="fileName" type="file" style="float: right;">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="reset" value="초기화">
+                    <input type="submit" value="작성하기">
+                </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

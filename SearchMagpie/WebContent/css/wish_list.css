@@ -1,6 +1,12 @@
 /* 레이아웃 틀 시작 */
 
+*{
+    font-family: 'Jua';
+    font-weight: bold;
+}
+
 html {
+    width: 100%;
     height: 100%;
 }
 
@@ -25,8 +31,13 @@ html {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    width: 460px;
+    width: 400px;
 }
+
+h5.comment {
+    color: #2F4F4F;
+    font-size: 16px;
+  }
 
 /* 레이아웃 틀 끝 */
 
@@ -41,6 +52,10 @@ table{
 .cart-info{
     display: flex;
     flex-wrap: wrap;
+}
+
+.cart-info p{
+    display: flex;
 }
 
 th{
@@ -58,13 +73,12 @@ td input{
     width: 50px;
     height: 30px;
     padding: 5px;
-    border-radius: 1px;
+    /* border-radius: 1px; */
     box-shadow: gray;
     align-content: center;
     text-align: center;
     position: relative;
-    top: 25px;
-    left: 8px;
+    left: 15px;
     cursor: pointer;
 }
 td a{
@@ -72,13 +86,12 @@ td a{
     font-size: 12px;
 }
 td img{
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
     margin-right: 10px;
 }
 
 .total-price{
-    font-weight: bolder;
     display: flex;
     justify-content: flex-end;
 }
@@ -86,11 +99,11 @@ td img{
 .total-price table{
     border-top: 3px solid #8E37D7;
     width: 100%;
-    max-width: 350px;
+    max-width: 360px;
 }
+
 td:last-child{
     text-align: right;
-    
 }
 th:last-child{
     text-align: right;
@@ -108,7 +121,7 @@ th:last-child{
 
 /* 푸쉬알림 시작 */
 
-#sale {
+td #sale {
     width: 80px;
     height: 30px;
     padding: 5px;
@@ -117,13 +130,8 @@ th:last-child{
     align-content: center;
     text-align: center;
     position: relative;
-    top: 25px;
-    left: 40px;
+    left: 25px;
     cursor: pointer;
-}
-.table td:last-child{
-    text-align: right;
-    justify-items: center;
 }
     
 
@@ -131,11 +139,18 @@ th:last-child{
 
 /* 버튼태그 시작 */
 
+button{
+    position: relative;
+    left: px;
+    bottom: 20px;
+}
+
 .btn_next {
     position:relative;
-    /* transform: translateX(-50%); */
-    margin-bottom: 40px;
-    width:15%;
+    left: 55px;
+    transform: translateX(-50%);
+    margin-top: 40px;
+    width:10%;
     height:40px;
     background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
     background-position: left;
@@ -146,14 +161,14 @@ th:last-child{
     cursor:pointer;
     transition: 0.4s;
     display:inline;
-    font-size: 22px;
+    font-size: 16px;
     float: right;
   }
 
   .btn_back{
     position:relative;
     /* transform: translateX(-50%); */
-    margin-bottom: 40px;
+    margin-top: 40px;
     width:15%;
     height:40px;
     background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
@@ -167,6 +182,30 @@ th:last-child{
     display:inline;
     font-size: 22px;
     float: left;
+  }
+
+  .btn_alram {
+    position:relative;
+    right: 52px;
+    transform: translateX(-50%);
+    margin-top: 40px;
+    width:12%;
+    height:40px;
+    background: linear-gradient(125deg,#8A2BE2,#6c5ce7,#81ecec);
+    background-position: left;
+    background-size: 200%;
+    color: burlywood;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+    font-size: 16px;
+    float: right;
+  }
+
+  .btn_alram:hover{
+      background-position: top;
   }
   
   .btn_back:hover {
