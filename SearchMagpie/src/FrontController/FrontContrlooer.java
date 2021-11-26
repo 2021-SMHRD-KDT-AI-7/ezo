@@ -210,6 +210,8 @@ public class FrontContrlooer extends HttpServlet {
 			request.setAttribute("allViewI_review", temp);
 			RequestDispatcher rd = request.getRequestDispatcher("#");
 			rd.forward(request, response);
+		}else if(result.equals("SMSPushServiceCon.do")) {
+			sc = new SMSPushServiceCon();
 		}
 		if (sc != null) {
 			path = sc.execute(request, response);
