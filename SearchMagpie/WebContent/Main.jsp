@@ -1,6 +1,10 @@
 <%@page import="Model.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+String cp = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,6 +50,88 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
 	media="screen">
+<!-- style -->
+<style type="text/css">
+.suggest {
+	display: none;
+	position: absolute;
+	left: 11px;
+	top: 131px;
+}
+</style>
+<script type="text/javascript" src="js/httpRequest.js"></script>
+<script type="text/javascript">
+	function sendKeyword() {
+
+		var userKeyword = document.myForm.userKeyword.value;
+		if (userKeyword == "") {
+			hide();//검색창이 비워져있으면 숨김
+			return;
+		}
+		var params = "userKeyword=" + userKeyword;
+		sendRequest("searchClient_ok.jsp", params, displaySuggest, "POST");
+	}
+
+	function displaySuggest() {
+		if (httpRequest.readyState == 4) {
+			if (httpRequest.status == 200) {//서버응답 정상처리인 경우
+				var resultText = httpRequest.responseText;//resposne로 넘어온 텍스트 할당
+				//alert(resultText);
+				//5|abc,ajax,abc마트
+				console.log(">>>>>>>이거다" + resultText);
+				var resultArray = resultText.split("|"); //{5, {abc,ajax,abc} } 로 나눔
+				var count = parseInt(resultArray[0]);//5
+				var keywordList = null;
+				if (count > 0) {
+					keywordList = resultArray[1].split(",");
+					var html = "";
+					for (var i = 0; i < keywordList.length; i++) {
+						html += "<br/><a href=\"javascript:select('"
+								+ keywordList[i] + "');\">" + keywordList[i]
+								+ "</a><br/>";
+						//<a href="javascript:select('ajax');">ajax</a><br/>
+					}
+					var suggestListDiv = document
+							.getElementById("suggestListDiv");
+					suggestListDiv.innerHTML = html;
+					show();
+				} else {
+					//count==0
+					hide();
+				}
+			} else {
+				//status!=200
+				hide();
+			}
+		} else {
+			//readyState!=4
+			hide();
+		}
+	}//function..end
+
+	var allArea_find;
+	//사용자가 제시어중에서 클릭한 키워드
+	function select(selectKeyword) {
+		//클릭한 제시어를 inputbox에 넣어줌
+		document.myForm.userKeyword.value = selectKeyword;
+		allArea_find = selectKeyword
+		hide();//다른 제시어 감춤
+	}
+	function show() {
+		var suggestDiv = document.getElementById("suggestDiv");
+		suggestDiv.style.display = "block";
+	}
+	function hide() {
+		var suggestDiv = document.getElementById("suggestDiv");
+		suggestDiv.style.display = "none";
+	}
+
+	//처음 DOM이 로드되었을때 보이지 않도록
+	window.onload = function() {
+		hide();
+	}
+</script>
+
 </head>
 <% 
 	memberDTO info = (memberDTO)session.getAttribute("info");
@@ -77,16 +163,16 @@
 											aria-hidden="true"></i> 로그아웃
 									</a></li>
 								<%}else { %>
-								<li><a href="board_MainFrame.jsp"> <i
-										class="fa-regular fa-money-check-pen"></i> 게시판
-								</a></li>
-								<li><a href="guide.jsp"> <i class="fa-regular fa-bell"></i> 가이드
-								</a></li>
-								<li><a href="#"> <i class="fa-solid fa-bell"></i> 고객센터
-								</a></li>
-								<li><a href="loginFrame.jsp"> <i class="fa fa-user"
-										aria-hidden="true"></i> 로그인
-								</a></li>
+									<li><a href="board_MainFrame.jsp"> <i
+											class="fa-regular fa-money-check-pen"></i> 게시판
+									</a></li>
+									<li><a href="guide.jsp"> <i class="fa-regular fa-bell"></i> 가이드
+									</a></li>
+									<li><a href="#"> <i class="fa-solid fa-bell"></i> 고객센터
+									</a></li>
+									<li><a href="loginFrame.jsp"> <i class="fa fa-user"
+											aria-hidden="true"></i> 로그인
+									</a></li>
 								<%} %>
 							</ul>
 						</div>
@@ -115,22 +201,28 @@
 					</div>
 					<div class="main">
 						<!-- Another variation with a button -->
+						<form action="SearchServiceCon" name="myForm" method="post">
 						<div class="input-group">
-							<input type="text" class="form-control"
-								placeholder="상품 검색 (정확한 상품명을 입력할수록 검색 정확도가 향상됩니다!)">
+							<input type="text" name="userKeyword" class="form-control" 
+							placeholder="상품 검색 (정확한 상품명을 입력할수록 검색 정확도가 향상됩니다!)" 
+							onkeyup="sendKeyword();" />
 							<div class="input-group-append">
-								<button class="btn btn-secondary" type="button"
-									style="background-color: #f26522; border-color: #f26522">
-									<i class="fa fa-search"></i>
+								<button type="submit" class="btn btn-secondary" 
+								style="background-color: #f26522; border-color:#f26522">
+									<i class="fa fa-search"></i>검색
 								</button>
+								<div id="suggestDiv" class="suggest">
+							<div id="suggestListDiv">
 							</div>
 						</div>
+							</div>
+						</div>
+						</form>
 					</div>
 					<div class="header_box">
 						<div class="lang_box ">
 							<div class="dropdown-menu "></div>
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -187,6 +279,5 @@
 			document.getElementById("mySidenav").style.width = "0";
 		}
 	</script>
-
 </body>
 </html>
