@@ -13,7 +13,7 @@ public class memberDAO {
 	int cnt = 0;
 	boolean yn = false;
 
-//DB���� �޼ҵ�
+//DB占쏙옙占쏙옙 占쌨소듸옙
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -45,7 +45,7 @@ public class memberDAO {
 		}
 	}// dbClose
 
-	// t_member ȸ������ �� �Է� �޼ҵ�
+	// t_member 회占쏙옙占쏙옙占쏙옙 占쏙옙 占쌉뤄옙 占쌨소듸옙
 	public int join(memberDTO memberDTO) {
 		getConn();
 		try {
@@ -60,7 +60,6 @@ public class memberDAO {
 			ps.setString(5, memberDTO.getM_email());
 			ps.setString(6, memberDTO.getM_phone());
 
-
 			cnt = ps.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -69,9 +68,9 @@ public class memberDAO {
 		}
 		return cnt;
 	}
-	// t_member ȸ������ �� �Է� �޼ҵ�
+	// t_member 회占쏙옙占쏙옙占쏙옙 占쏙옙 占쌉뤄옙 占쌨소듸옙
 
-	// t_member ��� ȸ�� ��ü��ȸ �޼ҵ�
+	// t_member 占쏙옙占� 회占쏙옙 占쏙옙체占쏙옙회 占쌨소듸옙
 	public ArrayList<memberDTO> allViewMembers() {
 		ArrayList<memberDTO> temp = new ArrayList<>();
 		getConn();
@@ -104,7 +103,7 @@ public class memberDAO {
 		return temp;
 	}// allViewMembers
 
-	// ������ ���� ȸ������ �޼ҵ�
+	// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 회占쏙옙占쏙옙占쏙옙 占쌨소듸옙
 	public int joinAdmin(memberDTO memberDTO) {
 		getConn();
 		try {
@@ -129,22 +128,24 @@ public class memberDAO {
 		return cnt;
 	}// insertMember
 
-	// �α��� �޼ҵ�
-	public memberDTO login(memberDTO DTO) {
+	// 占싸깍옙占쏙옙 占쌨소듸옙
+	public memberDTO login(String m_id, String m_pw) {
 		memberDTO dto = null;
 		getConn();
 		try {
-			String sql = "SELECT m_id, m_pw FROM t_member WHERE m_id = ? AND m_pw = ?";
+			String sql = "SELECT * FROM t_member WHERE m_id = ? AND m_pw = ?";
 
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, DTO.getM_id());
-			ps.setString(2, DTO.getM_pw());
+			ps.setString(1, m_id);
+			ps.setString(2, m_pw);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				String m_id = rs.getString("m_id");
-				String m_pw = rs.getString("m_pw");
-
-				dto = new memberDTO(m_id, m_pw);
+				String id = rs.getString("m_id");
+				String pw = rs.getString("m_pw");
+				String nickname = rs.getString("m_nickname");
+				String email = rs.getString("m_email");
+				String phone = rs.getNString("m_phone");
+				dto = new memberDTO(id, pw, nickname, email, phone);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -158,15 +159,15 @@ public class memberDAO {
 		getConn();
 		try {
 			String sql = "UPDATE t_member SET m_pw = ?,m_name = ?, m_nickname = ?,m_email=?,m_phone=?";
-			
-			ps=conn.prepareStatement(sql);
-			
+
+			ps = conn.prepareStatement(sql);
+
 			ps.setString(1, DTO.getM_pw());
 			ps.setString(2, DTO.getM_name());
 			ps.setString(3, DTO.getM_nickname());
 			ps.setString(4, DTO.getM_email());
 			ps.setString(5, DTO.getM_phone());
-			
+
 			cnt = ps.executeUpdate();
 
 		} catch (Exception e) {
@@ -176,54 +177,53 @@ public class memberDAO {
 		}
 		return cnt;
 	}// updatemember
-	
+
 	public String findId(memberDTO DTO) {
 		String m_id = "";
 		getConn();
 		try {
 			String sql = "SELECT m_id FROM t_member WHERE m_name = ? AND m_email = ?";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, DTO.getM_name());
 			ps.setString(2, DTO.getM_email());
-			
+
 			rs = ps.executeQuery();
-			
-			if(rs.next()) {
-			m_id = rs.getString("m_id");
+
+			if (rs.next()) {
+				m_id = rs.getString("m_id");
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return m_id;
 	}
-	
-	
+
 	public String findPw(memberDTO DTO) {
 		String m_pw = "";
 		getConn();
 		try {
 			String sql = "SELECT m_pw FROM t_member WHERE m_id = ? AND m_email = ?";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, DTO.getM_id());
 			ps.setString(2, DTO.getM_email());
-			
+
 			rs = ps.executeQuery();
-			
-			if(rs.next()) {
+
+			if (rs.next()) {
 				m_pw = rs.getString("m_pw");
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return m_pw;
 	}
-	
+
 }// class

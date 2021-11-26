@@ -80,8 +80,9 @@ public class FrontContrlooer extends HttpServlet {
 			memberDAO dao = new memberDAO();
 			String id = request.getParameter("m_id");
 			String pw = request.getParameter("m_pw");
+
 			System.out.println("id : " + id + "pw : " + pw);
-			memberDTO info = dao.login(new memberDTO(id, pw));
+			memberDTO info = dao.login(id, pw);
 			if (info != null) {
 				System.out.println("로그인 성공");
 				session.setAttribute("info", info);
