@@ -1,3 +1,12 @@
+.product{
+
+}
+
+td img{
+    max-width: 100%;
+    height: auto;
+}
+
 /* 레이아웃 틀 시작 */
 
 *{
@@ -63,7 +72,7 @@ th{
     text-align: left;
     padding: 5px;
     color: #fff;
-    background-color: #8A2BE2;
+    background-image: url(../images/SearchMagpie_img.jpg);
     font-weight: normal;
 }
 
