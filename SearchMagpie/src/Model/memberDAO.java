@@ -47,16 +47,17 @@ public class memberDAO {
 
 	// t_member �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕 �뜝�뙃琉꾩삕 �뜝�뙣�냼�벝�삕
 	public int join(memberDTO memberDTO) {
+		int key = 0;
 		getConn();
 		try {
-			String sql = "SELECT m_id FROM t_member WHERE m_id = (?)";
+			String sql = "SELECT m_id FROM t_member WHERE m_id = ?";
 
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, memberDTO.getM_id());
 
 			rs = ps.executeQuery();
-
+			System.out.println("첫번째 SQL 통과");
 			if (!rs.next()) {
 
 				String sql2 = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'n')";
@@ -71,15 +72,40 @@ public class memberDAO {
 				ps.setString(6, memberDTO.getM_phone());
 
 				cnt = ps.executeUpdate();
+				System.out.println("두번째 SQL 통과");
+
 			} else {
 				cnt = -1;
 			}
+
+			String sql3 = "SELECT m_key FROM t_member WHERE m_id = ?";
+			ps = conn.prepareStatement(sql3);
+			ps.setString(1, memberDTO.getM_id());
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				key = rs.getInt("m_key");
+			}
+			System.out.println("세번째 SQL 통과");
+			
+			
+			String sql4 = "INSERT INTO t_basket VALUES (?,?,?,SYSDATE)";
+
+			ps = conn.prepareStatement(sql4);
+			
+			ps.setInt(1, key);
+			ps.setInt(2, 0);
+			ps.setInt(3, 0);
+
+			ps.executeUpdate();
+
+			System.out.println("네번째 SQL 통과");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
-		return cnt;
+		return key;
 	}
 	// t_member �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕 �뜝�뙃琉꾩삕 �뜝�뙣�냼�벝�삕
 
@@ -174,7 +200,7 @@ public class memberDAO {
 		getConn();
 		try {
 			String sql = "UPDATE t_member SET m_pw = ?,m_name = ?, m_nickname = ?,m_email=?,m_phone=? where m_key=?";
-			
+
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, DTO.getM_pw());
@@ -194,7 +220,7 @@ public class memberDAO {
 		return cnt;
 	}// updatemember
 
-	public String findId(String name,String email) {
+	public String findId(String name, String email) {
 		String m_id = "";
 		System.out.print("findId DAO 함수 메소드 도입부");
 		getConn();
@@ -207,10 +233,10 @@ public class memberDAO {
 			ps.setString(2, email);
 
 			rs = ps.executeQuery();
-			
+
 			if (rs.next()) {
 				m_id = rs.getString("m_id");
-				System.out.println("findId DAO RS반환값 : "+m_id);
+				System.out.println("findId DAO RS반환값 : " + m_id);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

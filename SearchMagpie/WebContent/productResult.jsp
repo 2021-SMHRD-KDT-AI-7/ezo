@@ -19,6 +19,7 @@
 			<th>출처</th>
 			<th>링크</th>
 			<th>이미지</th>
+			<th>찜하기</th>
 		</tr>
 
 		<%
@@ -30,6 +31,7 @@
 			<td><%=dto.getProduct_source()%></td>
 			<td><a href="<%=dto.getProduct_url()%>" target='_blank'><button>링크</button></a></td>
 			<td><img src="<%=dto.getProduct_img()%>"></td>
+			<td><a href="wishlist.do?<%=dto.getProduct_seq() %>"></td>
 		</tr>
 		<%
 			}
