@@ -15,7 +15,7 @@ public class SMSPushServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
-		//1시간 갱신 ->  실제가격 싸지면 보내지는거였는데 ..이걸 시간 체크해서 
+		//1시간 갱신 ->  실제가격 싸지면 보내지는거였는데 ..이걸 시간 체크해서 ..
 		String api_key = "NCSKVGU0JXPHESEG"; //사이트에서 발급 받은 API KEY 
 		String api_secret = "DL8UTJJ0JK0YXH8VX4OWBYS2CS9CHG8O"; //사이트에서 발급 받은 APISECRET KEY  
 		//Message coolsms = new Message(api_key, api_secret); 
