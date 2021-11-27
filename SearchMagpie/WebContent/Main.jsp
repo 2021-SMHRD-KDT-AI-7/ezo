@@ -112,7 +112,7 @@ String cp = request.getContextPath();
       suggestDiv.style.display = "none";
    }
 
-   //처음 DOM이 로드되었을때 보이지 않도록
+   //처음 DOM이 로드되었을때 보이지 않도록.
    window.onload = function() {
       hide();
    }
