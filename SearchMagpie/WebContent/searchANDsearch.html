@@ -9,7 +9,29 @@
 
 </head>
 <body>
-    <div class="frame">
+
+    <div class="main">
+        <form action="SearchServiceCon" name="myForm" method="post">
+            <div class="input-group">
+                <input type="text" name="userKeyword" class="form-control" placeholder="상품 검색 (정확한 상품명을 입력할수록 검색 정확도가 향상됩니다!)" onkeyup="sendKeyword();" />
+                <div class="input-group-append">
+                    <button class="btn_search" type="submit">
+                        <i class="fa fa-search"></i>검색
+                    </button>
+                    <div class="frame_search" id="suggestDiv">
+                        <div id="suggestListDiv"></div>
+                        </div>
+                    </div>
+        </form>
+              
+                  <div class="item"><span class="text"></span></div>
+                  <div class="item">ㅎㅇㅎㅇ여기다 조건거셈 <span class="text"></span></div>
+                  <div class="item">ut aliquid ex <span class="text"></span> vero eos</div>
+              </div>
+              
+        </div>
+      </div>
+    <!-- <div class="frame">
         <div class="center">
               
               <input type="text" placeholder="Start typing ..."/>
@@ -20,7 +42,7 @@
               </div>
               
         </div>
-      </div>
+      </div> -->
     
 
       <script src="js/search.js"></script>

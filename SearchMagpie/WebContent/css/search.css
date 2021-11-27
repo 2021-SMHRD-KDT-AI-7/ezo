@@ -27,10 +27,10 @@ input {
 	width: 220px;
 	outline: none;
 	padding: 0 10px;
-	box-shadow: 3px 3px 10px #566270;
 	border: none;
 	color: #4F86C6;
 }
+	<!-- box-shadow: 3px 3px 10px #566270; -->
 
 ::placeholder {
 	color: #84B1ED;
