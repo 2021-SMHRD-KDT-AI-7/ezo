@@ -13,3 +13,5 @@ bbsDate date,
 bbsContent varchar2(2000),
 bbsAvailable integer
 );
+
+SELECT * FROM t_member 

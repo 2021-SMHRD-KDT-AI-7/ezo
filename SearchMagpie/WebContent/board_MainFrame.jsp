@@ -1,16 +1,17 @@
 <%@page import="Model.writeboardDTO"%>
 <%@page import="Model.memberDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="Model.writeboardDAO"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>�Խ���</title>
+    <title>게시판</title>
     <!-- css -->
     <link rel="stylesheet" href="css/bootstrap.css">
     <!-- fonts -->
@@ -24,13 +25,15 @@
 <body>
 <%
 	ArrayList<writeboardDTO> list = new ArrayList<writeboardDTO>();
+	writeboardDAO dao = new writeboardDAO();
+	list = dao.allViewWriteboard();
 	memberDTO info = (memberDTO)session.getAttribute("info");
 %>
 <div class="container">
 
     <br>
 
-    <h2 class="text-center"><a href="#">�Խ���</a></h2>
+    <h2 class="text-center"><a href="#">게시판</a></h2>
 
     <br>
     <br>
@@ -39,20 +42,19 @@
         <thead class="thead">
             <tr>
                 <th class="head-title"></th>
-                <th class="title">����</th>
-                <th class="writer">�ۼ���</th>
-                <th class="views">��ȸ��</th>
-                <th class="write-date">�ۼ���</th>
+                <th class="title">제목</th>
+                <th class="writer">작성자</th>
+                <th class="views">조회수</th>
+                <th class="write-date">작성일</th>
             </tr>
         </thead>
         <tbody>
-            <!-- 1��° �Խñ� -->
-            <!-- �μ�Ʈ ���̺� ����(boardTable (������,�Խ��ǹ�ȣ,�ۼ���)) -->
+            <!-- 1번째 게시글 -->
+            <!-- 인설트 테이블 구조(boardTable (시퀀스,게시판번호,작성자)) -->
             <%for (int i = 0;  i < list.size(); i++) { %>
             <tr>
-                <td>[�ϹݰԽ���]</td>
-                <td><a href="#"><%=list.get(i).getW_title()%></a></td>
-                <td><%=list.get(i).getW_content()%></td>
+                <td>[일반게시판]</td>
+                <td><a href=""><%=list.get(i).getW_title()%></a></td>
                 <td><%=list.get(i).getW_writer()%></td>
                 <td><%=list.get(i).getW_cnt()%></td>
                 <td><%=list.get(i).getReg_date()%></td>
@@ -60,93 +62,93 @@
             <%
 }
 %>
-            <!-- 2��° �Խñ� -->
-            <tr>
-                <td>[����]</td>
-                <td><a href="#">��ġ��ġ�Դϴ�.</a></td>
-                <td>���</td>
+            <!-- 2번째 게시글 -->
+            <!-- <tr>
+                <td>[공지]</td>
+                <td><a href="#">써치까치입니다.</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
             </tr>
-            <!-- 3��° �Խñ� -->
+            3번째 게시글
             <tr>
-                <td>[����]</td>
-                <td><a href="#">���������� ��������</a></td>
-                <td>���</td>
+                <td>[공지]</td>
+                <td><a href="#">메인페이지 어케하지</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
             </tr>
-            <!-- 4��° �Խñ� -->
+            4번째 게시글
             <tr>
-                <td>[����]</td>
-                <td><a href="#">����Ʈ ����մϴ�.</a></td>
-                <td>���</td>
+                <td>[공지]</td>
+                <td><a href="#">사이트 폐쇄합니다.</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
             </tr>
-            <!-- 5��° �Խñ� -->
+            5번째 게시글
             <tr>
-                <td>[����]</td>
-                <td><a href="#">��ġ��ġ�Դϴ�.</a></td>
-                <td>���</td>
+                <td>[공지]</td>
+                <td><a href="#">써치까치입니다.</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
             </tr>
-            <!-- 6��° �Խñ� -->
+            6번째 게시글
             <tr>
-                <td>[����]</td>
-                <td><a href="#">���� ���߾��.</a></td>
-                <td>���</td>
+                <td>[공지]</td>
+                <td><a href="#">저희 망했어요.</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
             </tr>
-            <!-- 7��° �Խñ� -->
+            7번째 게시글
             <tr>
-                <td>[����]</td>
-                <td><a href="#">��ġ��ġ�Դϴ�.</a></td>
-                <td>���</td>
+                <td>[공지]</td>
+                <td><a href="#">써치까치입니다.</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
             </tr>
-            <!-- 8��° �Խñ� -->
+            8번째 게시글
             <tr>
-                <td>[����]</td>
-                <td><a href="#">�������� ������.</a></td>
-                <td>���</td>
+                <td>[공지]</td>
+                <td><a href="#">정식이형 파이팅.</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
             </tr>
-            <!-- 9��° �Խñ� -->
+            9번째 게시글
             <tr>
-                <td>[����]</td>
-                <td><a href="#">���������ʹ�.</a></td>
-                <td>���</td>
+                <td>[공지]</td>
+                <td><a href="#">집에가고싶다.</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
             </tr>
-            <!-- 10��° �Խñ� -->
+            10번째 게시글
             <tr>
-                <td>[����]</td>
-                <td><a href="#">����ּ���.</a></td>
-                <td>���</td>
+                <td>[공지]</td>
+                <td><a href="#">살려주세요.</a></td>
+                <td>운영자</td>
                 <td>2</td>
                 <td>2021.11.25</td>
-            </tr>
+            </tr> -->
         </tbody>
     </table>
 
     <div>
         
         <ul class="pagination justify-content-center">
-            <li><a href="#" style="margin-right: 5px;" class="text-secondary">��</a></li>
+            <li><a href="#" style="margin-right: 5px;" class="text-secondary">◀</a></li>
             <li><a href="#" style="margin-right: 5px;" class="text-secondary">1</a></li>
             <li><a href="#" style="margin-right: 5px;" class="text-secondary">2</a></li>
             <li><a href="#" style="margin-right: 5px;" class="text-secondary">3</a></li>
             <li><a href="#" style="margin-right: 5px;" class="text-secondary">4</a></li>
             <li><a href="#" style="margin-right: 5px;" class="text-secondary">5</a></li>
-            <li><a href="#" style="margin-right: 5px;" class="text-secondary">��</a></li>
+            <li><a href="#" style="margin-right: 5px;" class="text-secondary">▶</a></li>
         </ul>
-        <a href="writeAction.jsp" class="btn btn-outline-info float-right btn- color">�۾���</a>
+        <a href="writeAction.jsp" class="btn btn-outline-info float-right btn- color">글쓰기</a>
 
     </div>
 

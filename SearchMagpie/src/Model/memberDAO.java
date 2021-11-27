@@ -142,25 +142,25 @@ public class memberDAO {
 	}// insertMember
 
 	// �뜝�떥源띿삕�뜝�룞�삕 �뜝�뙣�냼�벝�삕
-	public memberDTO login(memberDTO DTO) {
+	public memberDTO login(String m_id, String m_pw) {
 		memberDTO dto = null;
 		getConn();
 		try {
 			String sql = "SELECT * FROM t_member WHERE m_id = ? AND m_pw = ?";
 
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, DTO.getM_id());
-			ps.setString(2, DTO.getM_pw());
+			ps.setString(1, m_id);
+			ps.setString(2, m_pw);
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				String m_id = rs.getString("m_id");
-				String m_pw = rs.getString("m_pw");
-				String m_email = rs.getString("m_email");
-				String m_name = rs.getString("m_name");
-				String m_nickname = rs.getString("m_nickname");
-				String m_key = rs.getString("m_key");
+				String id = rs.getString("m_id");
+				String pw = rs.getString("m_pw");
+				String email = rs.getString("m_email");
+				String name = rs.getString("m_name");
+				String nickname = rs.getString("m_nickname");
+				String key = rs.getString("m_key");
 
-				dto = new memberDTO(m_key, m_id, m_pw, m_name, m_nickname, m_email);
+				dto = new memberDTO(key, id, pw, name, nickname, email);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -173,7 +173,7 @@ public class memberDAO {
 	public int updateMember(memberDTO DTO) {
 		getConn();
 		try {
-			String sql = "UPDATE t_member SET m_pw = ?,m_name = ?, m_nickname = ?,m_email=?,m_phone=?";
+			String sql = "UPDATE t_member SET m_pw = ?,m_name = ?, m_nickname = ?,m_email=?,m_phone=? where m_key=?";
 
 			ps = conn.prepareStatement(sql);
 
@@ -182,6 +182,7 @@ public class memberDAO {
 			ps.setString(3, DTO.getM_nickname());
 			ps.setString(4, DTO.getM_email());
 			ps.setString(5, DTO.getM_phone());
+			ps.setInt(6, DTO.getM_key());
 
 			cnt = ps.executeUpdate();
 
@@ -193,7 +194,7 @@ public class memberDAO {
 		return cnt;
 	}// updatemember
 
-	public String findId(memberDTO DTO) {
+	public String findId(String name,String email) {
 		String m_id = "";
 		getConn();
 		try {
@@ -201,11 +202,11 @@ public class memberDAO {
 
 			ps = conn.prepareStatement(sql);
 
-			ps.setString(1, DTO.getM_name());
-			ps.setString(2, DTO.getM_email());
+			ps.setString(1, name);
+			ps.setString(2, email);
 
 			rs = ps.executeQuery();
-
+			
 			if (rs.next()) {
 				m_id = rs.getString("m_id");
 			}
