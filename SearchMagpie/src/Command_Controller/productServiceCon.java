@@ -11,6 +11,8 @@ public class productServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		productDAO dao = new productDAO();
 		String path = "";
 		String p_title = request.getParameter("p_title");

@@ -11,6 +11,8 @@ public class joinServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		memberDAO dao = new memberDAO();
 		int cnt = 0;
 		String path = "";
@@ -35,6 +37,7 @@ public class joinServiceCon implements Command {
 		if(cnt == 1) {
 			path = "Main.jsp";
 		}else {
+			System.out.println("아이디 중복!");
 			path = "joinFrame.jsp";
 		}
 		System.out.println("경로" + path);

@@ -11,6 +11,8 @@ public class sellerServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		sellerDAO dao = new sellerDAO();
 		String path = "";
 		String seller_name = request.getParameter("seller_name");

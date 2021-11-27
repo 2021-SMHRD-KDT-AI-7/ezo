@@ -9,6 +9,8 @@ import Model.writeboardDAO;
 public class deleteWriteboardServiceCon implements Command {
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		writeboardDAO dao = new writeboardDAO();
 		String path = "";
 

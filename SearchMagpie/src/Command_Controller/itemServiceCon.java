@@ -12,6 +12,8 @@ public class itemServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		itemDAO dao = new itemDAO();
 		String path = "";
 		int item_key = Integer.parseInt(request.getParameter("item_key"));

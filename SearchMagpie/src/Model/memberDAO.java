@@ -49,18 +49,31 @@ public class memberDAO {
 	public int join(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'n')";
+			String sql = "SELECT m_id FROM t_member WHERE m_id in(?)";
 
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, memberDTO.getM_id());
-			ps.setString(2, memberDTO.getM_pw());
-			ps.setString(3, memberDTO.getM_name());
-			ps.setString(4, memberDTO.getM_nickname());
-			ps.setString(5, memberDTO.getM_email());
-			ps.setString(6, memberDTO.getM_phone());
 
-			cnt = ps.executeUpdate();
+			rs = ps.executeQuery();
+
+			if (!rs.next()) {
+
+				String sql2 = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'n')";
+
+				ps = conn.prepareStatement(sql2);
+
+				ps.setString(1, memberDTO.getM_id());
+				ps.setString(2, memberDTO.getM_pw());
+				ps.setString(3, memberDTO.getM_name());
+				ps.setString(4, memberDTO.getM_nickname());
+				ps.setString(5, memberDTO.getM_email());
+				ps.setString(6, memberDTO.getM_phone());
+
+				cnt = ps.executeUpdate();
+			} else {
+				cnt = -1;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -129,23 +142,25 @@ public class memberDAO {
 	}// insertMember
 
 	// 占싸깍옙占쏙옙 占쌨소듸옙
-	public memberDTO login(String m_id, String m_pw) {
+	public memberDTO login(memberDTO DTO) {
 		memberDTO dto = null;
 		getConn();
 		try {
 			String sql = "SELECT * FROM t_member WHERE m_id = ? AND m_pw = ?";
 
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, m_id);
-			ps.setString(2, m_pw);
+			ps.setString(1, DTO.getM_id());
+			ps.setString(2, DTO.getM_pw());
 			rs = ps.executeQuery();
 			if (rs.next()) {
-				String id = rs.getString("m_id");
-				String pw = rs.getString("m_pw");
-				String nickname = rs.getString("m_nickname");
-				String email = rs.getString("m_email");
-				String phone = rs.getNString("m_phone");
-				dto = new memberDTO(id, pw, nickname, email, phone);
+				String m_id = rs.getString("m_id");
+				String m_pw = rs.getString("m_pw");
+				String m_email = rs.getString("m_email");
+				String m_name = rs.getString("m_name");
+				String m_nickname = rs.getString("m_nickname");
+				String m_key = rs.getString("m_key");
+
+				dto = new memberDTO(m_key, m_id, m_pw, m_name, m_nickname, m_email);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -43,7 +43,7 @@
 	<!-- 게시판 글쓰기 양식 영역 시작 -->
 	<div class="container">
 		<div class="row">
-			<form method="post" action="writeboardServiceCon">
+			<form method="post" action="writeboardServiceCon.do">
 				<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd">
 					<thead>
 						<tr>
@@ -52,10 +52,10 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></td>
+							<td><input type="text" class="form-control" placeholder="글 제목" name="w_title" maxlength="50"></td>
 						</tr>
 						<tr>
-							<td><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height: 350px;"></textarea></td>
+							<td><textarea class="form-control" placeholder="글 내용" name="w_content" maxlength="2048" style="height: 350px;"></textarea></td>
 						</tr>
 					</tbody>
 				</table>

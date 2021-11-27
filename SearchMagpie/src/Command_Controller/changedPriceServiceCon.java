@@ -11,6 +11,8 @@ public class changedPriceServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		changedPriceDAO dao = new changedPriceDAO();
 		String path = "";
 		int cp_key = Integer.parseInt(request.getParameter("cp_key"));

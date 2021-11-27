@@ -10,6 +10,8 @@ public class reserveServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		reservedDAO dao = new reservedDAO();
 		String path = "";
 		//예약 프론트엔드 만들어지면 파라미터 값 넣기

@@ -11,6 +11,8 @@ public class basketServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		String path = "";
 		basketDAO dao = new basketDAO();
 

@@ -11,6 +11,8 @@ public class alarmServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		alarmDAO dao = new alarmDAO();
 		String path = "";
 		int a_key = Integer.parseInt(request.getParameter("a_key"));

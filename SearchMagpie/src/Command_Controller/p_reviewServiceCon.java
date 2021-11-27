@@ -11,6 +11,8 @@ public class p_reviewServiceCon implements Command {
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		String path = "";
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		p_reviewDAO dao = new p_reviewDAO();
 
 		int m_key = Integer.parseInt(request.getParameter("m_key"));

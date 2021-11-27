@@ -24,16 +24,16 @@
             <input type="text" class="email" placeholder="이메일" name="m_email">
           </div>
           <div class="forgot">
-            <a href="find_pw.html" type="submit" class="find_pw"><i aria-hidden="true">
+            <a href="find_pw.html" class="find_pw"><i aria-hidden="true">
            	 비밀번호 찾기</i></a><span class="bar"></span>
         </div>
-			<h2> 아이디 : <%= request.getParameter("name") %> <br></h2>
-          <!-- <button type="button" class="btn_next" onclick="button()">
+			<h2> 아이디 : <%= request.getParameter("m_id") %> <br></h2>
+          <button type="submit" class="btn_next" onclick="button()">
             다음
           </button>
           <button type="button" class="btn_back" onclick="button()" style="color: #D3D3D3;">
             뒤로
-          </button> -->
+          </button>
         </form>
       </body>
     </html>

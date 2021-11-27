@@ -11,6 +11,8 @@ public class findPwServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		memberDAO dao = new memberDAO();
 		
 		String m_id = request.getParameter("m_id");

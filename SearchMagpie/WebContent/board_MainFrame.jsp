@@ -1,3 +1,6 @@
+<%@page import="Model.writeboardDTO"%>
+<%@page import="Model.memberDTO"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -19,6 +22,10 @@
 
 </head>
 <body>
+<%
+	ArrayList<writeboardDTO> list = new ArrayList<writeboardDTO>();
+	memberDTO info = (memberDTO)session.getAttribute("info");
+%>
 <div class="container">
 
     <br>
@@ -40,13 +47,19 @@
         </thead>
         <tbody>
             <!-- 1번째 게시글 -->
+            <!-- 인설트 테이블 구조(boardTable (시퀀스,게시판번호,작성자)) -->
+            <%for (int i = 0;  i < list.size(); i++) { %>
             <tr>
-                <td>[공지]</td>
-                <td><a href="#">써치까치 사이트 이용 공지사항</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
+                <td>[일반게시판]</td>
+                <td><a href="#"><%=list.get(i).getW_title()%></a></td>
+                <td><%=list.get(i).getW_content()%></td>
+                <td><%=list.get(i).getW_writer()%></td>
+                <td><%=list.get(i).getW_cnt()%></td>
+                <td><%=list.get(i).getReg_date()%></td>
             </tr>
+            <%
+}
+%>
             <!-- 2번째 게시글 -->
             <tr>
                 <td>[공지]</td>

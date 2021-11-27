@@ -10,6 +10,8 @@ import Model.i_reviewDTO;
 public class i_reviewServiceCon implements Command {
 
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		String path = "";
 		i_reviewDAO dao = new i_reviewDAO();
 

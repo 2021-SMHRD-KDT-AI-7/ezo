@@ -12,6 +12,8 @@ public class findIdServiceCon implements Command {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		System.out.println("[findIdServiceCon]");
 		memberDAO dao = new memberDAO();
 
@@ -19,7 +21,7 @@ public class findIdServiceCon implements Command {
 		String m_email = request.getParameter("m_email");
 		System.out.println("이름 : " + m_name + "이메일 : " + m_email);
 		String m_id = dao.findId(new memberDTO(m_name, m_email));
-
-		return m_id;
+		System.out.println("id:" + m_id);
+		return "Main.jsp"+m_id;
 	}
 }

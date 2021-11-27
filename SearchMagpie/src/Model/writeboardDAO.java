@@ -17,11 +17,10 @@ public class writeboardDAO {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 
-
 			String db_url = "jdbc:oracle:thin:@project-db-stu.ddns.net:1524:xe";
 			String db_id = "campus_c_e_1111";
 			String db_pw = "smhrd5";
-			
+
 			conn = DriverManager.getConnection(db_url, db_id, db_pw);
 
 		} catch (Exception e) {
@@ -55,7 +54,7 @@ public class writeboardDAO {
 
 			ps.setString(1, DTO.getW_title());
 			ps.setString(2, DTO.getW_content());
-			ps.setInt(3, DTO.getM_key());
+			ps.setString(3, DTO.getW_writer());
 			ps.setInt(4, DTO.getW_cnt());
 			ps.setString(5, DTO.getW_file1());
 			ps.setString(6, DTO.getW_file2());
@@ -69,7 +68,8 @@ public class writeboardDAO {
 		}
 		return cnt;
 	}// write
-	//�Խ��� ��ü��ȸ
+		// �Խ��� ��ü��ȸ
+
 	public ArrayList<writeboardDTO> allViewWriteboard() {
 		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();
@@ -84,13 +84,13 @@ public class writeboardDAO {
 				int w_key = rs.getInt("w_key");
 				String w_title = rs.getString("w_title");
 				String w_content = rs.getString("w_content");
-				int m_key = rs.getInt("m_key");
+				String w_writer = rs.getString("w_writer");
 				int w_cnt = rs.getInt("w_cnt");
 				String reg_date = rs.getString("reg_date");
 				String w_file1 = rs.getString("w_file1");
 				String w_file2 = rs.getString("w_file2");
 
-				temp.add(new writeboardDTO(w_key, w_title, w_content, m_key, w_cnt, reg_date, w_file1, w_file2));
+				temp.add(new writeboardDTO(w_key, w_title, w_content, w_writer, w_cnt, reg_date, w_file1, w_file2));
 			}
 
 		} catch (Exception e) {
@@ -101,6 +101,7 @@ public class writeboardDAO {
 		return temp;
 	}// allviewWriteboard
 //�Խ��� ��ȸ�� 1����
+
 	public int viewCountUp(int p_key) {
 		getConn();
 		int viewCnt = 0;
@@ -132,48 +133,49 @@ public class writeboardDAO {
 	}// viewCountUp
 		// �Խñ� ���� �޼ҵ�
 //�Խ��� ����
+
 	public ArrayList<writeboardDTO> updateWriteboard(writeboardDTO DTO) {
 		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();
 		try {
 			String sql = "UPDATE t_writeboard SET w_title=?,w_content=?,reg_date=SYSDATE,w_file1=?,w_file2=? WHERE w_key=?";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, DTO.getW_title());
 			ps.setString(2, DTO.getW_content());
 			ps.setString(3, DTO.getW_file1());
 			ps.setString(4, DTO.getW_file2());
 			ps.setInt(5, DTO.getW_key());
-			
+
 			cnt = ps.executeUpdate();
-			
+
 			String sql2 = "SELECT * FROM t_writeboard WHERE w_key = ?";
-			
-			ps =  conn.prepareStatement(sql2);
-			
+
+			ps = conn.prepareStatement(sql2);
+
 			ps.setInt(1, DTO.getW_key());
-			
+
 			rs = ps.executeQuery();
-			
-			if(rs.next()) {
-			String w_title = 	rs.getString("w_title");
-			String w_content = 	rs.getString("w_content");
-			String w_file1 = 	rs.getString("w_file1");
-			String w_file2 = 	rs.getString("w_file2");
-				
-			temp.add(new writeboardDTO(w_title,w_content,w_file1,w_file2));
+
+			if (rs.next()) {
+				String w_title = rs.getString("w_title");
+				String w_content = rs.getString("w_content");
+				String w_file1 = rs.getString("w_file1");
+				String w_file2 = rs.getString("w_file2");
+
+				temp.add(new writeboardDTO(w_title, w_content, w_file1, w_file2));
 			}
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			dbClose();
 		}
 		return temp;
 	}// updateWriteboard
-	
-		// �Խñ� ����
+
+	// �Խñ� ����
 
 	public int deleteWriteboard(int w_key) {
 		getConn();
