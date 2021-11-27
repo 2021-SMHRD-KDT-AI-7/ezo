@@ -13,7 +13,7 @@ public class memberDAO {
 	int cnt = 0;
 	boolean yn = false;
 
-//DB占쏙옙占쏙옙 占쌨소듸옙
+//DB�뜝�룞�삕�뜝�룞�삕 �뜝�뙣�냼�벝�삕
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -45,7 +45,7 @@ public class memberDAO {
 		}
 	}// dbClose
 
-	// t_member 회占쏙옙占쏙옙占쏙옙 占쏙옙 占쌉뤄옙 占쌨소듸옙
+	// t_member �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕 �뜝�뙃琉꾩삕 �뜝�뙣�냼�벝�삕
 	public int join(memberDTO memberDTO) {
 		getConn();
 		try {
@@ -81,9 +81,9 @@ public class memberDAO {
 		}
 		return cnt;
 	}
-	// t_member 회占쏙옙占쏙옙占쏙옙 占쏙옙 占쌉뤄옙 占쌨소듸옙
+	// t_member �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕 �뜝�뙃琉꾩삕 �뜝�뙣�냼�벝�삕
 
-	// t_member 占쏙옙占� 회占쏙옙 占쏙옙체占쏙옙회 占쌨소듸옙
+	// t_member �뜝�룞�삕�뜝占� �쉶�뜝�룞�삕 �뜝�룞�삕泥닷뜝�룞�삕�쉶 �뜝�뙣�냼�벝�삕
 	public ArrayList<memberDTO> allViewMembers() {
 		ArrayList<memberDTO> temp = new ArrayList<>();
 		getConn();
@@ -116,7 +116,7 @@ public class memberDAO {
 		return temp;
 	}// allViewMembers
 
-	// 占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙 회占쏙옙占쏙옙占쏙옙 占쌨소듸옙
+	// �뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕�뜝�룞�삕 �쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�뙣�냼�벝�삕
 	public int joinAdmin(memberDTO memberDTO) {
 		getConn();
 		try {
@@ -141,8 +141,8 @@ public class memberDAO {
 		return cnt;
 	}// insertMember
 
-	// 占싸깍옙占쏙옙 占쌨소듸옙
-	public memberDTO login(memberDTO DTO) {
+	// �뜝�떥源띿삕�뜝�룞�삕 �뜝�뙣�냼�벝�삕
+	public memberDTO login(String m_id, String m_pw) {
 		memberDTO dto = null;
 		getConn();
 		try {

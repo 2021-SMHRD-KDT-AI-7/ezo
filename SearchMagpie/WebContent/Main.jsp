@@ -128,6 +128,12 @@ String cp = request.getContextPath();
 <% 
 	memberDTO info = (memberDTO)session.getAttribute("info");
 	System.out.println(info);
+	session = request.getSession();
+	session.setAttribute("run_check", 0);
+	if (session != null) {
+		System.out.println("is not null");
+	}
+	String findData = null;
 %>
    <body>
       <div class="banner_bg_main">
