@@ -131,11 +131,16 @@ String cp = request.getContextPath();
 		hide();
 	}
 </script>
-
 </head>
-<% 
+<%
 	memberDTO info = (memberDTO)session.getAttribute("info");
 	System.out.println(info);
+	session = request.getSession();
+	session.setAttribute("run_check", 0);
+	if (session != null) {
+	System.out.println("is not null");
+	}
+	String findData = null;
 %>
 <body>
 	<div class="banner_bg_main">
@@ -202,21 +207,18 @@ String cp = request.getContextPath();
 					<div class="main">
 						<!-- Another variation with a button -->
 						<form action="SearchServiceCon" name="myForm" method="post">
-						<div class="input-group">
-							<input type="text" name="userKeyword" class="form-control" 
-							placeholder="상품 검색 (정확한 상품명을 입력할수록 검색 정확도가 향상됩니다!)" 
-							onkeyup="sendKeyword();" />
-							<div class="input-group-append">
-								<button type="submit" class="btn btn-secondary" 
-								style="background-color: #f26522; border-color:#f26522">
-									<i class="fa fa-search"></i>검색
-								</button>
-								<div id="suggestDiv" class="suggest">
-							<div id="suggestListDiv">
+							<div class="input-group">
+								<input type="text" name="userKeyword" class="form-control" 
+								placeholder="상품 검색 (정확한 상품명을 입력할수록 검색 정확도가 향상됩니다!)" 
+								onkeyup="sendKeyword();" />
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-secondary" 
+									style="background-color: #f26522; border-color:#f26522">
+										<i class="fa fa-search"></i>검색
+									</button>
+									<div id="suggestDiv" class="suggest">
+								<div id="suggestListDiv"></div></div></div>
 							</div>
-						</div>
-							</div>
-						</div>
 						</form>
 					</div>
 					<div class="header_box">
@@ -270,14 +272,6 @@ String cp = request.getContextPath();
 	<!-- sidebar -->
 	<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script src="js/custom.js"></script>
-	<script>
-		function openNav() {
-			document.getElementById("mySidenav").style.width = "250px";
-		}
-
-		function closeNav() {
-			document.getElementById("mySidenav").style.width = "0";
-		}
-	</script>
+	
 </body>
 </html>
