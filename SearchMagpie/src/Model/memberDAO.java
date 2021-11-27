@@ -49,7 +49,7 @@ public class memberDAO {
 	public int join(memberDTO memberDTO) {
 		getConn();
 		try {
-			String sql = "SELECT m_id FROM t_member WHERE m_id in(?)";
+			String sql = "SELECT m_id FROM t_member WHERE m_id = (?)";
 
 			ps = conn.prepareStatement(sql);
 

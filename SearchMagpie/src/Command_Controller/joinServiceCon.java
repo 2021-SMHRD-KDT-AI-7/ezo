@@ -12,8 +12,6 @@ public class joinServiceCon implements Command {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) {
 		memberDAO dao = new memberDAO();
-		int cnt = 0;
-		String path = "";
 		
 		String id = request.getParameter("m_id");
 		String pw = request.getParameter("m_pw");
@@ -27,18 +25,14 @@ public class joinServiceCon implements Command {
 				"비번 : " + pw + 
 				"이름 : " + name + 
 				"닉네임 : " + nickname + 
-				"아이디 : " + email + 
-				"아이디 : " + phone);
+				"이메일 : " + email + 
+				"폰번호 : " + phone);
 		
-		cnt = dao.join(new memberDTO(id,pw,name,nickname,email,phone));
+		int cnt = dao.join(new memberDTO(id,pw,name,nickname,email,phone));
 		
-		if(cnt == 1) {
-			path = "Main.jsp";
-		}else {
-			System.out.println("아이디 중복!");
-			path = "joinFrame.jsp";
-		}
-		return path;
+		System.out.println(cnt);
+		
+		return "Main.jsp";
 	}
 
 }
