@@ -18,9 +18,9 @@ public class findPwServiceCon implements Command {
 		String m_id = request.getParameter("m_id");
 		String m_email = request.getParameter("m_email");
 		
-		String m_pw = dao.findPw(new memberDTO(m_id, m_email));
+		String m_pw = dao.findPw(m_id, m_email);
 		
-		return m_pw;
+		return "find_pwFrame.jsp?m_pw="+m_pw;
 	}
 
 

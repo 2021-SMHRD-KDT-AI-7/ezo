@@ -150,14 +150,14 @@ String cp = request.getContextPath();
                        	<li><a href="#"><i class="fa fa-file-signature" aria-hidden="true"></i>게시판</a></li>
                         <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i>고객센터</a></li>
                         <li><a href="wish_list2Frame.jsp"><i class="fa fa-shopping-cart" aria-hidden="true"></i>찜 목록</a></li>
-                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
+                        <li><a href="logoutServiceCon.do"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
                         
                               <%} else { %>
                               
                         <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>가이드</a></li>
                         <li><a href="#"><i class="fa fa-file-signature" aria-hidden="true"></i>게시판</a></li>
                         <li><a href="loginFrame.jsp"><i class="fa fa-user" aria-hidden="true"></i>로그인</a></li>
-                        <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i>회원가입</a></li>
+                        <li><a href="joinServiceCon.do"><i class="fa fa-bell" aria-hidden="true"></i>회원가입</a></li>
                               <%} %>
                         </ul>
                      </div>

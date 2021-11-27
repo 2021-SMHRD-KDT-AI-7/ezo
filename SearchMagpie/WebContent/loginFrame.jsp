@@ -25,10 +25,9 @@
 		</div>
 		<div class="forgot">
 			<a href="find_idFrame.jsp" class="find_id"><i aria-hidden="true"></i>아이디
-				찾기</a><span class="bar"> / </span> <a href="find_pw.jsp"
-				class="find_pw"><i aria-hidden="true"></i>비밀번호 찾기</a><span
-				class="bar"> / </span> <a href="joinFrame.jsp" class="join"><i
-				aria-hidden="true"></i>회원가입</a>
+				찾기</a><span class="bar"> / </span> <a href="find_pwFrame.jsp" class="find_pw"><i
+				aria-hidden="true"></i>비밀번호 찾기</a><span class="bar"> / </span> <a
+				href="joinFrame.jsp" class="join"><i aria-hidden="true"></i>회원가입</a>
 		</div>
 		<button type="submit" class="btn" onclick="button()">로그인</button>
 	</form>

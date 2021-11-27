@@ -174,7 +174,7 @@ public class memberDAO {
 		getConn();
 		try {
 			String sql = "UPDATE t_member SET m_pw = ?,m_name = ?, m_nickname = ?,m_email=?,m_phone=? where m_key=?";
-
+			
 			ps = conn.prepareStatement(sql);
 
 			ps.setString(1, DTO.getM_pw());
@@ -196,6 +196,7 @@ public class memberDAO {
 
 	public String findId(String name,String email) {
 		String m_id = "";
+		System.out.print("findId DAO 함수 메소드 도입부");
 		getConn();
 		try {
 			String sql = "SELECT m_id FROM t_member WHERE m_name = ? AND m_email = ?";
@@ -209,6 +210,7 @@ public class memberDAO {
 			
 			if (rs.next()) {
 				m_id = rs.getString("m_id");
+				System.out.println("findId DAO RS반환값 : "+m_id);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -218,28 +220,28 @@ public class memberDAO {
 		return m_id;
 	}
 
-	public String findPw(memberDTO DTO) {
-		String m_pw = "";
+	public String findPw(String m_id, String m_email) {
+		String pw = "";
 		getConn();
 		try {
 			String sql = "SELECT m_pw FROM t_member WHERE m_id = ? AND m_email = ?";
 
 			ps = conn.prepareStatement(sql);
 
-			ps.setString(1, DTO.getM_id());
-			ps.setString(2, DTO.getM_email());
+			ps.setString(1, m_id);
+			ps.setString(2, m_email);
 
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				m_pw = rs.getString("m_pw");
+				pw = rs.getString("m_pw");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			dbClose();
 		}
-		return m_pw;
+		return pw;
 	}
 
 }// class
