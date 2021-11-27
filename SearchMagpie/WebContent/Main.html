@@ -30,7 +30,7 @@
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
       <!-- font awesome -->
-      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
       <!--  -->
       <!-- owl stylesheets -->
       <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
@@ -61,35 +61,37 @@
                   <div class="col-sm-12">
                      <div class="custom_menu">
                         <ul>
+
                            <li><a href="#">
-                              <i class="fa-regular fa-bell"></i>
-                              가이드
-                           </a>
-                        </li>
-                           <li><a href="#">
-                              <i class="fa-regular fa-money-check-pen"></i>
+                              <i class="fa fa-book" aria-hidden="true"></i>
+                                 가이드
+                              </a>
+                           </li>
+                        <li><a href="#">
+                           <i class="fa fa-file-signature" aria-hidden="true"></i>
                               게시판
                            </a>
                         </li>
-                           <li><a href="#">
-                              <i class="fa-solid fa-bell"></i>
+                        <li><a href="#">
+                           <i class="fa fa-bell" aria-hidden="true"></i>
                               고객센터
                            </a>
                         </li>
-                           <!-- <div class="login_menu"> -->
                               <li><a href="#">
                                  <i class="fa fa-user" aria-hidden="true"></i>
-                                 <!-- <span class="padding_10"> -->
                                     로그인
-                                    <!-- </span> -->
                                  </a>
                               </li>
                               <li><a href="#">
                                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                 <!-- <span class="padding_10"> -->
                                     찜 목록
-                                 <!-- </span> -->
                               </a>
+                              </li>
+
+                              <li style="display:none"><a href="#">
+                                 <i class="fa fa-bell" aria-hidden="true"></i>
+                                    회원가입
+                                 </a>
                               </li>
                            <!-- </div> -->
                         </ul>
@@ -173,8 +175,8 @@
          <div class="container">
             <div class="footer_logo"><a href="index.html"><img src="images/KakaoTalk_20211115_142051842.png"></a></div>
             <div class="input_bt">
-               <input type="text" class="mail_bt" placeholder="Your Email" name="Your Email">
-               <span class="subscribe_bt" id="basic-addon2"><a href="#">Subscribe</a></span>
+               <input type="text" class="mail_bt" placeholder="이메일을 입력하세요" name="Your Email">
+               <span class="subscribe_bt" id="basic-addon2"><a href="#">인증메일 보내기</a></span>
             </div>
             <div class="footer_menu">
                <ul>
@@ -185,6 +187,7 @@
       </div>
       <!-- footer section end -->
       <!-- copyright section start -->
+      </div>
       <!-- copyright section end -->
       <!-- Javascript files-->
       <script src="js/jquery.min.js"></script>
@@ -195,6 +198,7 @@
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
+      <script src="https://kit.fontawesome.com/949677030e.js" crossorigin="anonymous"></script>
       <script>
          function openNav() {
            document.getElementById("mySidenav").style.width = "250px";
