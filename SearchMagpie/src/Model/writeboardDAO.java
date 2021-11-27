@@ -74,7 +74,7 @@ public class writeboardDAO {
 		ArrayList<writeboardDTO> temp = new ArrayList<>();
 		getConn();
 		try {
-			String sql = "SELECT * FROM t_writeboard";
+			String sql = "SELECT * FROM t_writeboard ORDER BY reg_date DESC";
 
 			ps = conn.prepareStatement(sql);
 
