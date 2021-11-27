@@ -72,7 +72,7 @@ String cp = request.getContextPath();
             if (count > 0) {
                keywordList = resultArray[1].split(",");
                var html = "";
-               for (var i = 0; i < keywordList.length; i++) {
+               for (var i = 0; i < 5; i++) {
                   html += "<br/><a href=\"javascript:select('"
                         + keywordList[i] + "');\">" + keywordList[i]
                         + "</a><br/>";

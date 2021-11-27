@@ -31,5 +31,14 @@ function sendRequest(url, params, callback, method) {
     httpRequest.setRequestHeader(
         'Content-Type', 'application/x-www-form-urlencoded');
     httpRequest.onreadystatechange = callback;
-    httpRequest.send(httpMethod == 'POST' ? httpParams : null);
+	try{
+		httpRequest.send(httpMethod == 'POST' ? httpParams : null);	
+	}
+	catch(error){
+		console.error("ERROR 발생 >>" + error);
+	}
+	finally{
+		sleep(2000);
+	}
+    
 }
