@@ -1,4 +1,4 @@
-/* 레이아웃 틀 시작 */
+/* �젅�씠�븘�썐 �� �떆�옉 */
 
 *{
     font-family: 'Jua';
@@ -40,7 +40,7 @@ h5.comment {
     font-weight: bold;
   }
 
-/* 레이아웃 틀 끝 */
+/* �젅�씠�븘�썐 �� �걹 */
 
 .cart-page{
     margin: 80px auto;
@@ -112,17 +112,18 @@ th:last-child{
 
 
 
-/* 페이지네이션 시작 */
 
+/* �럹�씠吏��꽕�씠�뀡 �떆�옉 */
+/*
 #pagination a{
     display: inline-block;
     margin-right: 5px;
     cursor: pointer;
 }
+*/
+/* �럹�씠吏��꽕�씠�뀡 �걹 */
 
-/* 페이지네이션 끝 */
-
-/* 푸쉬알림 시작 */
+/* �뫖�돩�븣由� �떆�옉 */
 
 td #sale {
     width: 80px;
@@ -138,9 +139,9 @@ td #sale {
 }
     
 
-/* 푸쉬알림 끝 */
+/* �뫖�돩�븣由� �걹 */
 
-/* 버튼태그 시작 */
+/* 踰꾪듉�깭洹� �떆�옉 */
 
 button{
     position: relative;
@@ -223,4 +224,4 @@ button{
     text-align: center;
   }
 
-/* 버튼태그 끝 */
+/* 踰꾪듉�깭洹� �걹 */
