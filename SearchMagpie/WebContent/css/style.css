@@ -930,7 +930,15 @@ a:hover {
     position: absolute;
     right: 100px;
 }
-
+.aWish{
+    font-size: 16px;
+    color: royalblue;
+    font-weight: bold;
+    float: right;
+    justify-content: right;
+    position: relative;
+    right: 100px;
+}
 #main_slider a.carousel-control-next {
     right: 615px;
     top: 105%;
@@ -2584,5 +2592,7 @@ input.mail_bt::placeholder {
     padding-left: 0;
 }
 
-
+.fa.fa-heart{
+	font-size: 50px;
+}
 /* copyright section end */
