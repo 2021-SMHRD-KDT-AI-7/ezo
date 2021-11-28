@@ -112,7 +112,7 @@ String cp = request.getContextPath();
       suggestDiv.style.display = "none";
    }
 
-   //처음 DOM이 로드되었을때 보이지 않도록
+   //처음 DOM이 로드되었을때 보이지 않도록.
    window.onload = function() {
       hide();
    }
@@ -141,17 +141,17 @@ String cp = request.getContextPath();
                      <%if (info != null) { %>
                      
                         <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>가이드</a></li>
-                          <li><a href="#"><i class="fa fa-file-signature" aria-hidden="true"></i>게시판</a></li>
+                          <li><a href="board_MainFrame.jsp"><i class="fa fa-file-signature" aria-hidden="true"></i>게시판</a></li>
                         <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i>고객센터</a></li>
-                        <li><a href="wish_list2Frame.jsp"><i class="fa fa-shopping-cart" aria-hidden="true"></i>찜 목록</a></li>
-                        <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
+                        <li><a href="wishlist.jsp"><i class="fa fa-shopping-cart" aria-hidden="true"></i>찜 목록</a></li>
+                        <li><a href="logoutServiceCon.do"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
                         
                               <%} else { %>
                               
                         <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>가이드</a></li>
-                        <li><a href="#"><i class="fa fa-file-signature" aria-hidden="true"></i>게시판</a></li>
+                        <li><a href="board_MainFrame.jsp"><i class="fa fa-file-signature" aria-hidden="true"></i>게시판</a></li>
                         <li><a href="loginFrame.jsp"><i class="fa fa-user" aria-hidden="true"></i>로그인</a></li>
-                        <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i>회원가입</a></li>
+                        <li><a href="joinFrame.jsp"><i class="fa fa-bell" aria-hidden="true"></i>회원가입</a></li>
                               <%} %>
                         </ul>
                      </div>
@@ -208,7 +208,7 @@ String cp = request.getContextPath();
                   <div class="carousel-inner">
                      <div id="header">
                         <!-- iframe 들어오는 자리 -->
-                        <!-- <iframe class="frame_join" src="joinFrame.html" frameborder="no" allowtransparency="false" scrolling="no"></iframe> -->
+                        <!-- <iframe class="frame_join" src="productResult.jsp" frameborder="no" allowtransparency="false" scrolling="no"></iframe> -->
                         <!-- iframe 들어오는 자리 -->
                      </div>
                   </div>

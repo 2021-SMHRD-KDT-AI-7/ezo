@@ -1,3 +1,8 @@
+<%@page import="Model.basketDTO"%>
+<%@page import="Model.memberDTO"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +17,11 @@
 <script type="text/javascript" src="./js/wish_list2.js"></script>
 </head>
 <body>
+<% 
+memberDTO info = (memberDTO)session.getAttribute("info");
+ArrayList<basketDTO> list = new ArrayList<basketDTO>(); 
 
+%>
 	<form name="orderform" id="orderform" method="post" class="orderform"
 		action="/Page" onsubmit="return false;">
 

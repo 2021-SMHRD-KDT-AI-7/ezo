@@ -43,7 +43,7 @@
 			<thead>
 				<tr>
 					<th>상품정보</th>
-					<th>좋아요</th>
+					<th style="text-align: center;">좋아요</th>
 					<th>상품가격</th>
 				</tr>
 			</thead>
@@ -59,23 +59,23 @@
 
 							<div>
 								<a href="<%=dto_list.get(i).getProduct_url()%>" target='_blank'>
-									<h4><%=dto_list.get(i).getProduct_title()%></h4>
+									<h2><%=dto_list.get(i).getProduct_title()%></h4>
 								</a> <small>price:<p id="left_price<%=i%>" style="display: inline;"></p>￦</small> 
-								<br> <a href="" onclick="delete_display()">삭제</a> <small><%=dto_list.get(i).getProduct_source()%></small>
+								<br><small><%=dto_list.get(i).getProduct_source()%></small>
 							</div>
 						</div>
 					</td>
 					<div>
 					<td>
 	
-					<button class="btn_alram"><a href="InsertWishServiceCon.do?seq="<%=dto_list.get(i).getProduct_seq()%>>찜하기</button>
+					<button class="btn_like"><a href="InsertWishServiceCon.do?seq='<%=dto_list.get(i).getProduct_seq()%>'">찜하기</button>
 					</td>
 					</div>
 					<div class="push_alram">
 						<td style="text-align:right;"><p id="right_price<%=i%>" style="display: inline;"></p>￦</td>
 					</div>
 					<script type="text/javascript">
-						console.log(dto_list.get(i).getProduct_seq())
+						console.log(<%=dto_list.get(i).getProduct_seq()%>)
 						price =	<%=dto_list.get(i).getProduct_price()%>	;
 						var result = price.toLocaleString();
 						console.log(result);

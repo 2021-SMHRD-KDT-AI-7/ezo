@@ -148,6 +148,13 @@ button{
     left: px;
     bottom: 20px;
 }
+.btn_like{
+	justify-content: center;
+    width: 60px;
+    height: 30px;
+    align-content: center;
+    text-align: center;
+}
 
 .btn_next {
     position:relative;

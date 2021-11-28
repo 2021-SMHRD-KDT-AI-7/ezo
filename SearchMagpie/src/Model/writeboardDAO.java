@@ -180,7 +180,7 @@ public class writeboardDAO {
 	public int deleteWriteboard(int w_key) {
 		getConn();
 		try {
-			String sql = "DELETE * FROM t_writeboard WHERE w_key = ?";
+			String sql = "DELETE FROM t_writeboard WHERE w_key = ?";
 
 			ps = conn.prepareStatement(sql);
 

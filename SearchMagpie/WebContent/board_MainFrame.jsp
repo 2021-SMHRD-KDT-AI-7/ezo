@@ -8,6 +8,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -58,82 +59,11 @@
                 <td><%=list.get(i).getW_writer()%></td>
                 <td><%=list.get(i).getW_cnt()%></td>
                 <td><%=list.get(i).getReg_date()%></td>
+              	<td><a href="deleteWriteboardServiceCon.do?w_key=<%=list.get(i).getW_key()%>">삭제</a></td>
             </tr>
             <%
 }
 %>
-            <!-- 2번째 게시글 -->
-            <!-- <tr>
-                <td>[공지]</td>
-                <td><a href="#">써치까치입니다.</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr>
-            3번째 게시글
-            <tr>
-                <td>[공지]</td>
-                <td><a href="#">메인페이지 어케하지</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr>
-            4번째 게시글
-            <tr>
-                <td>[공지]</td>
-                <td><a href="#">사이트 폐쇄합니다.</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr>
-            5번째 게시글
-            <tr>
-                <td>[공지]</td>
-                <td><a href="#">써치까치입니다.</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr>
-            6번째 게시글
-            <tr>
-                <td>[공지]</td>
-                <td><a href="#">저희 망했어요.</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr>
-            7번째 게시글
-            <tr>
-                <td>[공지]</td>
-                <td><a href="#">써치까치입니다.</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr>
-            8번째 게시글
-            <tr>
-                <td>[공지]</td>
-                <td><a href="#">정식이형 파이팅.</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr>
-            9번째 게시글
-            <tr>
-                <td>[공지]</td>
-                <td><a href="#">집에가고싶다.</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr>
-            10번째 게시글
-            <tr>
-                <td>[공지]</td>
-                <td><a href="#">살려주세요.</a></td>
-                <td>운영자</td>
-                <td>2</td>
-                <td>2021.11.25</td>
-            </tr> -->
         </tbody>
     </table>
 
