@@ -208,7 +208,7 @@ String cp = request.getContextPath();
                   <div class="carousel-inner">
                      <div id="header">
                         <!-- iframe 들어오는 자리 -->
-                        <!-- <iframe class="frame_join" src="joinFrame.html" frameborder="no" allowtransparency="false" scrolling="no"></iframe> -->
+                        <!-- <iframe class="frame_join" src="productResult.jsp" frameborder="no" allowtransparency="false" scrolling="no"></iframe> -->
                         <!-- iframe 들어오는 자리 -->
                      </div>
                   </div>
