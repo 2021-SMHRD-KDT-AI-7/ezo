@@ -9,7 +9,7 @@ public class productDAO {
 	PreparedStatement ps = null;
 	int cnt = 0;
 
-//DBï¿½ï¿½ï¿½ï¿½ ï¿½Þ¼Òµï¿½.
+//DB
 	public void getConn() {
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -41,7 +41,7 @@ public class productDAO {
 		}
 	}// dbClose
 
-	// t_product ï¿½ï¿½Ç° ï¿½Ô·ï¿½ ï¿½Þ¼Òµï¿½
+	// t_product 
 	public int insertProduct(productDTO DTO) {
 		getConn();
 		try {
@@ -69,7 +69,7 @@ public class productDAO {
 		return cnt;
 	}// insertProduct
 
-	// t_product ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½È¸ ï¿½Þ¼Òµï¿½
+	// t_product 
 	public ArrayList<productDTO> allViewProduct() {
 		ArrayList<productDTO> temp = new ArrayList<>();
 		getConn();
@@ -104,5 +104,56 @@ public class productDAO {
 		}
 		return temp;
 	}// allViewProduct
+	
+	public ArrayList<productDTO> find_product(int seq) {
+		ArrayList<productDTO> temp = new ArrayList<>();
+		getConn();
+		//¾î¶»°ÔÇÏÁö.. Èì..
+		//½ÃÄö½º±âÁØÀ¸·Î ÀÌ¸§°¡Á®¿Í¼­ ´Ù½Ã ±× ÀÌ¸§ ±âÁØÀ¸·Î ÂüÁ¶µÈ °á°ú°ª °¡Á®¿Ã±î.
+		try {
+			//½ÃÄö½º Á¦¸ñÀ» Ã£¾Æ¿È
+			String sql = "select p_title from t_product where p_key = ?";
+			String find_title ="";
+			
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, seq);
+			
+			rs = ps.executeQuery();
+			
+			while (rs.next()) {
+				find_title = rs.getString("p_title");
+			}
+			int half=find_title.length()/2;
+			String title=find_title.substring(0,half);
+			sql = "select * from t_product where p_title like ?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, '%'+title+'%');
+			
+			rs=ps.executeQuery();
+			while (rs.next()) {
+				int p_key = rs.getInt("p_key");
+				String p_title = rs.getString("p_title");
+				int p_price = rs.getInt("p_price");
+				int p_cnt = rs.getInt("p_cnt");
+				String p_url = rs.getString("p_url");
+				String p_category = rs.getString("p_url");
+				String reg_date = rs.getString("reg_date");
+				String p_source = rs.getString("p_source");
+				String p_file1 = rs.getString("p_file1");
+				String p_file2 = rs.getString("p_file2");
+				String p_file3 = rs.getString("p_file3");
+				String p_file4 = rs.getString("p_file4");
+				System.out.println("Å¸ÀÌÆ²:"+p_title);
+				temp.add(new productDTO(p_key, p_title, p_price, p_cnt, p_url, p_category, reg_date, p_source, p_file1,
+						p_file2, p_file3, p_file4));
+			} 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbClose();
+		}
+		return temp;
+	}
 
 }// class

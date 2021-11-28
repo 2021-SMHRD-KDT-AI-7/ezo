@@ -80,6 +80,8 @@ public class FrontContrlooer extends HttpServlet {
 			sc = new deleteI_reviewServiceCon();
 		} else if (result.equals("updateI_reviewServiceCon.do")) {
 			sc = new updateI_reviewServiceCon();
+		}else if(result.equals("ProductSerachServiceCon.do")) {
+			sc = new ProductSerachServiceCon();
 		}
 		path = sc.execute(request, response);
 		response.sendRedirect(path);

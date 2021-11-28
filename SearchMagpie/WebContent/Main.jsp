@@ -57,7 +57,7 @@ String cp = request.getContextPath();
       }
       var params = "userKeyword=" + userKeyword;
       sendRequest("searchClient_ok.jsp", params, displaySuggest, "POST");
-   }m, 
+   } 
 
    function displaySuggest() {
       if (httpRequest.readyState == 4) {
