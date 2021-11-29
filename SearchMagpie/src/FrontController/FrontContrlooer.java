@@ -77,7 +77,9 @@ public class FrontContrlooer extends HttpServlet {
 			sc = new InsertWishServiceCon();
 		} else if (result.equals("deleteWishlistServiceCon.do")) {
 			sc = new deleteWishlistServiceCon();
-		} 
+		} else if(result.equals("ProductSerachServiceCon.do")) {
+			sc = new ProductSerachServiceCon();
+		}
 		path = sc.execute(request, response);
 		response.sendRedirect(path);
 
