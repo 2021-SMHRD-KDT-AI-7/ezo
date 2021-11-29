@@ -46,6 +46,7 @@
 </head>
 
 <body>
+ <a href="Main.jsp">홈으로 가기</a>
 <%
 	DecimalFormat formatter = new DecimalFormat("###,###,###");
 	String data_name_one="",data_name_two="";

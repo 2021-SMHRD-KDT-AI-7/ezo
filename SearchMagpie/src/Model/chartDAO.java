@@ -78,7 +78,7 @@ public class chartDAO {
 		getConn();
 
 		try {
-			String sql = "SELECT p_key,p_title,p_cnt  FROM (SELECT p_key,p_title, p_cnt FROM t_product ORDER BY p_cnt DESC) WHERE ROWNUM < 11";
+			String sql = "SELECT p_key,p_title,p_cnt,p_url FROM (SELECT p_key,p_title, p_cnt, p_url FROM t_product ORDER BY p_cnt DESC) WHERE ROWNUM < 11";
 
 			ps = conn.prepareStatement(sql);
 
@@ -88,7 +88,8 @@ public class chartDAO {
 				int p_key = rs.getInt("p_key");
 				String p_title = rs.getString("p_title");
 				int p_cnt = rs.getInt("p_cnt");
-				temp.add(new chartDTO(p_key, p_title, p_cnt));
+				String p_url = rs.getString("p_url");
+				temp.add(new chartDTO(p_key, p_title, p_cnt, p_url));
 			}
 
 		} catch (Exception e) {

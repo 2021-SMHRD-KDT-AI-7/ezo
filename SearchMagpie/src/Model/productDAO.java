@@ -111,7 +111,7 @@ public class productDAO {
 		//어떻게하지.. 흠..
 		//시퀀스기준으로 이름가져와서 다시 그 이름 기준으로 참조된 결과값 가져올까.
 		try {
-			//시퀀스 제목을 찾아옴
+			//시퀀스 기준 제목을 찾아옴
 			String sql = "select p_title from t_product where p_key = ?";
 			String find_title ="";
 			
@@ -123,6 +123,14 @@ public class productDAO {
 			while (rs.next()) {
 				find_title = rs.getString("p_title");
 			}
+			//조회수 증가
+			String sql2 = "update t_product set p_cnt = p_cnt+(1) where p_key = ?";
+			ps =  conn.prepareStatement(sql2);
+			ps.setInt(1, seq);
+			
+			int result_cnt=ps.executeUpdate();
+			System.out.println("수정사항:"+result_cnt);
+			//여러개 가져올때, 비교할 데이터
 			int half=find_title.length()/2;
 			String title=find_title.substring(0,half);
 			sql = "select * from t_product where p_title like ?";
@@ -147,6 +155,8 @@ public class productDAO {
 				temp.add(new productDTO(p_key, p_title, p_price, p_cnt, p_url, p_category, reg_date, p_source, p_file1,
 						p_file2, p_file3, p_file4));
 			} 
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -48,6 +48,13 @@ public class chartDTO {
 		this.p_file3 = p_file3;
 		this.p_file4 = p_file4;
 	}
+	public chartDTO(int p_key2, String p_title2, int p_cnt2, String p_url2) {
+		this.p_key = p_key2;
+		this.p_title=p_title2;
+		this.p_cnt = p_cnt2;
+		this.p_url = p_url2;
+				
+	}
 	public int getP_key() {
 		return p_key;
 	}
