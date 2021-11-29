@@ -148,7 +148,7 @@ String findData = null;
 	height: auto;
 	display: inline-block;
 	right: 10px;
-	top: 30%;
+	top: 60%;
 	background-color: transparent;
 	margin: 0;
 }
@@ -159,7 +159,7 @@ String findData = null;
 </style>
 <div id="chartTopTen">
 	<iframe id="chart"  src="chart.jsp" frameborder="0"
-		style="width: 500px; height: 550px;"> </iframe>
+		style="width: 500px; height: 550px;" > </iframe>
 </div>
 <body>
 	<div class="banner_bg_main">
@@ -271,12 +271,11 @@ String findData = null;
 
 	<div class="blank_img"></div>
 
-	<div class="blank">
 		<!-- style.css 에서 .blank 찾고 height(높낮이)속성으로 조절 -->
-		<h3>가이드</h3>
-		<h3>가이드</h3>
-		<h3>가이드</h3>
-	</div>
+		<iframe src="saleinfo.jsp" class="frame_join" frameborder="0" scrolling="no">
+		
+		</iframe>
+		
 	<div class="footer_section layout_padding1">
 		<div class="container">
 			<!-- <div class="footer_logo"><a href="index.html"><img src="images/KakaoTalk_20211115_142051842.png"></a></div> -->

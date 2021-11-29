@@ -31,7 +31,6 @@
 	for (int i = 0;  i < list.size(); i++) { 
 	System.out.println(list.get(i).getImg());}
 %>
-<h3><a href="Main.jsp">메인으로</a></h3>
 
 <div class="container">
 
@@ -54,10 +53,10 @@
             <!-- 인설트 테이블 구조(boardTable (시퀀스,게시판번호,작성자)) -->
             <%for (int i = 0;  i < list.size(); i++) { %>
             <tr>
-                <td><a href="<%=list.get(i).getUrl()%>>">
+                <td><a href="<%=list.get(i).getUrl()%>>" target="_blank">
                 <img src="images/crawling_img/<%=i+1%>.jpg">
                 </a></td>
-                <td><a href="<%=list.get(i).getUrl()%>>">
+                <td><a href="<%=list.get(i).getUrl()%>>" target="_blank">
                 <%=list.get(i).getTitle()%></a></td>
             </tr>
             <%}%>

@@ -88,9 +88,9 @@
             </table>
 
 	<div>
-            <button type="button" class="btn_next" onclick="button()">
+            <button type="button" class="btn_next"  >
                 완료
-            <button type="button" class="btn_alram" onclick="button()">
+            <button type="button" class="btn_alram" onclick="alert('상품 예약이 완료되었습니다!')"">
                 할인 푸쉬 알림
 
           </div>
