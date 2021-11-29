@@ -1,7 +1,7 @@
-<%@page import="Model.writeboardDTO"%>
-<%@page import="Model.memberDTO"%>
+<%@page import="Model.saleinfoDAO"%>
+<%@page import="Model.saleinfoDTO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="Model.writeboardDAO"%>
+<%@page import="Model.memberDTO"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <!DOCTYPE html>
@@ -25,10 +25,11 @@
 </head>
 <body>
 <%
-	ArrayList<writeboardDTO> list = new ArrayList<writeboardDTO>();
-	writeboardDAO dao = new writeboardDAO();
-	list = dao.allViewWriteboard();
-	memberDTO info = (memberDTO)session.getAttribute("info");
+	ArrayList<saleinfoDTO> list = new ArrayList<saleinfoDTO>();
+	saleinfoDAO dao = new saleinfoDAO();
+	list = dao.saleinfoBoard();
+	for (int i = 0;  i < list.size(); i++) { 
+	System.out.println(list.get(i).getImg());}
 %>
 <h3><a href="Main.jsp">메인으로</a></h3>
 
@@ -36,7 +37,7 @@
 
     <br>
 
-    <h2 class="text-center"><a href="#">게시판</a></h2>
+    <h2 class="text-center"><a href="#">직구 할인정보</a></h2>
 
     <br>
     <br>
@@ -44,11 +45,8 @@
     <table class="table table-striped table-hover" id="paging" style="border: 1px solid;">
         <thead class="thead">
             <tr>
-                <th class="head-title"></th>
+                <th class="image">게시글 썸네일</th>
                 <th class="title">제목</th>
-                <th class="writer">작성자</th>
-                <th class="views">조회수</th>
-                <th class="write-date">작성일</th>
             </tr>
         </thead>
         <tbody>
@@ -56,16 +54,13 @@
             <!-- 인설트 테이블 구조(boardTable (시퀀스,게시판번호,작성자)) -->
             <%for (int i = 0;  i < list.size(); i++) { %>
             <tr>
-                <td>[일반게시판]</td>
-                <td><a href=""><%=list.get(i).getW_title()%></a></td>
-                <td><%=list.get(i).getW_writer()%></td>
-                <td><%=list.get(i).getW_cnt()%></td>
-                <td><%=list.get(i).getReg_date()%></td>
-              	<td><a href="deleteWriteboardServiceCon.do?w_key=<%=list.get(i).getW_key()%>">삭제</a></td>
+                <td><a href="<%=list.get(i).getUrl()%>>">
+                <img src="images/crawling_img/<%=i+1%>.jpg">
+                </a></td>
+                <td><a href="<%=list.get(i).getUrl()%>>">
+                <%=list.get(i).getTitle()%></a></td>
             </tr>
-            <%
-}
-%>
+            <%}%>
         </tbody>
     </table>
 

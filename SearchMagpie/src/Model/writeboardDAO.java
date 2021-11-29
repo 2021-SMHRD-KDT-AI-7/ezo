@@ -92,7 +92,6 @@ public class writeboardDAO {
 
 				temp.add(new writeboardDTO(w_key, w_title, w_content, w_writer, w_cnt, reg_date, w_file1, w_file2));
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

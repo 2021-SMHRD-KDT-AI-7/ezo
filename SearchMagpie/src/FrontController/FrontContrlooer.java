@@ -79,7 +79,20 @@ public class FrontContrlooer extends HttpServlet {
 			sc = new deleteWishlistServiceCon();
 		} else if(result.equals("ProductSerachServiceCon.do")) {
 			sc = new ProductSerachServiceCon();
-		}
+		}else if (result.equals("ViewChangedPriceServiceCon.do")) {
+			sc = new changedPriceServiceCon();
+
+			ArrayList<changedPriceDTO> temp = new ArrayList<>();
+			changedPriceDAO dao = new changedPriceDAO();
+		
+			temp = dao.allViewChangedPrice(794);
+			System.out.println("ÂïÈ÷´Ï?");
+			request.setAttribute("allViewChangedPrice", temp);
+			path = "Graph.jsp";
+			RequestDispatcher rd = request.getRequestDispatcher(path);
+			rd.forward(request, response);
+			
+		} 
 		path = sc.execute(request, response);
 		response.sendRedirect(path);
 

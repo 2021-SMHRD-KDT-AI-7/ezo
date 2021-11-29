@@ -135,6 +135,7 @@
 								
 								<div class="graph">
 								<!-- 가격 변동 그래프 들어올 자리 -->
+								<iframe src="ViewChangedPriceServiceCon.do"></iframe>
 								</div>
 								
 								
