@@ -66,14 +66,14 @@ public class changedPriceDAO {
 	}//insertChangedPrice
 	
 	//���ݺ��� ��ü��ȸ �޼ҵ�
-	public ArrayList<changedPriceDTO> allViewChangedPrice() {
+	public ArrayList<changedPriceDTO> allViewChangedPrice(int seq) {
 		ArrayList<changedPriceDTO> temp = new ArrayList<>();
 		getConn();
 		try {
-			String sql = "SELECT * FROM t_product_price";
+			String sql = "SELECT * FROM t_product_price WHERE p_key=?";
 			
 			ps = conn.prepareStatement(sql);
-			
+			ps.setInt(1, seq);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
