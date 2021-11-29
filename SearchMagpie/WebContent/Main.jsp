@@ -5,7 +5,7 @@
    request.setCharacterEncoding("UTF-8");
 String cp = request.getContextPath();
 %>
-<!DOCTYPE html>
+<!DOCTYPE html>\
 <html lang="en">
    <head>
       <!-- basic -->
@@ -44,7 +44,7 @@ String cp = request.getContextPath();
       <link rel="stylesheet" href="css/owl.carousel.min.css">
       <link rel="stylesoeet" href="css/owl.theme.default.min.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!-- style -->
+      <!-- style -->\
 
 <script type="text/javascript" src="js/httpRequest.js"></script>
 <script type="text/javascript">
@@ -57,7 +57,7 @@ String cp = request.getContextPath();
       }
       var params = "userKeyword=" + userKeyword;
       sendRequest("searchClient_ok.jsp", params, displaySuggest, "POST");
-   } 
+   }m, 
 
    function displaySuggest() {
       if (httpRequest.readyState == 4) {
@@ -88,7 +88,7 @@ String cp = request.getContextPath();
          } else {
             //status!=200
             hide();
-         }
+         }\
       } else {
          //readyState!=4
          hide();
@@ -143,12 +143,12 @@ String cp = request.getContextPath();
                         <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>가이드</a></li>
                           <li><a href="board_MainFrame.jsp"><i class="fa fa-file-signature" aria-hidden="true"></i>게시판</a></li>
                         <li><a href="#"><i class="fa fa-bell" aria-hidden="true"></i>고객센터</a></li>
-                        <li><a href="wishlist.jsp"><i class="fa fa-shopping-cart" aria-hidden="true"></i>찜 목록</a></li>
+                        <li><a href="wish.jsp"><i class="fa fa-shopping-cart" aria-hidden="true"></i>찜 목록</a></li>
                         <li><a href="logoutServiceCon.do"><i class="fa fa-user" aria-hidden="true"></i>로그아웃</a></li>
                         
                               <%} else { %>
                               
-                        <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>가이드</a></li>
+                        <li><a href="guide.html"><i class="fa fa-book" aria-hidden="true"></i>가이드</a></li>
                         <li><a href="board_MainFrame.jsp"><i class="fa fa-file-signature" aria-hidden="true"></i>게시판</a></li>
                         <li><a href="loginFrame.jsp"><i class="fa fa-user" aria-hidden="true"></i>로그인</a></li>
                         <li><a href="joinFrame.jsp"><i class="fa fa-bell" aria-hidden="true"></i>회원가입</a></li>
