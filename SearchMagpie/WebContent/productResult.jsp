@@ -23,7 +23,9 @@
       <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
 <%
 	ArrayList<SearchProductDTO> dto_list = (ArrayList<SearchProductDTO>)session.getAttribute("findKeywordList");
-memberDTO info = (memberDTO)session.getAttribute("info");
+	
+	memberDTO info = (memberDTO)session.getAttribute("info");
+	
 %>
 </head>
 
@@ -45,7 +47,11 @@ memberDTO info = (memberDTO)session.getAttribute("info");
 			<thead>
 				<tr>
 					<th>상품정보</th>
+					<%if(info != null){ %>
 					<th style="text-align: center;">좋아요</th>
+					<%}else{ %>
+					<th></th>
+					<%} %>
 					<th>상품가격</th>
 				</tr>
 			</thead>
@@ -69,10 +75,11 @@ memberDTO info = (memberDTO)session.getAttribute("info");
 					</td>
 					<div>
 					<td>
-	
+					<%if(info != null){ %>	
 					<button class="btn_like"><a href="InsertWishServiceCon.do?seq=<%=dto_list.get(i).getProduct_seq()%>&m_key=<%=info.getM_key()
 					%>">찜하기</button>
-					<%System.out.print("JSP m_key :"+info.getM_key());%>
+					<%} %>
+					
 					</td>
 					</div>
 					<div class="push_alram">
