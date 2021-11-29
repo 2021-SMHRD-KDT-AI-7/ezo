@@ -57,7 +57,7 @@
 	if(temp.size() < 2){
 
 		data_name_one = temp.get(0).getP_title();
-		data_name_two = "해당하는 물품 상품이 존재하지 않습니다.";
+		data_name_two = "해당물품이 존재하지 않습니다.";
 		//가격 0
 		price_one = formatter.format(temp.get(0).getP_price());
 		price_two = "";
@@ -124,13 +124,22 @@
 									<a href="<%=data_url_one%>">직접 보러 가기</a>
 									</div>
 									<a href="#" class="aWish">
-									<i class="fa fa-heart" aria-hidden="true">
+									<i class="fa fa-heart" aria-hidden="true" style="font-size:16px;">
 									</i> 찜 목록 추가
 									</a>
 									</div>
 								</div>
+								
+								
+								
+								<div class="graph">
+								<!-- 가격 변동 그래프 들어올 자리 -->
+								</div>
+								
+								
+								
 								<!-- 반대쪽 -->
-								<div class="box_main2">
+								<div class="box_main2 test">
 									<img src="<%=data_img_two%>">
 
 									<h4 class="shirt_text"><%=data_name_two%></h4>
@@ -142,7 +151,7 @@
 									<a href="<%=data_url_two%>">직접 보러 가기</a>
 									</div>
 									<a href="#" class="aWish"><i class="fa fa-heart"
-										aria-hidden="true"></i> 찜 목록 추가</a>
+										aria-hidden="true" style="font-size:16px;"></i> 찜 목록 추가</a>
 								</div>
 						</div>
 					</div>

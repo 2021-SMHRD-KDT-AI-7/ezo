@@ -173,8 +173,26 @@ a,
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    display: fixed;
+}
+
+.box_main1 img{
+	min-width: 350px;
+	max-width: 350px;
+	min-height: 250px;
+	max-height: 250px;
+	position: relative;
+	left: 16px;
+	border-radius: 6px;
+}
+.box_main2 img{
+	min-width: 350px;
+	max-width: 350px;
+	min-height: 250px;
+	max-height: 250px;
+	position: relative;
+	border-radius: 6px;
 }
 
  :focus {
@@ -859,14 +877,6 @@ a:hover {
     justify-content: center;
 }
 
-.price_text {
-    width: 100%;
-    font-size: 16px;
-    color: #f26522;
-    text-align: center;
-    margin: 0px;
-}
-
 .tshirt_img {
     width: 100%;
     text-align: center;
@@ -900,27 +910,6 @@ a:hover {
     color: #262626;
 }
 
-.seemore_bt {
-    width: 100%;
-    float: right;
-    text-align: right;
-}
-
-.seemore_bt a {
-    width: 100%;
-    font-size: 16px;
-    font-weight: bold;
-    color: #f26522;
-    background-color: transparent;
-    text-align: right;
-    cursor: pointer;
-}
-
-.seemore_bt a:hover {
-    background-color: transparent;
-    color: #262626;
-}
-
 .wish{
     font-size: 16px;
     color: royalblue;
@@ -934,10 +923,10 @@ a:hover {
     font-size: 16px;
     color: royalblue;
     font-weight: bold;
-    float: right;
-    justify-content: right;
+    float: left;
+    justify-content: left;
     position: relative;
-    right: 100px;
+    left: 16px;
 }
 #main_slider a.carousel-control-next {
     right: 615px;
@@ -1396,11 +1385,6 @@ a,
     -ms-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
 }
 
  :focus {
@@ -1974,27 +1958,29 @@ a:hover {
 } */
 .box_main1 {
     float: left;
-    margin-right: 200px;
-    width: 350px;
-    background-color: #ffffff;
-    height: 450px;
+    margin-right: 160px;
+    width: 380px;
+    min-height: 600px;
     padding: 10px 0;
     border-radius: 5%;
     position: static;
     justify-content: center;
     align-content: center;
+    margin-bottom: 20px;
+    box-shadow: 2px 1px 10px 1px rgba(0,0,255,0.5), -5px -10px 10px 1px gray;
 }
 .box_main2 {
     float: right;
-    margin-left: 200px;
-    width: 350px;
-    background-color: #ffffff;
-    height: 450px;
+    margin-left: 160px;
+    margin-bottom: 20px;
+    width: 380px;
+    min-height: 600px;
     padding: 10px 0;
     border-radius: 5%;
     position: static;
     justify-content: center;
     align-content: center;
+    background: #f3f3f3;
 }
 
 .box_main2 .shirt_text,.price_text{
@@ -2008,15 +1994,17 @@ a:hover {
     text-align: center;
     font-weight: bold;
     padding-bottom: 5px;
+    min-height: 180px;
 }
 
 .price_text {
-    width: 100%;
+    width: auto;
     font-weight: bold;
     font-size: 16px;
     color: #f26522;
     text-align: center;
     margin: 0px;
+    height: 50px;
 }
 
 .tshirt_img {
@@ -2051,11 +2039,12 @@ a:hover {
 }
 
 .seemore_bt {
-    width: 100%;
+    width: auto;
     float: right;
     text-align: right;
     position: relative;
     right: 20px;
+    display: fixed;
 }
 
 .seemore_bt a {
@@ -2431,14 +2420,51 @@ body.join {
     }
 }
 
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+@-webkit-keyframes sparkle {
+  from {
+    background-position: 0% 100%;
+  }
+  to {
+    background-position: 200% 100%;
+  }
 }
+
+@keyframes sparkle {
+  from {
+    background-position: 0% 100%;
+  }
+  to {
+    background-position: 200% 100%;
+  }
+}
+.test {
+  background: white;
+  display: inline-block;
+  padding: 1em;
+  font-family: Helvetica Neue;
+  border-radius: 4px;
+  position: relative;
+}
+.test:before {
+  -webkit-animation: sparkle 4s infinite linear;
+          animation: sparkle 4s infinite linear;
+  background: linear-gradient(90deg, #7FEFBD 0%, #FFF689 11%, #EC0B43 22%, #7FEFBD 33%, #FFF689 44%, #EC0B43 55%, #7FEFBD 66%, #FFF689 77%, #EC0B43 88%, #7FEFBD 100%);
+  background-size: 300% 100%;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  filter: blur(20px);
+  z-index: -1;
+  transform: scale(0.99) translateY(3px);
+  size: 20px;
+}
+
+
+/* keyframe */
 
 /* i�봽�젅�엫 �걹 */
 
