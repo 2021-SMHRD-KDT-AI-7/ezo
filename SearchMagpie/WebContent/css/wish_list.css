@@ -1,4 +1,4 @@
-/* �젅�씠�븘�썐 �� �떆�옉 */
+/* 占쎌쟿占쎌뵠占쎈툡占쎌뜍 占쏙옙 占쎈뻻占쎌삂 */
 
 *{
     font-family: 'Jua';
@@ -40,14 +40,16 @@ h5.comment {
     font-weight: bold;
   }
 
-/* �젅�씠�븘�썐 �� �걹 */
+/* 占쎌쟿占쎌뵠占쎈툡占쎌뜍 占쏙옙 占쎄국 */
 
 .cart-page{
     margin: 80px auto;
 }
 table{
-    width: 100%;
+	background-color: whitesmoke;
+    width: 80%;
     border-collapse: collapse;
+    margin-left: 200px;
 }
 
 .cart-info{
@@ -63,12 +65,20 @@ th{
     text-align: left;
     padding: 5px;
     color: #fff;
-    background-color: #8A2BE2;
+    background-image: url(../images/SearchMagpie_img.png);
     font-weight: normal;
 }
 
 td{
     padding: 10px 5px;
+}
+.liketd{
+	position: relative;
+	text-align: center;
+	align-content: center;
+	align-items: center;
+	align-self: center;
+	justify-content: center;
 }
 td input{
     width: 50px;
@@ -85,6 +95,8 @@ td input{
 td a{
     color: #8E37D7;
     font-size: 12px;
+    text-decoration-line : none;
+	text-decoration : none;
 }
 td img{
     width: 60px;
@@ -113,7 +125,7 @@ th:last-child{
 
 
 
-/* �럹�씠吏��꽕�씠�뀡 �떆�옉 */
+/* 占쎈읂占쎌뵠筌욑옙占쎄퐬占쎌뵠占쎈�� 占쎈뻻占쎌삂 */
 /*
 #pagination a{
     display: inline-block;
@@ -121,9 +133,9 @@ th:last-child{
     cursor: pointer;
 }
 */
-/* �럹�씠吏��꽕�씠�뀡 �걹 */
+/* 占쎈읂占쎌뵠筌욑옙占쎄퐬占쎌뵠占쎈�� 占쎄국 */
 
-/* �뫖�돩�븣由� �떆�옉 */
+/* 占쎈쳳占쎈룴占쎈르�뵳占� 占쎈뻻占쎌삂 */
 
 td #sale {
     width: 80px;
@@ -139,21 +151,50 @@ td #sale {
 }
     
 
-/* �뫖�돩�븣由� �걹 */
+/* 占쎈쳳占쎈룴占쎈르�뵳占� 占쎄국 */
 
-/* 踰꾪듉�깭洹� �떆�옉 */
+/* 甕곌쑵�뱣占쎄묶域뱄옙 占쎈뻻占쎌삂 */
 
 button{
     position: relative;
     left: px;
     bottom: 20px;
 }
+h1 a{
+	color: gray;
+	text-decoration-line : none;
+	text-decoration : none;
+}
+h1 a:hover{
+	color: blue;
+}
+h2:hover{
+	color: purple;
+}
+
 .btn_like{
 	justify-content: center;
     width: 60px;
-    height: 30px;
+    height: 32px;
     align-content: center;
     text-align: center;
+    cursor: pointer;
+    align-items: center;
+    align-self: center;
+    position: relative;
+    top: 0;
+}
+
+.btn_like a{
+	text-decoration-line : none;
+	text-decoration : none;
+	color: #008C8C;
+}
+.btn_like a:hover{
+	color: white;
+}
+.btn_like:hover{
+background: #FF8CFF;
 }
 
 .btn_next {
@@ -231,4 +272,4 @@ button{
     text-align: center;
   }
 
-/* 踰꾪듉�깭洹� �걹 */
+/* 甕곌쑵�뱣占쎄묶域뱄옙 占쎄국 */

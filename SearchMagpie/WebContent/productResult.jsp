@@ -30,7 +30,7 @@
 </head>
 
 <body>
-<a href="Main.jsp">홈 가기</a>
+<h1><a href="Main.jsp">메인으로</a></h1>
 	<div class="small-container cart-page table-responsive">
 
 		<div id="header">
@@ -74,7 +74,7 @@
 						</div>
 					</td>
 					<div>
-					<td>
+					<td class="liketd">
 					<%if(info != null){ %>	
 					<button class="btn_like"><a href="InsertWishServiceCon.do?seq=<%=dto_list.get(i).getProduct_seq()%>&m_key=<%=info.getM_key()
 					%>">찜하기</button>
