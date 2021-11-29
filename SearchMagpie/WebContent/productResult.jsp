@@ -60,7 +60,7 @@ memberDTO info = (memberDTO)session.getAttribute("info");
 							<img src="<%=dto_list.get(i).getProduct_img()%>">
 
 							<div>
-								<a href="<%=dto_list.get(i).getProduct_url()%>" target='_blank'>
+								<a href="ProductSerachServiceCon.do?seq=<%=dto_list.get(i).getProduct_seq()%>" target='_blank'>
 									<h2><%=dto_list.get(i).getProduct_title()%></h4>
 								</a> <small>price:<p id="left_price<%=i%>" style="display: inline;"></p>￦</small> 
 								<br><small><%=dto_list.get(i).getProduct_source()%></small>

@@ -40,7 +40,11 @@
 <link rel="stylesheet" href="css/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owl.theme.default.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+<style type="text/css">
+
+</style>
 </head>
+
 <body>
 <%
 	DecimalFormat formatter = new DecimalFormat("###,###,###");
@@ -51,27 +55,48 @@
 	ArrayList<productDTO> temp = new ArrayList<productDTO>();
 	temp =(ArrayList<productDTO>)session.getAttribute("products");
 	if(temp.size() < 2){
+
+		data_name_one = temp.get(0).getP_title();
 		data_name_two = "해당하는 물품 상품이 존재하지 않습니다.";
 		//가격 0
+		price_one = formatter.format(temp.get(0).getP_price());
 		price_two = "";
 		//제품이 없습니다.
+		data_url_one = temp.get(0).getP_url();
 		data_url_two="";
 		//이미지 준비중
-		data_img_two="";
+		data_img_one = temp.get(0).getP_file1();
+		data_img_two="./images/image_none.jpg";
 	}
 	else{
-		//제목
-		data_name_one = temp.get(0).getP_title();
-		data_name_two = temp.get(1).getP_title();
-		//가격
-		price_one = formatter.format(temp.get(0).getP_price());
-		price_two = formatter.format(temp.get(1).getP_price());
-		//이미지
-		data_img_one = temp.get(0).getP_file1();
-		data_img_two = temp.get(1).getP_file1();
-		//URL
-		data_url_one = temp.get(0).getP_url();
-		data_url_two = temp.get(1).getP_url();
+		//가격이 더 쌀때 원래 왼쪽 이 더 비싸고, 오른쪽 더 싸.
+		if(temp.get(0).getP_price()<temp.get(1).getP_price()){
+			data_name_one = temp.get(1).getP_title();
+			data_name_two = temp.get(0).getP_title();
+			//가격
+			price_one = formatter.format(temp.get(1).getP_price());
+			price_two = formatter.format(temp.get(0).getP_price());
+			//이미지
+			data_img_one = temp.get(0).getP_file1();
+			data_img_two = temp.get(0).getP_file1();
+			//URL
+			data_url_one = temp.get(1).getP_url();
+			data_url_two = temp.get(0).getP_url();
+		}
+		else{
+			data_name_one = temp.get(0).getP_title();
+			data_name_two = temp.get(1).getP_title();
+			//가격
+			price_one = formatter.format(temp.get(0).getP_price());
+			price_two = formatter.format(temp.get(1).getP_price());
+			//이미지
+			data_img_one = temp.get(0).getP_file1();
+			data_img_two = temp.get(0).getP_file1();
+			//URL
+			data_url_one = temp.get(0).getP_url();
+			data_url_two = temp.get(1).getP_url();
+		}
+
 	}
 	
 	
@@ -87,11 +112,10 @@
 						<h3 class="h3_comment">
 							국/해외 판매처의 가격을 비교하여 <br> 가장 저렴한 두 값만 보여드립니다!
 						</h3>
-						<div class="fashion_section_2">
-							
-								<div class="electronic_img2">
+						<!-- <div class="fashion_section_2"> -->
+						<div class="box_main1">							
+								<div>
 									<img src="<%=data_img_one%>">
-								</div>
 									<h4 class="shirt_text"><%=data_name_one%></h4>
 									<p class="price_text">
 										가격 <span style="color: #262626;"><%=price_one%>원</span>
@@ -99,26 +123,29 @@
 									<div class="seemore_bt">
 									<a href="<%=data_url_one%>">직접 보러 가기</a>
 									</div>
-									<a href="#" class="wish"><i class="fa fa-heart"
-										aria-hidden="true"></i> 찜 목록 추가</a>
-								<!-- 반대쪽 -->
-								
-								<div class="electronic_img2">
-									<img src="<%=data_img_two%>">
+									<a href="#" class="aWish">
+									<i class="fa fa-heart" aria-hidden="true">
+									</i> 찜 목록 추가
+									</a>
+									</div>
 								</div>
+								<!-- 반대쪽 -->
+								<div class="box_main2">
+									<img src="<%=data_img_two%>">
+
 									<h4 class="shirt_text"><%=data_name_two%></h4>
 									<p class="price_text">
 										가격 <span style="color: #262626;"><%=price_two%>원</span>
 									</p>
+																	
 									<div class="seemore_bt">
 									<a href="<%=data_url_two%>">직접 보러 가기</a>
 									</div>
-									<a href="#" class="wish"><i class="fa fa-heart"
+									<a href="#" class="aWish"><i class="fa fa-heart"
 										aria-hidden="true"></i> 찜 목록 추가</a>
-										
+								</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
