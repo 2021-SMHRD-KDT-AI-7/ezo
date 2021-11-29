@@ -50,56 +50,48 @@ public class memberDAO {
 		int key = 0;
 		getConn();
 		try {
-			String sql = "SELECT m_id FROM t_member WHERE m_id = ?";
-
-			ps = conn.prepareStatement(sql);
-
-			ps.setString(1, memberDTO.getM_id());
-
-			rs = ps.executeQuery();
-			System.out.println("첫번째 SQL 통과");
-			if (!rs.next()) {
-
-				String sql2 = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'n')";
-
-				ps = conn.prepareStatement(sql2);
-
+				String sql = "INSERT INTO t_member VALUES (t_member_SEQ.NEXTVAL,?,?,?,?,?,?,SYSDATE,'n')";
+				
+				ps = conn.prepareStatement(sql);
+				
 				ps.setString(1, memberDTO.getM_id());
 				ps.setString(2, memberDTO.getM_pw());
 				ps.setString(3, memberDTO.getM_name());
 				ps.setString(4, memberDTO.getM_nickname());
 				ps.setString(5, memberDTO.getM_email());
 				ps.setString(6, memberDTO.getM_phone());
+				
+				ps.executeUpdate();
+				
+				System.out.println("첫번째 SQL 통과");
+				
+			String sql2 = "SELECT m_key FROM t_member WHERE m_id = ?";
 
-				cnt = ps.executeUpdate();
-				System.out.println("두번째 SQL 통과");
+			ps = conn.prepareStatement(sql2);
 
-			} else {
-				cnt = -1;
-			}
-
-			String sql3 = "SELECT m_key FROM t_member WHERE m_id = ?";
-			ps = conn.prepareStatement(sql3);
 			ps.setString(1, memberDTO.getM_id());
-			rs = ps.executeQuery();
 
-			if (rs.next()) {
+			rs = ps.executeQuery();
+			
+			if(rs.next()) {
 				key = rs.getInt("m_key");
 			}
-			System.out.println("세번째 SQL 통과");
+			System.out.print("두번째 SQL문 통과");
 			
-			
-			String sql4 = "INSERT INTO t_basket VALUES (?,?,?,SYSDATE)";
+			String sql3 = "INSERT INTO t_basket VALUES (?,?,?,?,?,?)";
 
-			ps = conn.prepareStatement(sql4);
+			ps = conn.prepareStatement(sql3);
 			
 			ps.setInt(1, key);
 			ps.setInt(2, 0);
-			ps.setInt(3, 0);
+			ps.setString(3, "");
+			ps.setInt(4, 0);
+			ps.setString(5, "");
+			ps.setString(6, "");
 
 			ps.executeUpdate();
 
-			System.out.println("네번째 SQL 통과");
+			System.out.println("세번째 SQL 통과");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -184,9 +176,9 @@ public class memberDAO {
 				String email = rs.getString("m_email");
 				String name = rs.getString("m_name");
 				String nickname = rs.getString("m_nickname");
-				String key = rs.getString("m_key");
+				int key = rs.getInt("m_key");
 
-				dto = new memberDTO(key, id, pw, name, nickname, email);
+				dto = new memberDTO(id, pw, name, nickname, email, key);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-
+<%@page import="Model.memberDTO"%>
 <%@page import="Model.SearchProductDTO"%>
 <%@page import="java.util.ArrayList"%>
 <DOCTYPE HTML5>
@@ -22,11 +22,13 @@
 <!-- <script src="./js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
 <%
-	ArrayList<SearchProductDTO> dto_list = (ArrayList<SearchProductDTO>) session.getAttribute("findKeywordList");
+	ArrayList<SearchProductDTO> dto_list = (ArrayList<SearchProductDTO>)session.getAttribute("findKeywordList");
+memberDTO info = (memberDTO)session.getAttribute("info");
 %>
 </head>
 
 <body>
+<a href="Main.jsp">홈 가기</a>
 	<div class="small-container cart-page table-responsive">
 
 		<div id="header">
@@ -68,7 +70,9 @@
 					<div>
 					<td>
 	
-					<button class="btn_like"><a href="InsertWishServiceCon.do?seq='<%=dto_list.get(i).getProduct_seq()%>'">찜하기</button>
+					<button class="btn_like"><a href="InsertWishServiceCon.do?seq=<%=dto_list.get(i).getProduct_seq()%>&m_key=<%=info.getM_key()
+					%>">찜하기</button>
+					<%System.out.print("JSP m_key :"+info.getM_key());%>
 					</td>
 					</div>
 					<div class="push_alram">

@@ -24,6 +24,7 @@ public class FrontContrlooer extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
+		
 		HttpSession session = request.getSession();
 		String reqURI = request.getRequestURI();
 		String project = request.getContextPath();
@@ -64,14 +65,6 @@ public class FrontContrlooer extends HttpServlet {
 			sc = new changedPriceServiceCon();
 		} else if (result.equals("alarmServiceCon.do")) {
 			sc = new alarmServiceCon();
-		} else if (result.equals("basketServiceCon.do")) {
-			sc = new basketServiceCon();
-		} else if (result.equals("deleteBasketServiceCon.do")) {
-			sc = new deleteBasketServiceCon();
-		} else if (result.equals("p_reviewServiceCon.do")) {
-			sc = new p_reviewServiceCon();
-		} else if (result.equals("deleteP_reviewServiceCon.do")) {
-			sc = new deleteP_reviewServiceCon();
 		} else if (result.equals("updateP_reviewServiceCon.do")) {
 			sc = new updateP_reviewServiceCon();
 		} else if (result.equals("i_reviewServiceCon.do")) {
@@ -80,9 +73,11 @@ public class FrontContrlooer extends HttpServlet {
 			sc = new deleteI_reviewServiceCon();
 		} else if (result.equals("updateI_reviewServiceCon.do")) {
 			sc = new updateI_reviewServiceCon();
-		}else if(result.equals("ProductSerachServiceCon.do")) {
-			sc = new ProductSerachServiceCon();
-		}
+		} else if (result.equals("InsertWishServiceCon.do")) {
+			sc = new InsertWishServiceCon();
+		} else if (result.equals("deleteWishlistServiceCon.do")) {
+			sc = new deleteWishlistServiceCon();
+		} 
 		path = sc.execute(request, response);
 		response.sendRedirect(path);
 

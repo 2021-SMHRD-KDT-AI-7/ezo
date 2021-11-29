@@ -21,6 +21,18 @@ public class memberDTO {
 		this.m_phone = m_phone;
 	}
 	
+	public memberDTO(String m_id, String m_pw, String m_name, String m_nickname, String m_email, int m_key) {
+		super();
+		this.m_id = m_id;
+		this.m_pw = m_pw;
+		this.m_name = m_name;
+		this.m_nickname = m_nickname;
+		this.m_email = m_email;
+		this.m_key = m_key;
+	}
+	
+	
+	
 	public memberDTO(String m_id, String m_pw) {
 		super();
 		this.m_id = m_id;

@@ -28,9 +28,7 @@ public class joinServiceCon implements Command {
 				"이메일 : " + email + 
 				"폰번호 : " + phone);
 		
-		int cnt = dao.join(new memberDTO(id,pw,name,nickname,email,phone));
-		
-		System.out.println(cnt);
+		dao.join(new memberDTO(id,pw,name,nickname,email,phone));
 		
 		return "Main.jsp";
 	}

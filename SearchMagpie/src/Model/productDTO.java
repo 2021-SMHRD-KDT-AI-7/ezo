@@ -13,6 +13,10 @@ public class productDTO {
 	private String p_file2;
 	private String p_file3;
 	private String p_file4;
+	
+	
+	
+	
 	public productDTO(String p_title, int p_price, String p_url, String p_category, String p_source, String p_file1,
 			String p_file2, String p_file3, String p_file4) {
 		super();

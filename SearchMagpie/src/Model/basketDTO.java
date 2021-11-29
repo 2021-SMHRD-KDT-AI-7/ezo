@@ -3,65 +3,76 @@ package Model;
 public class basketDTO {
 	private int m_key;
 	private int p_key;
-	private int item_key;
-	private String reg_date;
-
-	public basketDTO(int m_key, int p_key, int item_key, String reg_date) {
+	private String p_title;
+	private int p_price;
+	private String p_url;
+	private String p_file;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public basketDTO(int p_key, String p_title, int p_price, String p_url, String p_file) {
+		super();
+		this.p_key = p_key;
+		this.p_title = p_title;
+		this.p_price = p_price;
+		this.p_url = p_url;
+		this.p_file = p_file;
+	}
+	public basketDTO(int m_key, int p_key, String p_title, int p_price, String p_url, String p_file) {
 		super();
 		this.m_key = m_key;
 		this.p_key = p_key;
-		this.item_key = item_key;
-		this.reg_date = reg_date;
+		this.p_title = p_title;
+		this.p_price = p_price;
+		this.p_url = p_url;
+		this.p_file = p_file;
 	}
-
-	public basketDTO(int p_key, int item_key, String reg_date) {
-		super();
-		this.p_key = p_key;
-		this.item_key = item_key;
-		this.reg_date = reg_date;
-	}
-
-	public basketDTO(int m_key) {
-		super();
-		this.m_key = m_key;
-	}
-
 	public int getM_key() {
 		return m_key;
 	}
-
 	public void setM_key(int m_key) {
 		this.m_key = m_key;
 	}
-
 	public int getP_key() {
 		return p_key;
 	}
-
 	public void setP_key(int p_key) {
 		this.p_key = p_key;
 	}
-
-	public int getItem_key() {
-		return item_key;
+	public String getP_title() {
+		return p_title;
 	}
-
-	public void setItem_key(int item_key) {
-		this.item_key = item_key;
+	public void setP_title(String p_title) {
+		this.p_title = p_title;
 	}
-
-	public String getReg_date() {
-		return reg_date;
+	public int getP_price() {
+		return p_price;
 	}
-
-	public void setReg_date(String reg_date) {
-		this.reg_date = reg_date;
+	public void setP_price(int p_price) {
+		this.p_price = p_price;
 	}
-
-	@Override
-	public String toString() {
-		return "basketDTO [m_key=" + m_key + ", p_key=" + p_key + ", item_key=" + item_key + ", reg_date=" + reg_date
-				+ "]";
+	public String getP_url() {
+		return p_url;
 	}
-
+	public void setP_url(String p_url) {
+		this.p_url = p_url;
+	}
+	public String getP_file() {
+		return p_file;
+	}
+	public void setP_file(String p_file) {
+		this.p_file = p_file;
+	}
+	
+	
+	
+	
 }
